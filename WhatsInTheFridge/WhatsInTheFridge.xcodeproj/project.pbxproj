@@ -11,6 +11,8 @@
 		86EC607F260BCB8C00A11618 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC607E260BCB8C00A11618 /* LoginViewController.swift */; };
 		86EC6082260BCBCE00A11618 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC6081260BCBCE00A11618 /* SignupViewController.swift */; };
 		86EC6085260BCC4C00A11618 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC6084260BCC4C00A11618 /* HomeViewController.swift */; };
+		86EC6099260D91D400A11618 /* exploreItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC6097260D91D400A11618 /* exploreItemCollectionViewCell.swift */; };
+		86EC609A260D91D400A11618 /* explorePageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC6098260D91D400A11618 /* explorePageCollectionViewController.swift */; };
 		86F6D14D2606F83500C74FA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F6D14C2606F83500C74FA5 /* AppDelegate.swift */; };
 		86F6D14F2606F83500C74FA5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F6D14E2606F83500C74FA5 /* SceneDelegate.swift */; };
 		86F6D1512606F83500C74FA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F6D1502606F83500C74FA5 /* ViewController.swift */; };
@@ -24,6 +26,8 @@
 		86EC607E260BCB8C00A11618 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		86EC6081260BCBCE00A11618 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		86EC6084260BCC4C00A11618 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		86EC6097260D91D400A11618 /* exploreItemCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exploreItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		86EC6098260D91D400A11618 /* explorePageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = explorePageCollectionViewController.swift; sourceTree = "<group>"; };
 		86F6D1492606F83500C74FA5 /* WhatsInTheFridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsInTheFridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86F6D14C2606F83500C74FA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		86F6D14E2606F83500C74FA5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 				86EC6081260BCBCE00A11618 /* SignupViewController.swift */,
 				86EC607E260BCB8C00A11618 /* LoginViewController.swift */,
 				86EC607B260BCB4E00A11618 /* InitialViewController.swift */,
+				86EC6097260D91D400A11618 /* exploreItemCollectionViewCell.swift */,
+				86EC6098260D91D400A11618 /* explorePageCollectionViewController.swift */,
 				86F6D1552606F83600C74FA5 /* Assets.xcassets */,
 				86F6D1572606F83600C74FA5 /* LaunchScreen.storyboard */,
 				86F6D15A2606F83600C74FA5 /* Info.plist */,
@@ -153,7 +159,9 @@
 				86F6D1512606F83500C74FA5 /* ViewController.swift in Sources */,
 				86F6D14D2606F83500C74FA5 /* AppDelegate.swift in Sources */,
 				86F6D14F2606F83500C74FA5 /* SceneDelegate.swift in Sources */,
+				86EC609A260D91D400A11618 /* explorePageCollectionViewController.swift in Sources */,
 				86EC607F260BCB8C00A11618 /* LoginViewController.swift in Sources */,
+				86EC6099260D91D400A11618 /* exploreItemCollectionViewCell.swift in Sources */,
 				86EC6085260BCC4C00A11618 /* HomeViewController.swift in Sources */,
 				86EC607C260BCB4E00A11618 /* InitialViewController.swift in Sources */,
 			);
