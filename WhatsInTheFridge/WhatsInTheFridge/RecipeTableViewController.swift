@@ -38,7 +38,8 @@ class RecipeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 150
-        getAllData()
+        let ingredients: [String] = ["Apples", "Flour", "Sugar"]
+        getAllData(ingredients: ingredients)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -60,14 +61,19 @@ class RecipeTableViewController: UITableViewController {
     }
 
     
-    func getAllData()   {
+    func getAllData(ingredients: [String])   {
         print("Trying to get all data")
         let headers = [
             "x-rapidapi-key": "6f1810ca34msh227332a299bf704p13f30bjsn1ba98259af85",
             "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
         ]
-
-        let request = NSMutableURLRequest(url: NSURL(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=apples%2Cflour%2Csugar&number=5&ranking=1&ignorePantry=true")! as URL,
+        
+        let ingredientsString = ingredients.joined(separator:"%2")
+        let urlRequestString: String = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients="+String(ingredientsString)+"&number=5&ranking=1&ignorePantry=true"
+        
+        let urlStr = URL(string: urlRequestString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
+        
+        let request = NSMutableURLRequest(url: urlStr!,
                                                 cachePolicy: .useProtocolCachePolicy,
                                             timeoutInterval: 10.0)
         request.httpMethod = "GET"
@@ -92,7 +98,6 @@ class RecipeTableViewController: UITableViewController {
             
             do{
                 self.recipes = try JSONDecoder().decode([recipe].self, from: jsonData)
-                print(self.recipes.count)
                 //because we HAVE to refresh after we load the data to make sure the data is populated.
                 //this is a separate task so we gotta use dispatch queue to tell it to go to the main thread
                 DispatchQueue.main.async {
@@ -113,7 +118,6 @@ class RecipeTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "recipeListing", for: indexPath)
             as! RecipeTableViewCell
         // Configure the cell...
-        print("hererererere")
         let recipeID = recipes[indexPath.row].id
         let recipeTitle = recipes[indexPath.row].title
         let imageUrl = URL(string: recipes[indexPath.row].image)!
