@@ -575,7 +575,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="coinListing" rowHeight="120" id="k5P-Oc-3Lu" customClass="coinTableViewCell" customModule="WhatsInTheFridge" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="recipeListing" rowHeight="120" id="k5P-Oc-3Lu" customClass="RecipeTableViewCell" customModule="WhatsInTheFridge" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k5P-Oc-3Lu" id="z9h-3S-GdV">
@@ -621,9 +621,6 @@
                                     <outlet property="RecipeID" destination="GPX-jr-YVI" id="qfs-Qh-3ex"/>
                                     <outlet property="RecipeImage" destination="cOF-en-9dm" id="yaM-5l-fxw"/>
                                     <outlet property="RecipeName" destination="PbX-mj-HrC" id="cTw-2I-o35"/>
-                                    <outlet property="coinImage" destination="cOF-en-9dm" id="cpc-eZ-VQP"/>
-                                    <outlet property="coinName" destination="PbX-mj-HrC" id="wYF-TA-N2J"/>
-                                    <outlet property="price" destination="GPX-jr-YVI" id="fKe-eC-yqX"/>
                                     <segue destination="fT7-qv-ggl" kind="showDetail" id="Qqz-Pr-8nW"/>
                                 </connections>
                             </tableViewCell>

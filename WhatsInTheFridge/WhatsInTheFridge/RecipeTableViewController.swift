@@ -55,7 +55,7 @@ class RecipeTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return recipes.count
     }
 
     
@@ -109,10 +109,23 @@ class RecipeTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "recipeListing", for: indexPath)
+            as! RecipeTableViewCell
         // Configure the cell...
-
+        print("hererererere")
+        let recipeID = recipes[indexPath.row].id
+        let recipeTitle = recipes[indexPath.row].title
+        let imageUrl = URL(string: recipes[indexPath.row].image)!
+        
+        let data = try? Data(contentsOf: imageUrl)
+        if let imageData = data {
+            cell.recipeImage.image = UIImage(data: imageData)
+        }
+        
+        cell.recipeName.text = recipeTitle
+        cell.recipeID.text = String(recipeID)
+        
+        
         return cell
     }
 
@@ -162,4 +175,17 @@ class RecipeTableViewController: UITableViewController {
     }
     */
 
+}
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
+    }
 }
