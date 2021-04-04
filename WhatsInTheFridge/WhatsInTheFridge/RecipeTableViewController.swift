@@ -354,15 +354,24 @@ class RecipeTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        let destVC = segue.destination as! RecipeDetailViewController
+        let selectRow = (tableView.indexPathForSelectedRow?.row)!
+        
+        destVC.recipeStep = recipeDetailList[selectRow].instructions
+        destVC.wwSmartPoints = "Weight Watcher Points" + String(recipeDetailList[selectRow].weightWatcherSmartPoints)
+        
+        
+        
     }
-    */
+    
 
 }
 extension UIImageView {
