@@ -37,6 +37,7 @@ class RecipeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.rowHeight = 150
         getAllData()
 
         // Uncomment the following line to preserve selection between presentations

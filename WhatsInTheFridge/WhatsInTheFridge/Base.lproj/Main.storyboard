@@ -582,39 +582,32 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbX-mj-HrC">
-                                            <rect key="frame" x="32" y="11" width="54.5" height="27.5"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="27.5" id="DQ9-wu-UT8"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="23"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPX-jr-YVI">
-                                            <rect key="frame" x="32" y="63" width="140" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PbX-mj-HrC">
+                                            <rect key="frame" x="32" y="11" width="175" height="52"/>
+                                            <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cOF-en-9dm">
                                             <rect key="frame" x="251" y="0.0" width="143" height="120"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPX-jr-YVI">
+                                            <rect key="frame" x="32" y="88" width="140" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="cOF-en-9dm" firstAttribute="leading" secondItem="z9h-3S-GdV" secondAttribute="leading" constant="251" id="2BD-ll-Dht"/>
-                                        <constraint firstAttribute="trailing" secondItem="cOF-en-9dm" secondAttribute="trailing" constant="20" symbolic="YES" id="B1G-2f-ttR"/>
-                                        <constraint firstItem="cOF-en-9dm" firstAttribute="leading" secondItem="GPX-jr-YVI" secondAttribute="trailing" constant="79" id="F99-9j-0Su"/>
-                                        <constraint firstItem="cOF-en-9dm" firstAttribute="leading" secondItem="PbX-mj-HrC" secondAttribute="trailing" constant="164.5" id="MqE-Bo-euW"/>
-                                        <constraint firstItem="GPX-jr-YVI" firstAttribute="top" secondItem="PbX-mj-HrC" secondAttribute="bottom" constant="24.5" id="O7q-rI-GFh"/>
-                                        <constraint firstItem="PbX-mj-HrC" firstAttribute="leading" secondItem="z9h-3S-GdV" secondAttribute="leading" constant="32" id="T2D-VM-5z6"/>
-                                        <constraint firstAttribute="trailing" secondItem="GPX-jr-YVI" secondAttribute="trailing" constant="242" id="T3d-y5-Nx9"/>
-                                        <constraint firstAttribute="bottom" secondItem="cOF-en-9dm" secondAttribute="bottom" id="UzI-Eq-GuD"/>
-                                        <constraint firstAttribute="bottom" secondItem="GPX-jr-YVI" secondAttribute="bottom" constant="36" id="V89-Fo-jkq"/>
-                                        <constraint firstItem="PbX-mj-HrC" firstAttribute="top" secondItem="z9h-3S-GdV" secondAttribute="top" constant="11" id="VtW-Lg-30h"/>
-                                        <constraint firstItem="GPX-jr-YVI" firstAttribute="leading" secondItem="z9h-3S-GdV" secondAttribute="leading" constant="32" id="aiS-wP-sDf"/>
-                                        <constraint firstItem="PbX-mj-HrC" firstAttribute="top" secondItem="z9h-3S-GdV" secondAttribute="top" constant="11" id="cG5-vb-7EE"/>
-                                        <constraint firstItem="cOF-en-9dm" firstAttribute="top" secondItem="z9h-3S-GdV" secondAttribute="top" id="raR-iN-qiF"/>
+                                        <constraint firstItem="PbX-mj-HrC" firstAttribute="leading" secondItem="z9h-3S-GdV" secondAttribute="leading" constant="32" id="4YI-1d-Xfj"/>
+                                        <constraint firstAttribute="trailing" secondItem="cOF-en-9dm" secondAttribute="trailing" constant="20" symbolic="YES" id="6QD-Cp-WWV"/>
+                                        <constraint firstItem="cOF-en-9dm" firstAttribute="width" secondItem="z9h-3S-GdV" secondAttribute="width" multiplier="0.345411" id="99t-za-IJW"/>
+                                        <constraint firstItem="GPX-jr-YVI" firstAttribute="top" secondItem="PbX-mj-HrC" secondAttribute="bottom" constant="25" id="HWl-wJ-9hi"/>
+                                        <constraint firstItem="cOF-en-9dm" firstAttribute="centerY" secondItem="z9h-3S-GdV" secondAttribute="centerY" id="U2n-4q-MHb"/>
+                                        <constraint firstItem="GPX-jr-YVI" firstAttribute="leading" secondItem="z9h-3S-GdV" secondAttribute="leading" constant="32" id="ZdK-Qz-oVy"/>
+                                        <constraint firstItem="PbX-mj-HrC" firstAttribute="top" secondItem="z9h-3S-GdV" secondAttribute="top" constant="11" id="dnE-FC-fq6"/>
+                                        <constraint firstItem="cOF-en-9dm" firstAttribute="leading" secondItem="PbX-mj-HrC" secondAttribute="trailing" constant="44" id="sDo-yh-kXN"/>
+                                        <constraint firstItem="cOF-en-9dm" firstAttribute="height" secondItem="z9h-3S-GdV" secondAttribute="height" id="vhZ-6S-bFM"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -633,60 +626,31 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r0g-7v-sZz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3177" y="-652"/>
+            <point key="canvasLocation" x="3176.811594202899" y="-652.23214285714278"/>
         </scene>
-        <!--Coin Detail View Controller-->
+        <!--Recipe Detail View Controller-->
         <scene sceneID="TEv-AB-22w">
             <objects>
-                <viewController id="fT7-qv-ggl" customClass="CoinDetailViewController" customModule="WhatsInTheFridge" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="LYe-aZ-FWW" customClass="coinDe">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e5Y-Gu-wY0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="fT7-qv-ggl" customClass="RecipeDetailViewController" customModule="WhatsInTheFridge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LYe-aZ-FWW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88V-hG-IKm">
-                                <rect key="frame" x="193" y="214" width="64" height="33"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rank:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kcw-5d-EuZ">
-                                <rect key="frame" x="108" y="214" width="65" height="33"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wKG-bz-FMI">
-                                <rect key="frame" x="108" y="255" width="198" height="54"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="45"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qx6-ja-rbs">
+                                <rect key="frame" x="82" y="70" width="251" height="321"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cBm-8J-del"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="wKG-bz-FMI" firstAttribute="firstBaseline" secondItem="88V-hG-IKm" secondAttribute="baseline" constant="52" symbolType="layoutAnchor" id="3F8-YI-lsb"/>
-                            <constraint firstItem="Kcw-5d-EuZ" firstAttribute="top" secondItem="cBm-8J-del" secondAttribute="top" constant="214" id="Baf-5Y-jnR"/>
-                            <constraint firstItem="wKG-bz-FMI" firstAttribute="top" secondItem="Kcw-5d-EuZ" secondAttribute="bottom" constant="8" symbolic="YES" id="KHi-Sg-xfX"/>
-                            <constraint firstItem="cBm-8J-del" firstAttribute="bottom" secondItem="wKG-bz-FMI" secondAttribute="bottom" constant="499" id="MHe-qV-fab"/>
-                            <constraint firstItem="cBm-8J-del" firstAttribute="trailing" secondItem="88V-hG-IKm" secondAttribute="trailing" constant="157" id="Sob-wD-vmW"/>
-                            <constraint firstItem="cBm-8J-del" firstAttribute="trailing" secondItem="Kcw-5d-EuZ" secondAttribute="trailing" constant="241" id="Xeg-GL-95x"/>
-                            <constraint firstItem="Kcw-5d-EuZ" firstAttribute="leading" secondItem="cBm-8J-del" secondAttribute="leading" constant="108" id="Z0g-iW-g5h"/>
-                            <constraint firstItem="cBm-8J-del" firstAttribute="trailing" secondItem="wKG-bz-FMI" secondAttribute="trailing" constant="108" id="a9F-1v-dU3"/>
-                            <constraint firstItem="cBm-8J-del" firstAttribute="bottom" secondItem="Kcw-5d-EuZ" secondAttribute="bottom" constant="561" id="bLh-Ne-UAN"/>
-                            <constraint firstItem="wKG-bz-FMI" firstAttribute="top" secondItem="cBm-8J-del" secondAttribute="top" constant="255" id="eum-9t-PiU"/>
-                            <constraint firstItem="wKG-bz-FMI" firstAttribute="leading" secondItem="cBm-8J-del" secondAttribute="leading" constant="108" id="koP-J8-mRr"/>
-                            <constraint firstItem="88V-hG-IKm" firstAttribute="leading" secondItem="Kcw-5d-EuZ" secondAttribute="trailing" constant="20" id="qkz-k9-iqH"/>
-                        </constraints>
                     </view>
-                    <connections>
-                        <outlet property="coinName" destination="wKG-bz-FMI" id="zIl-eq-zcI"/>
-                        <outlet property="coinRank" destination="88V-hG-IKm" id="CP5-9h-ROC"/>
-                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e5Y-Gu-wY0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4064" y="-652"/>
+            <point key="canvasLocation" x="4063.7681159420295" y="-652.23214285714278"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
