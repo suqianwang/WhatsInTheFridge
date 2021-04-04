@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Foo-mb-dpw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rz9-ls-KPv">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -423,7 +423,7 @@
         <!--Explore-->
         <scene sceneID="KbT-bw-Afa">
             <objects>
-                <collectionViewController id="RcA-7Y-XK3" customClass="explorePageCollectionViewController" customModule="whats_in_the_fridge" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="RcA-7Y-XK3" customClass="explorePageCollectionViewController" customModule="WhatsInTheFridge" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="2Ck-2H-eVx">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -436,7 +436,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="cell" id="pp0-Ym-LeB" customClass="exploreItemCollectionViewCell" customModule="whats_in_the_fridge" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="cell" id="pp0-Ym-LeB" customClass="exploreItemCollectionViewCell" customModule="WhatsInTheFridge" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="10" width="180" height="180"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="NGi-gr-vpi">
@@ -488,47 +488,67 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bd9-0f-Ndw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1271" y="-1595"/>
+            <point key="canvasLocation" x="2203" y="-2418"/>
         </scene>
-        <!--Search-->
-        <scene sceneID="fvZ-v7-CCj">
+        <!--Meal Survey Question-->
+        <scene sceneID="YuH-Ze-Tw2">
             <objects>
-                <viewController id="3Ti-Z2-hIj" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Psg-gY-YTL">
+                <tableViewController id="46X-44-WH3" customClass="MealSurveyQuestion" customModule="WhatsInTheFridge" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="3Kg-vW-YDN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="answerCell" id="ejc-ey-Iug" customClass="MealSurveyTableViewCell" customModule="WhatsInTheFridge" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ejc-ey-Iug" id="X5Y-38-Gkd">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="3vV-bq-fJB" kind="show" id="ngu-7f-CFl"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="46X-44-WH3" id="hxu-y7-sUc"/>
+                            <outlet property="delegate" destination="46X-44-WH3" id="rUz-jc-juK"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="rXw-Ua-Rn8"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y9u-rR-HKM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3113.04347826087" y="-1681.4732142857142"/>
+        </scene>
+        <!--Recipes View Controller-->
+        <scene sceneID="WLN-Mg-5WG">
+            <objects>
+                <viewController id="3vV-bq-fJB" customClass="RecipesViewController" customModule="WhatsInTheFridge" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kts-i8-Er5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="43" translatesAutoresizingMaskIntoConstraints="NO" id="xOv-Gp-WXd">
-                                <rect key="frame" x="67" y="113" width="280" height="34"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o9v-5g-DzP">
-                                        <rect key="frame" x="0.0" y="0.0" width="24.5" height="34"/>
-                                        <state key="normal" image="camera.fill" catalog="system"/>
-                                    </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search for Recipes" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n40-Fw-jyY">
-                                        <rect key="frame" x="67.5" y="0.0" width="149.5" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uqQ-j2-HPO">
-                                        <rect key="frame" x="260" y="0.0" width="20" height="34"/>
-                                        <state key="normal" image="magnifyingglass" catalog="system"/>
-                                    </button>
-                                </subviews>
-                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OLl-2r-h44">
+                                <rect key="frame" x="138" y="335" width="186" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="rbH-gX-ktY"/>
+                        <viewLayoutGuide key="safeArea" id="ti1-Bs-LhJ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="xOv-Gp-WXd" firstAttribute="centerX" secondItem="Psg-gY-YTL" secondAttribute="centerX" id="690-bY-DG7"/>
-                            <constraint firstItem="xOv-Gp-WXd" firstAttribute="top" secondItem="rbH-gX-ktY" secondAttribute="top" constant="25" id="lmT-7X-q8T"/>
-                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="kti-3Y-tcq"/>
+                    <navigationItem key="navigationItem" id="fFF-T8-AEk"/>
+                    <connections>
+                        <outlet property="data" destination="OLl-2r-h44" id="AzE-5N-C6O"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Jaf-hT-hWI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dhB-h5-qWb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1970" y="-1595"/>
+            <point key="canvasLocation" x="4115.9420289855079" y="-1681.4732142857142"/>
         </scene>
         <!--Profile-->
         <scene sceneID="gKt-hC-2FD">
@@ -544,7 +564,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NME-Vw-KiF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2725" y="-1586"/>
+            <point key="canvasLocation" x="2204" y="-907"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Lxz-xJ-hBg">
@@ -558,13 +578,32 @@
                     </tabBar>
                     <connections>
                         <segue destination="RcA-7Y-XK3" kind="relationship" relationship="viewControllers" id="Fwo-Hc-nYx"/>
-                        <segue destination="3Ti-Z2-hIj" kind="relationship" relationship="viewControllers" id="0ME-O6-sjU"/>
-                        <segue destination="NbI-Vu-ac8" kind="relationship" relationship="viewControllers" id="hrx-zr-3R2"/>
+                        <segue destination="bgn-A8-KAv" kind="relationship" relationship="viewControllers" id="qvw-od-lx4"/>
+                        <segue destination="NbI-Vu-ac8" kind="relationship" relationship="viewControllers" id="Bja-NB-CQm"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FIw-Rm-fq7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1035" y="-293"/>
+            <point key="canvasLocation" x="1204" y="-293"/>
+        </scene>
+        <!--Meal-->
+        <scene sceneID="s1g-zQ-ZT7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bgn-A8-KAv" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Meal" image="square.and.arrow.up" catalog="system" id="E8b-5J-yAG"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yJI-Vc-vbR">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="46X-44-WH3" kind="relationship" relationship="rootViewController" id="W42-lb-m78"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="R1n-6d-iOH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2202.898550724638" y="-1681.4732142857142"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
@@ -573,9 +612,8 @@
         <segue reference="qqU-AH-Jx4"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="camera.fill" catalog="system" width="128" height="94"/>
-        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <image name="wand.and.stars" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
