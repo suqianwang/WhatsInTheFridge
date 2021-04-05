@@ -506,9 +506,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="3vV-bq-fJB" kind="show" id="ngu-7f-CFl"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -521,34 +518,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y9u-rR-HKM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3113.04347826087" y="-1681.4732142857142"/>
-        </scene>
-        <!--Recipes View Controller-->
-        <scene sceneID="WLN-Mg-5WG">
-            <objects>
-                <viewController id="3vV-bq-fJB" customClass="RecipesViewController" customModule="WhatsInTheFridge" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Kts-i8-Er5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Text" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OLl-2r-h44">
-                                <rect key="frame" x="138" y="335" width="186" height="82"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="ti1-Bs-LhJ"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="fFF-T8-AEk"/>
-                    <connections>
-                        <outlet property="data" destination="OLl-2r-h44" id="AzE-5N-C6O"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dhB-h5-qWb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4115.9420289855079" y="-1681.4732142857142"/>
         </scene>
         <!--Profile-->
         <scene sceneID="gKt-hC-2FD">

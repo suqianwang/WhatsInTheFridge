@@ -7,22 +7,25 @@
 
 import UIKit
 
+// MARK: Question Struct for survey
 struct Question {
     let questionString: String?
     let answers:[String]?
     var response: String?
 }
 
+// MARK: list of questions for survey
 var survey:[Question] = [Question(questionString: "How you doin?", answers: ["good", "bd", "meh"], response:nil),
-                         Question(questionString: "How you still doin?", answers: ["good", "bd", "meh"], response:nil),
-                         Question(questionString: "How you doin now?", answers: ["good", "bd", "meh"], response:nil),
-                         Question(questionString: "How you doin really?", answers: ["good", "bd", "meh"], response:nil),
-                         Question(questionString: "How you doin after this?", answers: ["good", "bd", "meh"], response:nil)]
+//                         Question(questionString: "How you still doin?", answers: ["good", "bd", "meh", "really meh"], response:nil),
+//                         Question(questionString: "How you doin now?", answers: ["good", "bd", "meh", "stop talking to me"], response:nil),
+//                         Question(questionString: "How you doin really?", answers: ["good", "bd", "meh"], response:nil),
+                         Question(questionString: "How you doin after this?", answers: ["good", "bd", "meh", "hmm", "ask me again when I care"], response:nil)]
 
 class MealSurveyQuestion: UITableViewController {
 
     let cellId = "answerCell"
     let headerId = "headerId"
+    let sendToRecipeId = "sendToRecipeId"
     let headerHeight: CGFloat = 50
     let question = Question(questionString: "How you doin?", answers: ["good", "bd", "meh"], response:nil)
     
@@ -54,16 +57,20 @@ class MealSurveyQuestion: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        guard let count = question.answers?.count else { return 0 }
-        return count
+        if let index = navigationController?.viewControllers.firstIndex(of: self){
+            return survey[index].answers!.count
+        }
+        else {
+            return 0
+            
+        }
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! MealSurveyTableViewCell
         if let index = navigationController?.viewControllers.firstIndex(of: self){
-            cell.textLabel?.text = survey[index].answers![indexPath.row]
+            let row = indexPath.row
+            cell.textLabel?.text = survey[index].answers![row]
             return cell
         }else{
             return UITableViewCell()
@@ -80,6 +87,7 @@ class MealSurveyQuestion: UITableViewController {
     }
 
     // MARK: - Navigation
+    // progmatically creating view controller
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let index = navigationController?.viewControllers.firstIndex(of: self){
             survey[index].response = survey[index].answers![indexPath.row]
@@ -89,52 +97,13 @@ class MealSurveyQuestion: UITableViewController {
                 let question = MealSurveyQuestion()
                 navigationController?.pushViewController(question, animated: true)
             }else{
-                let recipeViewController = RecipesViewController()
-                
-                var responses:[String] = []
-                for question in survey {
-                    responses.append(question.response!)
-                }
-                recipeViewController.responses = responses
-                navigationController?.pushViewController(recipeViewController, animated: true)
+                let layout = UICollectionViewFlowLayout()
+                let recipeVC = RecipesViewController(collectionViewLayout: layout)
+                recipeVC.survey = survey
+                navigationController?.pushViewController(recipeVC, animated: true)
             }
         }
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
 }
 
 // MARK: - Header for Question View
