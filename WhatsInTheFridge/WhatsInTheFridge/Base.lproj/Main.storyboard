@@ -533,7 +533,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NME-Vw-KiF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2204" y="-907"/>
+            <point key="canvasLocation" x="2203" y="-293"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Lxz-xJ-hBg">
@@ -547,6 +547,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="RcA-7Y-XK3" kind="relationship" relationship="viewControllers" id="Fwo-Hc-nYx"/>
+                        <segue destination="wvv-fw-eHT" kind="relationship" relationship="viewControllers" id="BEv-q2-hFL"/>
                         <segue destination="bgn-A8-KAv" kind="relationship" relationship="viewControllers" id="qvw-od-lx4"/>
                         <segue destination="NbI-Vu-ac8" kind="relationship" relationship="viewControllers" id="Bja-NB-CQm"/>
                     </connections>
@@ -559,7 +560,7 @@
         <scene sceneID="s1g-zQ-ZT7">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bgn-A8-KAv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Meal" image="square.and.arrow.up" catalog="system" id="E8b-5J-yAG"/>
+                    <tabBarItem key="tabBarItem" title="Meal" image="book" catalog="system" id="E8b-5J-yAG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="yJI-Vc-vbR">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -574,15 +575,112 @@
             </objects>
             <point key="canvasLocation" x="2202.898550724638" y="-1681.4732142857142"/>
         </scene>
+        <!--Ingredient-->
+        <scene sceneID="914-9a-pyB">
+            <objects>
+                <tableViewController id="Q37-eq-Qej" customClass="IngredientTableViewController" customModule="WhatsInTheFridge" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="ndp-9v-1O4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="IngredientCell" id="eXA-bw-XRC">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eXA-bw-XRC" id="dTH-nm-Tip">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Q37-eq-Qej" id="Dmj-ML-CQv"/>
+                            <outlet property="delegate" destination="Q37-eq-Qej" id="vma-eX-8cp"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Ingredient" id="nFy-ra-4jM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Pwd-1r-ZbY">
+                            <connections>
+                                <segue destination="9aD-6m-RTB" kind="show" id="iLK-28-3pb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AdL-jq-56h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3113.04347826087" y="-986.38392857142856"/>
+        </scene>
+        <!--Add Ingredient-->
+        <scene sceneID="gH4-RK-sWp">
+            <objects>
+                <viewController id="9aD-6m-RTB" customClass="AddIngredientViewController" customModule="WhatsInTheFridge" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dbJ-eM-tVd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w6d-hL-wqa">
+                                <rect key="frame" x="20" y="124" width="374" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="v9j-LI-php"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Ingredient" id="zcJ-xz-oe0">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="5TC-YO-TSZ">
+                            <connections>
+                                <action selector="cancel:" destination="rGA-Wa-m2H" id="2PB-3j-VJg"/>
+                                <segue destination="rGA-Wa-m2H" kind="unwind" identifier="cancelSegue" unwindAction="cancelWithSegue:" id="Uh3-Pr-Lmi"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="UKH-xM-Wkv">
+                            <connections>
+                                <action selector="done:" destination="rGA-Wa-m2H" id="aLi-HW-5RR"/>
+                                <segue destination="rGA-Wa-m2H" kind="unwind" identifier="doneSegue" unwindAction="doneWithSegue:" id="0wl-n1-gft"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="ingredientName" destination="w6d-hL-wqa" id="gLx-k5-qzd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="w0r-8j-rvC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="rGA-Wa-m2H" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3911.594202898551" y="-986.38392857142856"/>
+        </scene>
+        <!--Ingredient-->
+        <scene sceneID="F7z-dq-QWC">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wvv-fw-eHT" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Ingredient" image="plus" catalog="system" id="bnJ-OX-xrg"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ugd-nb-d6c">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Q37-eq-Qej" kind="relationship" relationship="rootViewController" id="VMA-QM-H9w"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gxh-R0-Qip" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2202.898550724638" y="-986.38392857142856"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="HtM-Ye-seh"/>
         <segue reference="RST-A4-v3S"/>
-        <segue reference="qqU-AH-Jx4"/>
+        <segue reference="yRn-ZA-WKn"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="book" catalog="system" width="128" height="102"/>
         <image name="person.circle" catalog="system" width="128" height="121"/>
-        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="wand.and.stars" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

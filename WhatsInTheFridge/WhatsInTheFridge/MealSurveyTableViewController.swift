@@ -15,11 +15,11 @@ struct Question {
 }
 
 // MARK: list of questions for survey
-var survey:[Question] = [Question(questionString: "How you doin?", answers: ["good", "bd", "meh"], response:nil),
-//                         Question(questionString: "How you still doin?", answers: ["good", "bd", "meh", "really meh"], response:nil),
-//                         Question(questionString: "How you doin now?", answers: ["good", "bd", "meh", "stop talking to me"], response:nil),
-//                         Question(questionString: "How you doin really?", answers: ["good", "bd", "meh"], response:nil),
-                         Question(questionString: "How you doin after this?", answers: ["good", "bd", "meh", "hmm", "ask me again when I care"], response:nil)]
+var survey:[Question] = [
+    Question(questionString: "What type of meal are you planning?", answers: ["main course", "side dish", "desert", "appetizer", "salad", "bread", "breakfast", "soup", "beverage", "sauce", "marinade", "fingerfood", "snack", "drink"], response:nil),
+    Question(questionString: "What cuisine do you want to have for this meal?", answers: ["African", "American", "British", "Cajun", "Caribbean", "Chinese", "Eastern European", "European", "French", "German", "Greek", "Indian", "Irish", "Italian", "Japanese", "Jewish", "Korean", "Latin American", "Mediterranean", "Mexican", "Middle Eastern", "Nordic", "Southern", "Spanish", "Thai", "Vietnamese"], response:nil),
+    Question(questionString: "Diet Preference?", answers: ["Gluten Free", "Ketogenic", "Vegetarian", "Lacto-Vegetarian", "Ovo-Vegetarian", "Vegan", "Pescetarian", "Paleo", "Primal", "Whole30"], response:nil),
+    Question(questionString: "Any diet restriction we should know about?", answers: ["Dairy", "Egg", "Gluten", "Grain", "Peanut", "Seafood", "Sesame", "Shellfish", "Soy", "Sulfite", "Tree Nut", "Wheat"], response:nil)]
 
 class MealSurveyQuestion: UITableViewController {
 
@@ -27,7 +27,7 @@ class MealSurveyQuestion: UITableViewController {
     let headerId = "headerId"
     let sendToRecipeId = "sendToRecipeId"
     let headerHeight: CGFloat = 50
-    let question = Question(questionString: "How you doin?", answers: ["good", "bd", "meh"], response:nil)
+//    let question = Question(questionString: "How you doin?", answers: ["good", "bd", "meh"], response:nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()

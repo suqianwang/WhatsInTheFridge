@@ -31,10 +31,12 @@ class RecipesCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.addSubview(imageView)
 //        contentView.addSubview(nameLabel)
-        let images = [UIImage(named: "cow"),
-                      UIImage(named: "chicken"),
+        let images = [UIImage(named: "bake"),
+                      UIImage(named: "frech toast"),
                       UIImage(named: "salad"),
-                      UIImage(named: "crab"),
+                      UIImage(named: "pad-thai"),
+                      UIImage(named: "pancake"),
+                      UIImage(named: "spaghetti"),
                       UIImage(named: "pizza")]
         imageView.image = images.randomElement() as? UIImage
     }
