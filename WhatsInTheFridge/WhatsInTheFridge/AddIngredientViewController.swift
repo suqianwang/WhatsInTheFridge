@@ -1,29 +1,31 @@
 //
-//  HomeViewController.swift
+//  AddIngredientViewController.swift
 //  WhatsInTheFridge
 //
-//  Created by Suqian Wang on 3/24/21.
+//  Created by Suqian Wang on 4/5/21.
 //
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class AddIngredientViewController: UIViewController {
 
+
+    @IBOutlet weak var ingredientName: UITextField!
+    var ingredient: String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "doneSegue"{
+            ingredient = ingredientName.text!
+        }
     }
-    */
 
 }
