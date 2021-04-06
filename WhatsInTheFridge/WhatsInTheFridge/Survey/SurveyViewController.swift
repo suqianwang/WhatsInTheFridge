@@ -10,11 +10,15 @@ import ResearchKit
 
 class SurveyViewController: UIViewController, ORKTaskViewControllerDelegate {
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBAction func surveyTapped(sender : AnyObject) {
         let taskViewController = ORKTaskViewController(task: SurveyTask, taskRun: nil)
         taskViewController.delegate = self
         present(taskViewController, animated: true, completion: nil)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
         // Do any additional setup after loading the view.
     }
     

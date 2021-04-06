@@ -10,8 +10,6 @@
 		3106C67C26196085009A7139 /* RecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106C67B26196085009A7139 /* RecipeTableViewController.swift */; };
 		3106C67F261960E2009A7139 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106C67E261960E2009A7139 /* RecipeTableViewCell.swift */; };
 		3106C68226196153009A7139 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106C68126196153009A7139 /* RecipeDetailViewController.swift */; };
-		86122FF626194FF50074D282 /* MealSurveyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86122FF526194FF40074D282 /* MealSurveyTableViewController.swift */; };
-		861230002619894A0074D282 /* MealSurveyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86122FFF2619894A0074D282 /* MealSurveyTableViewCell.swift */; };
 		8677E52C261BD8D40047DBD4 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8677E527261BD88B0047DBD4 /* ResearchKit.framework */; };
 		8677E52D261BD8D40047DBD4 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8677E527261BD88B0047DBD4 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8677E532261BDAF60047DBD4 /* SurveyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E531261BDAF60047DBD4 /* SurveyTask.swift */; };
@@ -66,8 +64,6 @@
 		3106C67B26196085009A7139 /* RecipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewController.swift; sourceTree = "<group>"; };
 		3106C67E261960E2009A7139 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		3106C68126196153009A7139 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
-		86122FF526194FF40074D282 /* MealSurveyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSurveyTableViewController.swift; sourceTree = "<group>"; };
-		86122FFF2619894A0074D282 /* MealSurveyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSurveyTableViewCell.swift; sourceTree = "<group>"; };
 		8677E51D261BD88B0047DBD4 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = ResearchKit/ResearchKit.xcodeproj; sourceTree = "<group>"; };
 		8677E531261BDAF60047DBD4 /* SurveyTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyTask.swift; sourceTree = "<group>"; };
 		8677E536261BE80C0047DBD4 /* SurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
@@ -121,8 +117,6 @@
 			children = (
 				8677E536261BE80C0047DBD4 /* SurveyViewController.swift */,
 				8677E531261BDAF60047DBD4 /* SurveyTask.swift */,
-				86122FF526194FF40074D282 /* MealSurveyTableViewController.swift */,
-				86122FFF2619894A0074D282 /* MealSurveyTableViewCell.swift */,
 			);
 			path = Survey;
 			sourceTree = "<group>";
@@ -280,7 +274,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86122FF626194FF50074D282 /* MealSurveyTableViewController.swift in Sources */,
 				86EC60A5261B9A3000A11618 /* IngredientTableViewController.swift in Sources */,
 				8677E537261BE80C0047DBD4 /* SurveyViewController.swift in Sources */,
 				8677E532261BDAF60047DBD4 /* SurveyTask.swift in Sources */,
@@ -291,7 +284,6 @@
 				86F6D14F2606F83500C74FA5 /* SceneDelegate.swift in Sources */,
 				86EC60A8261BB16100A11618 /* AddIngredientViewController.swift in Sources */,
 				86EC607F260BCB8C00A11618 /* LoginViewController.swift in Sources */,
-				861230002619894A0074D282 /* MealSurveyTableViewCell.swift in Sources */,
 				86EC6099260D91D400A11618 /* exploreItemCollectionViewCell.swift in Sources */,
 				86EC607C260BCB4E00A11618 /* InitialViewController.swift in Sources */,
 				3106C68226196153009A7139 /* RecipeDetailViewController.swift in Sources */,

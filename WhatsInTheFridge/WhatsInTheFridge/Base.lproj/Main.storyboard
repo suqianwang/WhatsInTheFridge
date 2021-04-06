@@ -490,50 +490,32 @@
             </objects>
             <point key="canvasLocation" x="2203" y="-2418"/>
         </scene>
-        <!--Meal Survey Question-->
-        <scene sceneID="YuH-Ze-Tw2">
-            <objects>
-                <tableViewController id="46X-44-WH3" customClass="MealSurveyQuestion" customModule="WhatsInTheFridge" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="3Kg-vW-YDN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="answerCell" id="ejc-ey-Iug" customClass="MealSurveyTableViewCell" customModule="WhatsInTheFridge" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ejc-ey-Iug" id="X5Y-38-Gkd">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="46X-44-WH3" id="hxu-y7-sUc"/>
-                            <outlet property="delegate" destination="46X-44-WH3" id="rUz-jc-juK"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="rXw-Ua-Rn8"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="y9u-rR-HKM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3113.04347826087" y="-1681.4732142857142"/>
-        </scene>
         <!--Survey View Controller-->
         <scene sceneID="2yh-XW-Umx">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l4p-Df-Ok0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="vMv-lj-cvr" customClass="SurveyViewController" customModule="WhatsInTheFridge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="u7k-7U-RGc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l8u-xB-oYz">
+                                <rect key="frame" x="96" y="396" width="222" height="104"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                                <state key="normal" title="Plan A Meal"/>
+                                <connections>
+                                    <action selector="surveyTappedWithSender:" destination="vMv-lj-cvr" eventType="touchUpInside" id="q12-nW-rQk"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="P8V-tl-uJn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="q5G-tX-QpJ"/>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="l4p-Df-Ok0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3912" y="-1681"/>
+            <point key="canvasLocation" x="3111.594202898551" y="-1681.4732142857142"/>
         </scene>
         <!--Profile-->
         <scene sceneID="gKt-hC-2FD">
@@ -747,7 +729,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r0g-7v-sZz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3176.811594202899" y="-652.23214285714278"/>
+            <point key="canvasLocation" x="5439" y="-211"/>
         </scene>
         <!--Recipe Detail View Controller-->
         <scene sceneID="TEv-AB-22w">
@@ -782,7 +764,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e5Y-Gu-wY0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4063.7681159420295" y="-652.23214285714278"/>
+            <point key="canvasLocation" x="6326" y="-211"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
