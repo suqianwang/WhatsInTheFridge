@@ -20,23 +20,9 @@ git submodule update --init
 git submodule add <submodule url>
 ```
 
-* This will pull the submodule repos upon initialization
-```git
-git submodule update --init
-```
-, to inialize a specific submodule, do
-```git
-git submodule update --init --remote <module name>
-```
+* This will pull the submodule repos upon initialization `git submodule update --init`, to inialize a specific submodule, do `git submodule update --init --remote <module name>`
 
-* Subsequent updates to submodules
-```git
-git submodule update=
-```
-, to update a specific submodule, do
-```git
-git submodule update --remote <module name>
-```
+* Subsequent updates to submodules `git submodule update`, to update a specific submodule, do `git submodule update --remote <module name>`
 
 ## Features
 * User is able to input/delete/move ingredients
