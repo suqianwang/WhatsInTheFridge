@@ -9,12 +9,6 @@ import UIKit
 import ResearchKit
 
 class SurveyViewController: UIViewController, ORKTaskViewControllerDelegate {
-
-//    @IBAction func surveyTapped(sender : AnyObject) {
-//        let taskViewController = ORKTaskViewController(task: SurveyTask, taskRun: nil)
-//      taskViewController.delegate = self
-//        present(taskViewController, animated: true, completion: nil)
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -752,7 +752,6 @@
         <!--Recipe Detail View Controller-->
         <scene sceneID="TEv-AB-22w">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="e5Y-Gu-wY0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="fT7-qv-ggl" customClass="RecipeDetailViewController" customModule="WhatsInTheFridge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LYe-aZ-FWW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
@@ -781,6 +780,7 @@
                         <outlet property="weightWatcherSmartPoints" destination="5Xc-v3-bjS" id="ZAr-Sv-Ynx"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e5Y-Gu-wY0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4063.7681159420295" y="-652.23214285714278"/>
         </scene>
