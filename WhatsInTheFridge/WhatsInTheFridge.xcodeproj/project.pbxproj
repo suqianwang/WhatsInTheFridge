@@ -13,6 +13,10 @@
 		86122FF626194FF50074D282 /* MealSurveyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86122FF526194FF40074D282 /* MealSurveyTableViewController.swift */; };
 		861230002619894A0074D282 /* MealSurveyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86122FFF2619894A0074D282 /* MealSurveyTableViewCell.swift */; };
 		8612300326198EF80074D282 /* RecipesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8612300226198EF70074D282 /* RecipesViewController.swift */; };
+		8677E52C261BD8D40047DBD4 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8677E527261BD88B0047DBD4 /* ResearchKit.framework */; };
+		8677E52D261BD8D40047DBD4 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8677E527261BD88B0047DBD4 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8677E532261BDAF60047DBD4 /* SurveyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E531261BDAF60047DBD4 /* SurveyTask.swift */; };
+		8677E537261BE80C0047DBD4 /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E536261BE80C0047DBD4 /* SurveyViewController.swift */; };
 		867E14FE261AABFC00D5FD6A /* RecipesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 867E14FD261AABFC00D5FD6A /* RecipesCollectionViewCell.swift */; };
 		86EC607C260BCB4E00A11618 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC607B260BCB4E00A11618 /* InitialViewController.swift */; };
 		86EC607F260BCB8C00A11618 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC607E260BCB8C00A11618 /* LoginViewController.swift */; };
@@ -29,6 +33,37 @@
 		86F6D1592606F83600C74FA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86F6D1572606F83600C74FA5 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8677E526261BD88B0047DBD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8677E51D261BD88B0047DBD4 /* ResearchKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B183A5951A8535D100C76870;
+			remoteInfo = ResearchKit;
+		};
+		8677E528261BD88B0047DBD4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8677E51D261BD88B0047DBD4 /* ResearchKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 86CC8E9A1AC09332001CCD89;
+			remoteInfo = ResearchKitTests;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8677E52E261BD8D40047DBD4 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				8677E52D261BD8D40047DBD4 /* ResearchKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3106C67B26196085009A7139 /* RecipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewController.swift; sourceTree = "<group>"; };
 		3106C67E261960E2009A7139 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
@@ -36,6 +71,9 @@
 		86122FF526194FF40074D282 /* MealSurveyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSurveyTableViewController.swift; sourceTree = "<group>"; };
 		86122FFF2619894A0074D282 /* MealSurveyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealSurveyTableViewCell.swift; sourceTree = "<group>"; };
 		8612300226198EF70074D282 /* RecipesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesViewController.swift; sourceTree = "<group>"; };
+		8677E51D261BD88B0047DBD4 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = ResearchKit/ResearchKit.xcodeproj; sourceTree = "<group>"; };
+		8677E531261BDAF60047DBD4 /* SurveyTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyTask.swift; sourceTree = "<group>"; };
+		8677E536261BE80C0047DBD4 /* SurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		867E14FD261AABFC00D5FD6A /* RecipesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesCollectionViewCell.swift; sourceTree = "<group>"; };
 		86EC607B260BCB4E00A11618 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		86EC607E260BCB8C00A11618 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -59,17 +97,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8677E52C261BD8D40047DBD4 /* ResearchKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8677E51E261BD88B0047DBD4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8677E527261BD88B0047DBD4 /* ResearchKit.framework */,
+				8677E529261BD88B0047DBD4 /* ResearchKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8677E52B261BD8D40047DBD4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		86F6D1402606F83500C74FA5 = {
 			isa = PBXGroup;
 			children = (
+				8677E51D261BD88B0047DBD4 /* ResearchKit.xcodeproj */,
 				86F6D14B2606F83500C74FA5 /* WhatsInTheFridge */,
 				86F6D14A2606F83500C74FA5 /* Products */,
+				8677E52B261BD8D40047DBD4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,7 +145,9 @@
 				86F6D14C2606F83500C74FA5 /* AppDelegate.swift */,
 				86F6D14E2606F83500C74FA5 /* SceneDelegate.swift */,
 				86F6D1502606F83500C74FA5 /* ViewController.swift */,
+				8677E531261BDAF60047DBD4 /* SurveyTask.swift */,
 				86F6D1522606F83500C74FA5 /* Main.storyboard */,
+				8677E536261BE80C0047DBD4 /* SurveyViewController.swift */,
 				86EC60A4261B9A2F00A11618 /* IngredientTableViewController.swift */,
 				86EC6081260BCBCE00A11618 /* SignupViewController.swift */,
 				86EC607E260BCB8C00A11618 /* LoginViewController.swift */,
@@ -119,6 +178,7 @@
 				86F6D1452606F83500C74FA5 /* Sources */,
 				86F6D1462606F83500C74FA5 /* Frameworks */,
 				86F6D1472606F83500C74FA5 /* Resources */,
+				8677E52E261BD8D40047DBD4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -154,12 +214,35 @@
 			mainGroup = 86F6D1402606F83500C74FA5;
 			productRefGroup = 86F6D14A2606F83500C74FA5 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8677E51E261BD88B0047DBD4 /* Products */;
+					ProjectRef = 8677E51D261BD88B0047DBD4 /* ResearchKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				86F6D1482606F83500C74FA5 /* WhatsInTheFridge */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		8677E527261BD88B0047DBD4 /* ResearchKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ResearchKit.framework;
+			remoteRef = 8677E526261BD88B0047DBD4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		8677E529261BD88B0047DBD4 /* ResearchKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ResearchKitTests.xctest;
+			remoteRef = 8677E528261BD88B0047DBD4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		86F6D1472606F83500C74FA5 /* Resources */ = {
@@ -181,6 +264,8 @@
 			files = (
 				86122FF626194FF50074D282 /* MealSurveyTableViewController.swift in Sources */,
 				86EC60A5261B9A3000A11618 /* IngredientTableViewController.swift in Sources */,
+				8677E537261BE80C0047DBD4 /* SurveyViewController.swift in Sources */,
+				8677E532261BDAF60047DBD4 /* SurveyTask.swift in Sources */,
 				86EC6082260BCBCE00A11618 /* SignupViewController.swift in Sources */,
 				86F6D1512606F83500C74FA5 /* ViewController.swift in Sources */,
 				86F6D14D2606F83500C74FA5 /* AppDelegate.swift in Sources */,
