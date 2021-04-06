@@ -519,6 +519,22 @@
             </objects>
             <point key="canvasLocation" x="3113.04347826087" y="-1681.4732142857142"/>
         </scene>
+        <!--Survey View Controller-->
+        <scene sceneID="2yh-XW-Umx">
+            <objects>
+                <viewController id="vMv-lj-cvr" customClass="SurveyViewController" customModule="WhatsInTheFridge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u7k-7U-RGc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="P8V-tl-uJn"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="q5G-tX-QpJ"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l4p-Df-Ok0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3912" y="-1681"/>
+        </scene>
         <!--Profile-->
         <scene sceneID="gKt-hC-2FD">
             <objects>
@@ -568,7 +584,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="46X-44-WH3" kind="relationship" relationship="rootViewController" id="W42-lb-m78"/>
+                        <segue destination="vMv-lj-cvr" kind="relationship" relationship="rootViewController" id="hnL-ok-Kc9"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R1n-6d-iOH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
