@@ -54,9 +54,14 @@ public var SurveyTask: ORKOrderedTask {
     let dietRestrictionsQuestionStepTitle = "Any diet restriction we should be aware of?"
     let dietRestrictionsTextChoices: [ORKTextChoice] = createTextChoiceLIst(listString: dietRestrictions)
     let mealTypeAnswerFormat4: ORKTextChoiceAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .multipleChoice, textChoices: dietRestrictionsTextChoices)
-    let mealQuestionStep4 = ORKQuestionStep(identifier: "TextChoiceQuestionStep4", title: dietPreferencesQuestionStepTitle, answer: mealTypeAnswerFormat4)
+
+    let mealQuestionStep4 = ORKQuestionStep(identifier: "TextChoiceQuestionStep4", title:  dietRestrictionsQuestionStepTitle, answer: mealTypeAnswerFormat4)
     steps += [mealQuestionStep4]
     
+    let summaryStep = ORKCompletionStep(identifier: "SummaryStep")
+    summaryStep.title = "Thank you!"
+    summaryStep.text = "Click next to see your recipes~"
+    steps += [summaryStep]
     
     return ORKOrderedTask(identifier: "SurveyTask", steps: steps)
 }
