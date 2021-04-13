@@ -11,15 +11,27 @@ import Foundation
 class RecipeTableViewController: UITableViewController {
 
     
+    struct allData: Codable {
+        let results: [recipe]
+        let baseURI: String
+        let offset, number, totalResults, processingTimeMS: Int
+
+        enum CodingKeys: String, CodingKey {
+            case results
+            case baseURI = "baseUri"
+            case offset, number, totalResults
+            case processingTimeMS = "processingTimeMs"
+        }
+    }
+
+    // MARK: - Result
     struct recipe: Codable {
-        let id: Int
+        let id, usedIngredientCount, missedIngredientCount, likes: Int
         let title: String
         let image: String
         let imageType: String
-        let usedIngredientCount, missedIngredientCount: Int
-        let missedIngredients, usedIngredients, unusedIngredients: [ingredient]
-        let likes: Int
     }
+
 
     // MARK: - Ingredient
     struct ingredient: Codable {
@@ -167,9 +179,10 @@ class RecipeTableViewController: UITableViewController {
     }
 
     
-    
+    var all:allData?
     
     var recipes:[recipe] = []
+    
     var recipeDetailList:[recipeDetail] = []
     
     override func viewDidLoad() {
@@ -206,15 +219,15 @@ class RecipeTableViewController: UITableViewController {
         ]
         
         let ingredientsString = ingredients.joined(separator:"%2")
-        let urlRequestString: String = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients="+String(ingredientsString)+"&number=5&ranking=1&ignorePantry=true"
+        let urlRequestString: String = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?limitLicense=false&offset=0&number=10&query=burger&cuisine=american&includeIngredients=onions%2C%20lettuce%2C%20tomato&excludeIngredients=coconut%2C%20mango&intolerances=peanut%2C%20shellfish&type=main%20course"
         
-        let urlStr = URL(string: urlRequestString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-        print(urlStr)
-        let request = NSMutableURLRequest(url: urlStr!,
+        let request = NSMutableURLRequest(url: NSURL(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?limitLicense=false&offset=0&number=10&query=burger&cuisine=american&includeIngredients=onions%2C%20lettuce%2C%20tomato&excludeIngredients=coconut%2C%20mango&intolerances=peanut%2C%20shellfish&type=main%20course")! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
-                                            timeoutInterval: 10.0)
+                                            timeoutInterval: 60)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = headers
+        
+        
 
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
@@ -234,7 +247,8 @@ class RecipeTableViewController: UITableViewController {
             }
             
             do{
-                self.recipes = try JSONDecoder().decode([recipe].self, from: jsonData)
+                self.all = try JSONDecoder().decode(allData.self, from: jsonData)
+                self.recipes = self.all!.results
                 self.fillRecipeDetailData()
                 //because we HAVE to refresh after we load the data to make sure the data is populated.
                 //this is a separate task so we gotta use dispatch queue to tell it to go to the main thread
