@@ -12,6 +12,7 @@
 		3106C68226196153009A7139 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106C68126196153009A7139 /* RecipeDetailViewController.swift */; };
 		7088FD9226249E25009FD3F2 /* ResearchKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7088FD8C26249DF9009FD3F2 /* ResearchKit.framework */; };
 		7088FD9326249E25009FD3F2 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7088FD8C26249DF9009FD3F2 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		70963C272625F1EE00E56653 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70963C262625F1EE00E56653 /* Ingredient.swift */; };
 		709FE41F2624C78500945FC8 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709FE41E2624C78500945FC8 /* IngredientTableViewCell.swift */; };
 		8677E532261BDAF60047DBD4 /* SurveyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E531261BDAF60047DBD4 /* SurveyTask.swift */; };
 		8677E537261BE80C0047DBD4 /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E536261BE80C0047DBD4 /* SurveyViewController.swift */; };
@@ -73,6 +74,7 @@
 		3106C67E261960E2009A7139 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		3106C68126196153009A7139 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		7088FD8526249DF8009FD3F2 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = ResearchKit.xcodeproj; sourceTree = "<group>"; };
+		70963C262625F1EE00E56653 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		709FE41E2624C78500945FC8 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
 		8677E531261BDAF60047DBD4 /* SurveyTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyTask.swift; sourceTree = "<group>"; };
 		8677E536261BE80C0047DBD4 /* SurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				86EC60A4261B9A2F00A11618 /* IngredientTableViewController.swift */,
 				86EC60A7261BB16100A11618 /* AddIngredientViewController.swift */,
 				709FE41E2624C78500945FC8 /* IngredientTableViewCell.swift */,
+				70963C262625F1EE00E56653 /* Ingredient.swift */,
 			);
 			path = Ingredient;
 			sourceTree = "<group>";
@@ -342,6 +345,7 @@
 				8677E554261CB8060047DBD4 /* collectedPageCollectionViewController.swift in Sources */,
 				8677E553261CB8060047DBD4 /* collectDetailViewController.swift in Sources */,
 				86EC607C260BCB4E00A11618 /* InitialViewController.swift in Sources */,
+				70963C272625F1EE00E56653 /* Ingredient.swift in Sources */,
 				3106C68226196153009A7139 /* RecipeDetailViewController.swift in Sources */,
 				3106C67C26196085009A7139 /* RecipeTableViewController.swift in Sources */,
 				8677E55B261CB8260047DBD4 /* explorePageCollectionViewController.swift in Sources */,

@@ -24,11 +24,13 @@ class IngredientTableViewController: UITableViewController {
         
         //if there is data from the loaded data, load it here.
         if let savedIngredients = loadIngredients(){
+            print("There are saved ingredients: attempting to load them.")
             ingredients += savedIngredients
         }
         
         //otherwise use the default.
         else{
+            print("There are no saved ingredients: you should see the defaults.")
             loadSampleIngredients()
         }
         
@@ -76,8 +78,6 @@ class IngredientTableViewController: UITableViewController {
             os_log(.error, log: OSLog.default, "Failed to saved ingredients...")
         }
     }
-    
-
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -90,13 +90,15 @@ class IngredientTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientTableViewCell", for: indexPath) as? IngredientTableViewCell else {
             fatalError("The dequeued cell is not an instance of IngredientTableViewCell.")
         }
         
         let ingredient = ingredients[indexPath.row]
-        cell.ingredientName.text = ingredient.name
+        
+        print(ingredient.name)
+        
+        cell.ingredientName?.text = ingredient.name
         
         return cell
     }
@@ -110,7 +112,7 @@ class IngredientTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            print("Attempting to delete a row.")
+            print("Attempting to delete an ingredient.")
             // Delete the row from the data source
             ingredients.remove(at: indexPath.row)
             saveIngredients()
@@ -150,6 +152,7 @@ class IngredientTableViewController: UITableViewController {
             
             //add a new ingredient
             else{
+                print("Adding a new ingredient: table view detected this.")
                 let newIndexPath = IndexPath(row: ingredients.count, section:0)
                 
                 ingredients.append(ingredient!)
