@@ -50,23 +50,23 @@ class RecipeTableViewController: UITableViewController {
         let vegetarian, vegan, glutenFree, dairyFree: Bool
         let veryHealthy, cheap, veryPopular, sustainable: Bool
         let weightWatcherSmartPoints: Int
-        let gaps: String
-        let lowFodmap: Bool
-        let preparationMinutes, cookingMinutes, aggregateLikes, spoonacularScore: Int
-        let healthScore: Int
-        let creditsText, sourceName: String
-        let pricePerServing: Double
-        let extendedIngredients: [ExtendedIngredient]
+        let gaps: String?
+        let lowFodmap: Bool?
+        let preparationMinutes, cookingMinutes, aggregateLikes, spoonacularScore: Int?
+        let healthScore: Int?
+        let creditsText, sourceName: String?
+        let pricePerServing: Double?
+        let extendedIngredients: [ExtendedIngredient]?
         let id: Int
         let title: String
-        let readyInMinutes, servings: Int
-        let sourceURL: String
-        let image: String
-        let imageType, summary: String
-        let cuisines, dishTypes, diets, occasions: [String]
-        let winePairing: WinePairing
+        let readyInMinutes, servings: Int?
+        let sourceURL: String?
+        let image: String?
+        let imageType, summary: String?
+        let cuisines, dishTypes, diets, occasions: [String]?
+        let winePairing: WinePairing?
         let instructions: String
-        let analyzedInstructions: [AnalyzedInstruction]
+        let analyzedInstructions: [AnalyzedInstruction]?
         let originalID: JSONNull?
 
         enum CodingKeys: String, CodingKey {
