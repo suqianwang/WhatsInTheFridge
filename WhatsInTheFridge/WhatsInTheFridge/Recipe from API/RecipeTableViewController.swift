@@ -65,7 +65,7 @@ class RecipeTableViewController: UITableViewController {
         let imageType, summary: String?
         let cuisines, dishTypes, diets, occasions: [String]?
         let winePairing: WinePairing?
-        let instructions: String
+        let instructions: String?
         let analyzedInstructions: [AnalyzedInstruction]?
         let originalID: JSONNull?
 
@@ -188,8 +188,9 @@ class RecipeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 150
-        let ingredients: [String] = ["Ribeye"]
-        getAllData(ingredients: ingredients)
+        let ingredients: [String] = ["onion", "tomato"]
+        let intolerances: [String] = ["peanut", "shellfish"]
+        getAllData(ingredients: ingredients, intolerances: intolerances)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -211,17 +212,30 @@ class RecipeTableViewController: UITableViewController {
     }
 
     
-    func getAllData(ingredients: [String])   {
+    func getAllData(ingredients: [String], intolerances: [String])   {
         print("Trying to get all data")
         let headers = [
             "x-rapidapi-key": "6f1810ca34msh227332a299bf704p13f30bjsn1ba98259af85",
             "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
         ]
         
-        let ingredientsString = ingredients.joined(separator:"%2")
-        let urlRequestString: String = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?limitLicense=false&offset=0&number=10&query=burger&cuisine=american&includeIngredients=onions%2C%20lettuce%2C%20tomato&excludeIngredients=coconut%2C%20mango&intolerances=peanut%2C%20shellfish&type=main%20course"
+        let ingredientsString = ingredients.joined(separator:",")
+        let intolerancesString = intolerances.joined(separator:",")
+        print(ingredientsString)
         
-        let request = NSMutableURLRequest(url: NSURL(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex?limitLicense=false&offset=0&number=10&query=burger&cuisine=american&includeIngredients=onions%2C%20lettuce%2C%20tomato&excludeIngredients=coconut%2C%20mango&intolerances=peanut%2C%20shellfish&type=main%20course")! as URL,
+        let queryItems = [URLQueryItem(name: "limitLicense", value: "false"), URLQueryItem(name: "offset", value: "0"),
+                          URLQueryItem(name: "number", value: "10"),URLQueryItem(name: "query", value: ""),
+                          URLQueryItem(name: "cuisine", value: "american"), URLQueryItem(name: "intolerances", value: intolerancesString),
+                          URLQueryItem(name: "type", value: "main course"),
+                          URLQueryItem(name: "includeIngredients", value: ingredientsString)]
+        var urlComps = URLComponents(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex")!
+        urlComps.queryItems = queryItems
+        
+        var result = urlComps.string
+        print(result)
+        result = result!.replacingOccurrences(of: ",", with: "%2C")
+        
+        let request = NSMutableURLRequest(url: NSURL(string: result!)! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
                                             timeoutInterval: 60)
         request.httpMethod = "GET"
