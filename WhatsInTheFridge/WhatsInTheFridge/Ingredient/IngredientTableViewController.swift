@@ -13,33 +13,62 @@ class IngredientTableViewController: UITableViewController {
     @IBAction func cancel(segue:UIStoryboardSegue) {
     }
     
-
-    @IBAction func done(segue:UIStoryboardSegue) {
-            let ingredientVC = segue.source as! AddIngredientViewController
-            newIngredient = ingredientVC.ingredient
-            ingredients.append(newIngredient)
-            tableView.reloadData()
-    }
-    
-    var ingredients = [String]()
-    var newIngredient: String = ""
+    var ingredients = [Ingredient]()
+    var newIngredient: Ingredient?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        ingredients = ["salt", "pepper", "oil"]
+        
+        //use class original edit button
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
+        
+        //if there is data from the loaded data, load it here.
+        if let savedIngredients = loadIngredients(){
+            ingredients += savedIngredients
+        }
+        
+        //otherwise use the default.
+        else{
+            loadSampleIngredients()
+        }
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+    }
 
-         self.navigationItem.leftBarButtonItem = self.editButtonItem
+    @IBAction func done(segue:UIStoryboardSegue) {
+        let ingredientVC = segue.source as! AddIngredientViewController
+        newIngredient = ingredientVC.ingredient
+        ingredients.append(newIngredient!)
+        tableView.reloadData()
+    }
+    
+    // Mark: - Default data for no data stores.
+    private func loadSampleIngredients(){
+        guard let ingred1 = Ingredient(name: "salt") else {
+            fatalError("Unable to load default ingredient 1.")
+        }
+        
+        guard let ingred2 = Ingredient(name: "pepper") else {
+            fatalError("Unable to load default ingredient 2.")
+        }
+        
+        guard let ingred3 = Ingredient(name: "oil") else {
+            fatalError("Unable to load default ingredient 3.")
+        }
+        
+        ingredients += [ingred1, ingred2, ingred3]
+    }
+    
+    // Mark: - Table View Data Source
+    private func loadIngredients() -> [Ingredient]?{
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Ingredient.ArchiveURL.path) as? [Ingredient]
     }
     
     // Mark: - Table View Save Data
-    
     private func saveIngredients(){
         //let isSuccessfulSave = NSKeyedArchiver.archivedData(withRootObject: ingredients, requiringSecureCoding: true)
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ingredients, toFile: IngredientTableViewCell.ArchiveURL.path)
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ingredients, toFile: Ingredient.ArchiveURL.path)
         if isSuccessfulSave{
             os_log(.error, log: OSLog.default, "Ingredients successfully saved.")
         }
@@ -48,12 +77,7 @@ class IngredientTableViewController: UITableViewController {
         }
     }
     
-    private func loadIngredients(){
-        return NSKeyedUnarchiver.unarchiveObject(withFile: IngredientTableViewCell.ArchiveURL.path) as? [IngredientTableViewCell.Ingredient]
-    }
 
-
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
@@ -67,10 +91,13 @@ class IngredientTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
-
-        cell.textLabel?.text = ingredients[indexPath.row]
-
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientTableViewCell", for: indexPath) as? IngredientTableViewCell else {
+            fatalError("The dequeued cell is not an instance of IngredientTableViewCell.")
+        }
+        
+        let ingredient = ingredients[indexPath.row]
+        cell.ingredientName.text = ingredient.name
+        
         return cell
     }
 
@@ -83,8 +110,10 @@ class IngredientTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            print("Attempting to delete a row.")
             // Delete the row from the data source
             ingredients.remove(at: indexPath.row)
+            saveIngredients()
             tableView.deleteRows(at: [indexPath], with: .fade)
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -93,6 +122,7 @@ class IngredientTableViewController: UITableViewController {
 
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+        print("Rearranging table.")
         let cell = self.ingredients[fromIndexPath.row]
         ingredients.remove(at: fromIndexPath.row)
         ingredients.insert(cell, at: to.row)
@@ -102,6 +132,33 @@ class IngredientTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the item to be re-orderable.
         return true
+    }
+    
+    // Mark : Save Ingredients to Datalast again whenever a new one is added or an existing one updated.
+    @IBAction func unwindToIngredients(sender: UIStoryboardSegue){
+        let sourceViewController = sender.source as? AddIngredientViewController
+        
+        if sourceViewController != nil {
+            let ingredient = sourceViewController?.ingredient
+            print("Coming from segue.")
+            
+            //update an existing ingredient?
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                ingredients[selectedIndexPath.row] = ingredient!
+                    tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            }
+            
+            //add a new ingredient
+            else{
+                let newIndexPath = IndexPath(row: ingredients.count, section:0)
+                
+                ingredients.append(ingredient!)
+                
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+            
+            saveIngredients()
+        }
     }
 
     /*

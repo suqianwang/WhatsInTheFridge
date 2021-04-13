@@ -11,7 +11,7 @@ class AddIngredientViewController: UIViewController {
 
 
     @IBOutlet weak var ingredientName: UITextField!
-    var ingredient: String = ""
+    var ingredient = Ingredient(name: "Default Ingredient")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class AddIngredientViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "doneSegue"{
-            ingredient = ingredientName.text!
+            ingredient = Ingredient(name: ingredientName.text!)!
         }
     }
 
