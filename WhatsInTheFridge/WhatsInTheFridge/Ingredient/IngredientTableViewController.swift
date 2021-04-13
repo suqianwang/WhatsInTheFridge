@@ -40,8 +40,10 @@ class IngredientTableViewController: UITableViewController {
 
     @IBAction func done(segue:UIStoryboardSegue) {
         let ingredientVC = segue.source as! AddIngredientViewController
+        print("Coming in from the segue?")
         newIngredient = ingredientVC.ingredient
         ingredients.append(newIngredient!)
+        saveIngredients()
         tableView.reloadData()
     }
     
@@ -70,7 +72,9 @@ class IngredientTableViewController: UITableViewController {
     // Mark: - Table View Save Data
     private func saveIngredients(){
         //let isSuccessfulSave = NSKeyedArchiver.archivedData(withRootObject: ingredients, requiringSecureCoding: true)
+        print("We are saving ingredients.")
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ingredients, toFile: Ingredient.ArchiveURL.path)
+        print(isSuccessfulSave)
         if isSuccessfulSave{
             os_log(.error, log: OSLog.default, "Ingredients successfully saved.")
         }
@@ -93,10 +97,7 @@ class IngredientTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientTableViewCell", for: indexPath) as? IngredientTableViewCell else {
             fatalError("The dequeued cell is not an instance of IngredientTableViewCell.")
         }
-        
         let ingredient = ingredients[indexPath.row]
-        
-        print(ingredient.name)
         
         cell.ingredientName?.text = ingredient.name
         
