@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import os.log
 
 class IngredientTableViewController: UITableViewController {
 
@@ -33,6 +34,24 @@ class IngredientTableViewController: UITableViewController {
 
          self.navigationItem.leftBarButtonItem = self.editButtonItem
     }
+    
+    // Mark: - Table View Save Data
+    
+    private func saveIngredients(){
+        //let isSuccessfulSave = NSKeyedArchiver.archivedData(withRootObject: ingredients, requiringSecureCoding: true)
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ingredients, toFile: IngredientTableViewCell.ArchiveURL.path)
+        if isSuccessfulSave{
+            os_log(.error, log: OSLog.default, "Ingredients successfully saved.")
+        }
+        else{
+            os_log(.error, log: OSLog.default, "Failed to saved ingredients...")
+        }
+    }
+    
+    private func loadIngredients(){
+        return NSKeyedUnarchiver.unarchiveObject(withFile: IngredientTableViewCell.ArchiveURL.path) as? [IngredientTableViewCell.Ingredient]
+    }
+
 
     // MARK: - Table view data source
 
@@ -45,8 +64,9 @@ class IngredientTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         return ingredients.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientCell", for: indexPath)
 
         cell.textLabel?.text = ingredients[indexPath.row]
@@ -54,9 +74,6 @@ class IngredientTableViewController: UITableViewController {
         return cell
     }
 
-
-    // MARK: Table view row editing
-    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
      // Return false if you do not want the specified item to be editable.
