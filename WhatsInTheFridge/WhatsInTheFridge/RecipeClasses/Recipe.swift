@@ -15,7 +15,7 @@ class Recipe : NSObject, NSCoding {
     //Mark: Class Properties
     var name: String
     var desc: String
-    var image: UIImage? //based on likedDetailViewController
+    var image: UIImage //based on likedDetailViewController
     
     //Mark: Default image
     let defaultImage = #imageLiteral(resourceName: "egg_tomato.jpeg")

@@ -7,8 +7,8 @@
 
 import UIKit
 
-class likedRecipe: Recipe {
+class savedRecipe: Recipe {
     //Mark: Archiving paths to data storage. This is a core difference between likedRecipes and savedRecipes.
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("likedRecipes")
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("savedRecipes")
 }
