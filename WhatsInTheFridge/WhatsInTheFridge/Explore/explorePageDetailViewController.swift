@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import os.log
 
 class explorePageDetailViewController: UIViewController {
 
@@ -40,7 +41,7 @@ class explorePageDetailViewController: UIViewController {
         } else{
             heart = UIImage(systemName: "heart.fill")!
             print("You like this post")
-            //[coredata] saving
+            saveNewLike()
         }
         sender.setImage(heart, for: .normal)
         liked = !liked
@@ -59,6 +60,36 @@ class explorePageDetailViewController: UIViewController {
         }
         sender.setImage(heart, for: .normal)
         collected = !collected
+    }
+    
+    // Mark: - Updating local save data.
+    private func saveNewLike(){
+        //TODO DIAN: CHECK LIKED AND COLLECTED FOR GUARDS.
+        
+        print("We are saving a liked item.")
+        
+        //load current
+        var currentSavedLikes = NSKeyedUnarchiver.unarchiveObject(withFile: likedRecipe.ArchiveURL.path) as? [likedRecipe]
+        
+        //conforming to the vares at the top
+        let newLike = likedRecipe(name: name, desc: descript, image: picture)!
+        
+        //add on the recipe we're looking at here
+        currentSavedLikes?.append(newLike)
+        
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(currentSavedLikes, toFile: likedRecipe.ArchiveURL.path)
+        
+        print(isSuccessfulSave)
+        
+        //save to file
+        if isSuccessfulSave{
+            os_log(.error, log: OSLog.default, "New like successfully saved.")
+            
+        }
+        else{
+            os_log(.error, log: OSLog.default, "Failed to save new like...")
+        }
+        print("- - -")
     }
     
     /*
