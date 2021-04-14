@@ -81,13 +81,22 @@ def fetch_recommendations(inputs):
     return recoms
 
 
-def id2rcp(ids, return_info=False):
+def id2rcp(ids):
     """
     Transcribe recipe ids to recipe names, along with other optional information.
     :param ids: list of ints. List of recipe ids.
     :param return_info: boolean. Return other misc information or not.
-    :return: two lists of strings if return_info is True, else return one list of strings.
-            recipe names and optional other information
+    :return: dict/ json.
+     Keys are 'rcp_names'
+        'rcp_idxs'
+        'minutes'
+        'tags'
+        'nutritions'
+        'n_steps'
+        'steps'
+        'descriptions'
+        'ingredients'
+        'n_ingredients'
     """
     raw_rcps_db = sqlite3.connect('dbs/raw_rcps.db')
     raw_rcps_c = raw_rcps_db.cursor()
@@ -118,7 +127,6 @@ def id2rcp(ids, return_info=False):
         rets['n_ingredients'].append(n_ingredients)
 
     raw_rcps_db.close()
-
 
 
     return rets
