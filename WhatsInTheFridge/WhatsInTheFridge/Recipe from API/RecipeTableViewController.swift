@@ -11,15 +11,27 @@ import Foundation
 class RecipeTableViewController: UITableViewController {
 
     
+    struct allData: Codable {
+        let results: [recipe]
+        let baseURI: String
+        let offset, number, totalResults, processingTimeMS: Int
+
+        enum CodingKeys: String, CodingKey {
+            case results
+            case baseURI = "baseUri"
+            case offset, number, totalResults
+            case processingTimeMS = "processingTimeMs"
+        }
+    }
+
+    // MARK: - Result
     struct recipe: Codable {
-        let id: Int
+        let id, usedIngredientCount, missedIngredientCount, likes: Int
         let title: String
         let image: String
         let imageType: String
-        let usedIngredientCount, missedIngredientCount: Int
-        let missedIngredients, usedIngredients, unusedIngredients: [ingredient]
-        let likes: Int
     }
+
 
     // MARK: - Ingredient
     struct ingredient: Codable {
@@ -38,23 +50,23 @@ class RecipeTableViewController: UITableViewController {
         let vegetarian, vegan, glutenFree, dairyFree: Bool
         let veryHealthy, cheap, veryPopular, sustainable: Bool
         let weightWatcherSmartPoints: Int
-        let gaps: String
-        let lowFodmap: Bool
-        let preparationMinutes, cookingMinutes, aggregateLikes, spoonacularScore: Int
-        let healthScore: Int
-        let creditsText, sourceName: String
-        let pricePerServing: Double
-        let extendedIngredients: [ExtendedIngredient]
+        let gaps: String?
+        let lowFodmap: Bool?
+        let preparationMinutes, cookingMinutes, aggregateLikes, spoonacularScore: Int?
+        let healthScore: Int?
+        let creditsText, sourceName: String?
+        let pricePerServing: Double?
+        let extendedIngredients: [ExtendedIngredient]?
         let id: Int
         let title: String
-        let readyInMinutes, servings: Int
-        let sourceURL: String
-        let image: String
-        let imageType, summary: String
-        let cuisines, dishTypes, diets, occasions: [String]
-        let winePairing: WinePairing
-        let instructions: String
-        let analyzedInstructions: [AnalyzedInstruction]
+        let readyInMinutes, servings: Int?
+        let sourceURL: String?
+        let image: String?
+        let imageType, summary: String?
+        let cuisines, dishTypes, diets, occasions: [String]?
+        let winePairing: WinePairing?
+        let instructions: String?
+        let analyzedInstructions: [AnalyzedInstruction]?
         let originalID: JSONNull?
 
         enum CodingKeys: String, CodingKey {
@@ -167,16 +179,18 @@ class RecipeTableViewController: UITableViewController {
     }
 
     
-    
+    var all:allData?
     
     var recipes:[recipe] = []
+    
     var recipeDetailList:[recipeDetail] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.rowHeight = 150
-        let ingredients: [String] = ["Ribeye"]
-        getAllData(ingredients: ingredients)
+        let ingredients: [String] = ["onion", "tomato"]
+        let intolerances: [String] = ["peanut", "shellfish"]
+        getAllData(ingredients: ingredients, intolerances: intolerances)
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -198,23 +212,36 @@ class RecipeTableViewController: UITableViewController {
     }
 
     
-    func getAllData(ingredients: [String])   {
+    func getAllData(ingredients: [String], intolerances: [String])   {
         print("Trying to get all data")
         let headers = [
             "x-rapidapi-key": "6f1810ca34msh227332a299bf704p13f30bjsn1ba98259af85",
             "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
         ]
         
-        let ingredientsString = ingredients.joined(separator:"%2")
-        let urlRequestString: String = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients="+String(ingredientsString)+"&number=5&ranking=1&ignorePantry=true"
+        let ingredientsString = ingredients.joined(separator:",")
+        let intolerancesString = intolerances.joined(separator:",")
+        print(ingredientsString)
         
-        let urlStr = URL(string: urlRequestString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
-        print(urlStr)
-        let request = NSMutableURLRequest(url: urlStr!,
+        let queryItems = [URLQueryItem(name: "limitLicense", value: "false"), URLQueryItem(name: "offset", value: "0"),
+                          URLQueryItem(name: "number", value: "10"),URLQueryItem(name: "query", value: ""),
+                          URLQueryItem(name: "cuisine", value: "american"), URLQueryItem(name: "intolerances", value: intolerancesString),
+                          URLQueryItem(name: "type", value: "main course"),
+                          URLQueryItem(name: "includeIngredients", value: ingredientsString)]
+        var urlComps = URLComponents(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex")!
+        urlComps.queryItems = queryItems
+        
+        var result = urlComps.string
+        print(result)
+        result = result!.replacingOccurrences(of: ",", with: "%2C")
+        
+        let request = NSMutableURLRequest(url: NSURL(string: result!)! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
-                                            timeoutInterval: 10.0)
+                                            timeoutInterval: 60)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = headers
+        
+        
 
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
@@ -234,7 +261,8 @@ class RecipeTableViewController: UITableViewController {
             }
             
             do{
-                self.recipes = try JSONDecoder().decode([recipe].self, from: jsonData)
+                self.all = try JSONDecoder().decode(allData.self, from: jsonData)
+                self.recipes = self.all!.results
                 self.fillRecipeDetailData()
                 //because we HAVE to refresh after we load the data to make sure the data is populated.
                 //this is a separate task so we gotta use dispatch queue to tell it to go to the main thread
