@@ -18,16 +18,18 @@ random.seed(1)
 np.random.seed(1)
 
 
-def fetch_recommendations(last_recoms, user_id, n=15):
+def fetch_recommendations(inputs):
     """
     Generate a list of recipe id recommendations.
     if n >= len(last recoms) return n recommendations,
     else return len(last_recoms) recommendations.
-    :param last_recoms: list of ints. List of recommended recipes ids from the last time.
-    :param user_id: int. User ID
-    :param n: int. Number of recommendations required.
+    :param inputs: dict/ json. Keys are 'last_recoms', 'user_id', 'recom_amount'
     :return: list of ints. List of recommending recipe ids.
     """
+
+    last_recoms = inputs['last_recoms']
+    user_id = inputs['user_id']
+    n = inputs['recom_amount']
 
     user_recom_hist = sqlite3.connect('dbs/user_recom_hist.db')
     c_hist = user_recom_hist.cursor()
@@ -89,28 +91,46 @@ def id2rcp(ids, return_info=False):
     """
     raw_rcps_db = sqlite3.connect('dbs/raw_rcps.db')
     raw_rcps_c = raw_rcps_db.cursor()
-    rcp_names = []
-    info = []
+    rets = {
+        'rcp_names': [],
+        'rcp_idxs': [],
+        'minutes': [],
+        'tags': [],
+        'nutritions': [],
+        'n_steps': [],
+        'steps': [],
+        'descriptions': [],
+        'ingredients': [],
+        'n_ingredients': []
+    }
     for id_ in ids:
         raw_rcps_c.execute('''Select * from raw_rcps where rcp_idx={}'''.format(id_))
         rcp_idx, name, minutes, tags, nutrition, n_steps, steps, description, ingredients, n_ingredients = raw_rcps_c.fetchone()
-        rcp_names.append(name)
-        info.append(steps)
+        rets['rcp_names'].append(name)
+        rets['rcp_idxs'].append(rcp_idx)
+        rets['minutes'].append(minutes)
+        rets['tags'].append(tags)
+        rets['nutritions'].append(nutrition)
+        rets['n_steps'].append(n_steps)
+        rets['steps'].append(steps)
+        rets['descriptions'].append(description)
+        rets['ingredients'].append(ingredients)
+        rets['n_ingredients'].append(n_ingredients)
+
     raw_rcps_db.close()
 
-    if return_info:
-        return rcp_names, info
-    else:
-        return rcp_names
+
+
+    return rets
 
 
 if __name__ == "__main__":
 
     last_recom = None
     for i in range(5):
-        last_recom = fetch_recommendations(last_recom, 222, n=random.randint(15, 30))
+        last_recom = fetch_recommendations({'last_recoms': last_recom, 'user_id': 222, 'recom_amount': random.randint(15, 30)})
 
-        print(id2rcp(last_recom))
+        # print(id2rcp(last_recom))
         print('-----------------------------------------------------------------------------------------------------')
 
 
