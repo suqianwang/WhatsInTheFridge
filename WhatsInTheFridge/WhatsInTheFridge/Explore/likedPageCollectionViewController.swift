@@ -22,7 +22,7 @@ class likedPageCollectionViewController: UICollectionViewController {
         
         //otherwise use the default.
         else{
-            print("There are no savedlike recipes: you should see the defaults.")
+            print("There are no saved like recipes: you should see the defaults.")
             loadDefaultLikes()
         }
         

@@ -71,7 +71,6 @@ class IngredientTableViewController: UITableViewController {
     
     // Mark: - Table View Save Data
     private func saveIngredients(){
-        //let isSuccessfulSave = NSKeyedArchiver.archivedData(withRootObject: ingredients, requiringSecureCoding: true)
         print("We are saving ingredients.")
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ingredients, toFile: Ingredient.ArchiveURL.path)
         print(isSuccessfulSave)

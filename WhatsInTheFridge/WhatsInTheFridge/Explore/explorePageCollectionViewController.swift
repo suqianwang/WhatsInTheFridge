@@ -8,6 +8,8 @@
 import UIKit
 class explorePageCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    
+    
     //dummy data for now
     let postTitle =  ["Tomato Egg", "Egg Tomato", "Potato beef", "Beff Potato"]
     let postImage = #imageLiteral(resourceName: "egg_tomato.jpeg")

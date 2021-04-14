@@ -84,7 +84,10 @@ class explorePageDetailViewController: UIViewController {
         //save to file
         if isSuccessfulSave{
             os_log(.error, log: OSLog.default, "New like successfully saved.")
-            
+            //let testSave = NSKeyedUnarchiver.unarchiveObject(withFile: likedRecipe.ArchiveURL.path) as? [likedRecipe]
+            //for recipe? in testSave {
+              //  print(recipe.name)
+            //}
         }
         else{
             os_log(.error, log: OSLog.default, "Failed to save new like...")
