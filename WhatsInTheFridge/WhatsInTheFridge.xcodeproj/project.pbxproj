@@ -14,6 +14,9 @@
 		7088FD9326249E25009FD3F2 /* ResearchKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7088FD8C26249DF9009FD3F2 /* ResearchKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		70963C272625F1EE00E56653 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70963C262625F1EE00E56653 /* Ingredient.swift */; };
 		709FE41F2624C78500945FC8 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709FE41E2624C78500945FC8 /* IngredientTableViewCell.swift */; };
+		70A335C3262736A9009AAEA9 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A335C2262736A9009AAEA9 /* Recipe.swift */; };
+		70A335C926273DB8009AAEA9 /* likedRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A335C826273DB8009AAEA9 /* likedRecipe.swift */; };
+		70A335CB26273DF1009AAEA9 /* savedRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A335CA26273DF1009AAEA9 /* savedRecipe.swift */; };
 		8677E532261BDAF60047DBD4 /* SurveyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E531261BDAF60047DBD4 /* SurveyTask.swift */; };
 		8677E537261BE80C0047DBD4 /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E536261BE80C0047DBD4 /* SurveyViewController.swift */; };
 		8677E552261CB8060047DBD4 /* collectedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E54F261CB8060047DBD4 /* collectedCollectionViewCell.swift */; };
@@ -76,6 +79,9 @@
 		7088FD8526249DF8009FD3F2 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = ResearchKit.xcodeproj; sourceTree = "<group>"; };
 		70963C262625F1EE00E56653 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		709FE41E2624C78500945FC8 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
+		70A335C2262736A9009AAEA9 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		70A335C826273DB8009AAEA9 /* likedRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = likedRecipe.swift; sourceTree = "<group>"; };
+		70A335CA26273DF1009AAEA9 /* savedRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = savedRecipe.swift; sourceTree = "<group>"; };
 		8677E531261BDAF60047DBD4 /* SurveyTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyTask.swift; sourceTree = "<group>"; };
 		8677E536261BE80C0047DBD4 /* SurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		8677E54F261CB8060047DBD4 /* collectedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectedCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -121,6 +127,16 @@
 				7088FD8E26249DF9009FD3F2 /* ResearchKitTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		70A335CC26273E14009AAEA9 /* RecipeClasses */ = {
+			isa = PBXGroup;
+			children = (
+				70A335C2262736A9009AAEA9 /* Recipe.swift */,
+				70A335C826273DB8009AAEA9 /* likedRecipe.swift */,
+				70A335CA26273DF1009AAEA9 /* savedRecipe.swift */,
+			);
+			path = RecipeClasses;
 			sourceTree = "<group>";
 		};
 		8677E52B261BD8D40047DBD4 /* Frameworks */ = {
@@ -214,6 +230,7 @@
 		86F6D14B2606F83500C74FA5 /* WhatsInTheFridge */ = {
 			isa = PBXGroup;
 			children = (
+				70A335CC26273E14009AAEA9 /* RecipeClasses */,
 				8677E582261CC8300047DBD4 /* Recipe from API */,
 				8677E54E261CB7C00047DBD4 /* Profile */,
 				8677E54A261CB7B40047DBD4 /* Explore */,
@@ -337,6 +354,7 @@
 				8677E55E261CB8260047DBD4 /* likedDetailViewController.swift in Sources */,
 				86F6D14D2606F83500C74FA5 /* AppDelegate.swift in Sources */,
 				8677E552261CB8060047DBD4 /* collectedCollectionViewCell.swift in Sources */,
+				70A335CB26273DF1009AAEA9 /* savedRecipe.swift in Sources */,
 				3106C67F261960E2009A7139 /* RecipeTableViewCell.swift in Sources */,
 				86F6D14F2606F83500C74FA5 /* SceneDelegate.swift in Sources */,
 				8677E55F261CB8260047DBD4 /* likedPageCollectionViewController.swift in Sources */,
@@ -344,7 +362,9 @@
 				86EC607F260BCB8C00A11618 /* LoginViewController.swift in Sources */,
 				8677E554261CB8060047DBD4 /* collectedPageCollectionViewController.swift in Sources */,
 				8677E553261CB8060047DBD4 /* collectDetailViewController.swift in Sources */,
+				70A335C3262736A9009AAEA9 /* Recipe.swift in Sources */,
 				86EC607C260BCB4E00A11618 /* InitialViewController.swift in Sources */,
+				70A335C926273DB8009AAEA9 /* likedRecipe.swift in Sources */,
 				70963C272625F1EE00E56653 /* Ingredient.swift in Sources */,
 				3106C68226196153009A7139 /* RecipeDetailViewController.swift in Sources */,
 				3106C67C26196085009A7139 /* RecipeTableViewController.swift in Sources */,
