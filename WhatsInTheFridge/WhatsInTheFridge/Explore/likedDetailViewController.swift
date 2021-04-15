@@ -3,9 +3,10 @@
 //  WhatsInTheFridge
 //
 //  Created by Qintian Wu on 4/5/21.
-//
+//  Updated by D on 4/15/21
 
 import UIKit
+import os.log
 
 class likedDetailViewController: UIViewController {
     
@@ -41,7 +42,7 @@ class likedDetailViewController: UIViewController {
         } else{
             heart = UIImage(systemName: "heart.fill")!
             print("You like this post")
-            //[coredata] saving
+            saveLikedPost()
         }
         sender.setImage(heart, for: .normal)
         liked = !liked
@@ -60,6 +61,27 @@ class likedDetailViewController: UIViewController {
         }
         sender.setImage(heart, for: .normal)
         collected = !collected
+    }
+    
+    //Mark : - Functions to update and load from persistent data.
+    private func saveLikedPost(){
+        //load current likes
+        var currentLikes = NSKeyedUnarchiver.unarchiveObject(withFile: likedRecipe.ArchiveURL.path) as? [likedRecipe]
+        //cast the current recipe to something
+        var newLikedRecipe = likedRecipe(name: name, desc: descript, image: picture)
+        //addit to the currentLikes
+        currentLikes!.append(newLikedRecipe!)
+        
+        //save and check.
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(currentLikes, toFile: likedRecipe.ArchiveURL.path)
+        
+        print("The save for liked post was successful: " + String(isSuccessfulSave))
+        if isSuccessfulSave{
+            os_log(.error, log: OSLog.default, "Ingredients successfully saved.")
+        }
+        else{
+            os_log(.error, log: OSLog.default, "Failed to saved ingredients...")
+        }
     }
     
 }
