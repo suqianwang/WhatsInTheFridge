@@ -15,9 +15,11 @@ class likedPageCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let savedLikes = loadLikes(){
+        let savedLikes = loadLikes()
+        
+        if savedLikes?.count == 0{
             print("There are saved liked recipes: attempting to load them.")
-            likedRecipes += savedLikes
+            likedRecipes += savedLikes!
         }
         
         //otherwise use the default.

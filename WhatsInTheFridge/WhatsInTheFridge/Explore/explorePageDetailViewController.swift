@@ -71,15 +71,18 @@ class explorePageDetailViewController: UIViewController {
         //load current
         var currentSavedLikes = NSKeyedUnarchiver.unarchiveObject(withFile: likedRecipe.ArchiveURL.path) as? [likedRecipe]
         
-        //conforming to the vares at the top
+        //conforming to the vars at the top
         let newLike = likedRecipe(name: name, desc: descript, image: picture)!
         
-        //add on the recipe we're looking at here
-        currentSavedLikes?.append(newLike)
+        if currentSavedLikes?.count == nil {
+            currentSavedLikes = [newLike]
+        }
+        else{
+            //add on the recipe we're looking at here
+            currentSavedLikes?.append(newLike)
+        }
         
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(currentSavedLikes, toFile: likedRecipe.ArchiveURL.path)
-        
-        print(isSuccessfulSave)
         
         //save to file
         if isSuccessfulSave{
