@@ -26,6 +26,8 @@
 		8677E55E261CB8260047DBD4 /* likedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E558261CB8260047DBD4 /* likedDetailViewController.swift */; };
 		8677E55F261CB8260047DBD4 /* likedPageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E559261CB8260047DBD4 /* likedPageCollectionViewController.swift */; };
 		8677E560261CB8260047DBD4 /* exploreItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E55A261CB8260047DBD4 /* exploreItemCollectionViewCell.swift */; };
+		86BB26EB262A9D0B0015A577 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB26EA262A9D0B0015A577 /* HomeTabBarController.swift */; };
+		86BB26F4262AC8170015A577 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB26F3262AC8170015A577 /* ProfileViewController.swift */; };
 		86EC607C260BCB4E00A11618 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC607B260BCB4E00A11618 /* InitialViewController.swift */; };
 		86EC607F260BCB8C00A11618 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC607E260BCB8C00A11618 /* LoginViewController.swift */; };
 		86EC6082260BCBCE00A11618 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC6081260BCBCE00A11618 /* SignupViewController.swift */; };
@@ -93,6 +95,8 @@
 		8677E558261CB8260047DBD4 /* likedDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = likedDetailViewController.swift; sourceTree = "<group>"; };
 		8677E559261CB8260047DBD4 /* likedPageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = likedPageCollectionViewController.swift; sourceTree = "<group>"; };
 		8677E55A261CB8260047DBD4 /* exploreItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = exploreItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		86BB26EA262A9D0B0015A577 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
+		86BB26F3262AC8170015A577 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		86EC607B260BCB4E00A11618 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		86EC607E260BCB8C00A11618 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		86EC6081260BCBCE00A11618 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 		70A335CC26273E14009AAEA9 /* RecipeClasses */ = {
 			isa = PBXGroup;
 			children = (
+				8677E54A261CB7B40047DBD4 /* Explore */,
 				70A335C2262736A9009AAEA9 /* Recipe.swift */,
 				70A335C826273DB8009AAEA9 /* likedRecipe.swift */,
 				70A335CA26273DF1009AAEA9 /* savedRecipe.swift */,
@@ -186,6 +191,7 @@
 				8677E550261CB8060047DBD4 /* collectDetailViewController.swift */,
 				8677E54F261CB8060047DBD4 /* collectedCollectionViewCell.swift */,
 				8677E551261CB8060047DBD4 /* collectedPageCollectionViewController.swift */,
+				86BB26F3262AC8170015A577 /* ProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -224,13 +230,13 @@
 				70A335CC26273E14009AAEA9 /* RecipeClasses */,
 				8677E582261CC8300047DBD4 /* Recipe from API */,
 				8677E54E261CB7C00047DBD4 /* Profile */,
-				8677E54A261CB7B40047DBD4 /* Explore */,
 				8677E53A261BEE760047DBD4 /* Survey */,
 				8677E53E261BEEF80047DBD4 /* Ingredient */,
 				86F6D14C2606F83500C74FA5 /* AppDelegate.swift */,
 				86F6D14E2606F83500C74FA5 /* SceneDelegate.swift */,
 				86F6D1502606F83500C74FA5 /* ViewController.swift */,
 				86F6D1522606F83500C74FA5 /* Main.storyboard */,
+				86BB26EA262A9D0B0015A577 /* HomeTabBarController.swift */,
 				8677E540261BEF500047DBD4 /* Signup_Login */,
 				86F6D1552606F83600C74FA5 /* Assets.xcassets */,
 				86F6D1572606F83600C74FA5 /* LaunchScreen.storyboard */,
@@ -355,12 +361,14 @@
 				86F6D14D2606F83500C74FA5 /* AppDelegate.swift in Sources */,
 				8677E552261CB8060047DBD4 /* collectedCollectionViewCell.swift in Sources */,
 				70A335CB26273DF1009AAEA9 /* savedRecipe.swift in Sources */,
+				86BB26F4262AC8170015A577 /* ProfileViewController.swift in Sources */,
 				3106C67F261960E2009A7139 /* RecipeTableViewCell.swift in Sources */,
 				86F6D14F2606F83500C74FA5 /* SceneDelegate.swift in Sources */,
 				8677E55F261CB8260047DBD4 /* likedPageCollectionViewController.swift in Sources */,
 				86EC60A8261BB16100A11618 /* AddIngredientViewController.swift in Sources */,
 				86EC607F260BCB8C00A11618 /* LoginViewController.swift in Sources */,
 				8677E554261CB8060047DBD4 /* collectedPageCollectionViewController.swift in Sources */,
+				86BB26EB262A9D0B0015A577 /* HomeTabBarController.swift in Sources */,
 				8677E553261CB8060047DBD4 /* collectDetailViewController.swift in Sources */,
 				70A335C3262736A9009AAEA9 /* Recipe.swift in Sources */,
 				86EC607C260BCB4E00A11618 /* InitialViewController.swift in Sources */,

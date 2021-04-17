@@ -18,7 +18,7 @@ class IngredientTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
         //use class original edit button
         self.navigationItem.leftBarButtonItem = self.editButtonItem
         
@@ -99,6 +99,7 @@ class IngredientTableViewController: UITableViewController {
         let ingredient = ingredients[indexPath.row]
         
         cell.ingredientName?.text = ingredient.name
+        cell.backgroundColor = .clear
         
         return cell
     }

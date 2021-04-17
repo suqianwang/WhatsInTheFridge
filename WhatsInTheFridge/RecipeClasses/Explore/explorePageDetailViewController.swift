@@ -20,9 +20,22 @@ class explorePageDetailViewController: UIViewController {
     
     var liked = false
     var collected = false
+    var bg_imageView: UIImageView!
+    
+    private func background_config() -> UIImageView {
+        bg_imageView = UIImageView(frame: view.bounds)
+        bg_imageView = UIImageView(image: UIImage(named: "background"))
+        bg_imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        bg_imageView.clipsToBounds = true
+        bg_imageView.center = view.center
+        return bg_imageView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bg_imageView = background_config()
+        view.addSubview(bg_imageView)
+        self.view.sendSubviewToBack(bg_imageView)
 
         // Do any additional setup after loading the view.
         recipeName.text = name

@@ -18,8 +18,7 @@ class SurveyViewController: UIViewController, ORKTaskViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        navigationItem.title = "Plan your meal"
     }
     
     func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {

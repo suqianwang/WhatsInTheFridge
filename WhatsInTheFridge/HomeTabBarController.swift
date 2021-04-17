@@ -1,17 +1,16 @@
 //
-//  AddIngredientViewController.swift
+//  HomeViewController.swift
 //  WhatsInTheFridge
 //
-//  Created by Suqian Wang on 4/5/21.
+//  Created by Suqian Wang on 4/17/21.
 //
 
 import UIKit
 
-class AddIngredientViewController: UIViewController {
+class HomeTabBarController: UITabBarController {
 
-
-    @IBOutlet weak var ingredientName: UITextField!
-    var ingredient = Ingredient(name: "Default Ingredient")
+    @IBOutlet weak var TabBar: UITabBar!
+    
     var bg_imageView: UIImageView!
     
     private func background_config() -> UIImageView {
@@ -25,19 +24,20 @@ class AddIngredientViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //add background
         bg_imageView = background_config()
         view.addSubview(bg_imageView)
         self.view.sendSubviewToBack(bg_imageView)
     }
     
+
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "doneSegue"{
-            ingredient = Ingredient(name: ingredientName.text!)!
-        }
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
     }
+    */
 
 }
