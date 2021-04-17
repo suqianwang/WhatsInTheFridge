@@ -24,13 +24,10 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
 
 
     // MARK: - Navigation
-
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail"{
             let detail = segue.destination as! explorePageDetailViewController
             if let indexPath = self.collectionView?.indexPath(for: sender as! UICollectionViewCell){
-                
                 detail.name = postTitle[indexPath.row]
                 detail.picture = postImage
                 detail.descript = postDescript
@@ -60,7 +57,6 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
             content.configure(title, postImage)
             cell = content
         }
-        
         return cell
     }
 

@@ -16,6 +16,7 @@ class explorePageDetailViewController: UIViewController {
     @IBOutlet weak var recipePicture: UIImageView!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var recipeDescription: UITextView!
+    @IBOutlet weak var Heart: UIButton!
     
     var picture:UIImage!
     var name:String!
@@ -32,9 +33,13 @@ class explorePageDetailViewController: UIViewController {
         recipePicture.image = picture
         recipeDescription.text = descript
         
-        liked = recipeAlreadyLiked(name: name, description: descript)
+        liked = recipeAlreadyLiked(name: name, description: description)
         
-        print("Detected that " + name + "was previously liked: " + String(liked))
+        if liked{
+            let initialHeart = UIImage(systemName: "heart.fill")
+            Heart.setImage(initialHeart, for: .normal)
+            print("Attempted to set heart.")
+        }
     }
 
     @IBAction func likePost(_ sender: UIButton) {
