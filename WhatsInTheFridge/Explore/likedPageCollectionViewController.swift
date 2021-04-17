@@ -5,8 +5,11 @@
 //  Created by Qintian Wu on 4/5/21.
 //  Modified by D on 4/14/21.
 //
+//  To do: default load for a detail view should be liked.
+//
 
 import UIKit
+import os.log
 
 class likedPageCollectionViewController: UICollectionViewController {
     // Mark : - Structure to store all of the recipes to show.
@@ -31,6 +34,21 @@ class likedPageCollectionViewController: UICollectionViewController {
         navigationItem.title = "Your liked Recipes"
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+    }
+    
+    // Mark: Function for resetting past likes. Call under viewDidLoad to remove all past likes.
+    // DON'T USE IN PRODUCTION.
+    private func removeSavedLikes(){
+        var currentLikes = [likedRecipe]()
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(currentLikes, toFile: likedRecipe.ArchiveURL.path)
+        
+        print("The save for liked post was successful: " + String(isSuccessfulSave))
+        if isSuccessfulSave{
+            os_log(.error, log: OSLog.default, "Ingredients successfully saved.")
+        }
+        else{
+            os_log(.error, log: OSLog.default, "Failed to saved ingredients...")
+        }
     }
     
     // Mark : - Default data load & Local saved data load
