@@ -18,14 +18,14 @@ class likedPageCollectionViewController: UICollectionViewController {
         let savedLikes = loadLikes()
         
         if savedLikes?.count == 0{
-            print("There are saved liked recipes: attempting to load them.")
-            likedRecipes += savedLikes!
+            print("There are no saved like recipes: you should see the defaults.")
+            loadDefaultLikes()
         }
         
         //otherwise use the default.
         else{
-            print("There are no saved like recipes: you should see the defaults.")
-            loadDefaultLikes()
+            print("There are saved liked recipes: attempting to load them.")
+            likedRecipes += savedLikes!
         }
         
         navigationItem.title = "Your liked Recipes"
