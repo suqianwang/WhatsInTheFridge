@@ -127,7 +127,6 @@
 		70A335CC26273E14009AAEA9 /* RecipeClasses */ = {
 			isa = PBXGroup;
 			children = (
-				8677E54A261CB7B40047DBD4 /* Explore */,
 				70A335C2262736A9009AAEA9 /* Recipe.swift */,
 				70A335C826273DB8009AAEA9 /* likedRecipe.swift */,
 				70A335CA26273DF1009AAEA9 /* savedRecipe.swift */,
@@ -227,6 +226,7 @@
 		86F6D14B2606F83500C74FA5 /* WhatsInTheFridge */ = {
 			isa = PBXGroup;
 			children = (
+				8677E54A261CB7B40047DBD4 /* Explore */,
 				70A335CC26273E14009AAEA9 /* RecipeClasses */,
 				8677E582261CC8300047DBD4 /* Recipe from API */,
 				8677E54E261CB7C00047DBD4 /* Profile */,
