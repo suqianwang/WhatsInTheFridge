@@ -3,6 +3,9 @@
 //  WhatsInTheFridge
 //
 //  Created by Qintian Wu on 4/5/21.
+//  Modified by D 4/17/21.
+//
+//  To do: upon loading, check if item is in liked or saved collections already so the heart is filled.
 //
 
 import UIKit
@@ -29,15 +32,17 @@ class explorePageDetailViewController: UIViewController {
         recipePicture.image = picture
         recipeDescription.text = descript
         
+        liked = recipeAlreadyLiked(name: name, description: descript)
+        
+        print("Detected that " + name + "was previously liked: " + String(liked))
     }
-    
 
     @IBAction func likePost(_ sender: UIButton) {
         var heart: UIImage
         if liked{
             heart = UIImage(systemName: "heart")!
             print("You dislike this post")
-            //[coredata] deleting
+            removeNewLike()
         } else{
             heart = UIImage(systemName: "heart.fill")!
             print("You like this post")
@@ -62,13 +67,47 @@ class explorePageDetailViewController: UIViewController {
         collected = !collected
     }
     
-    // Mark: - Updating local save data.
+    //Mark: Check if the current item was already saved.
+    private func recipeAlreadyLiked(name: String, description: String) -> Bool {
+        var currentSavedLikes = NSKeyedUnarchiver.unarchiveObject(withFile: likedRecipe.ArchiveURL.path) as? [likedRecipe]
+        var wasLiked : Bool
+        let index = (currentSavedLikes?.firstIndex(where: {$0.name == name}))
+        
+        print("Index is: " + String(index ?? -100))
+        
+        if index != nil{
+            wasLiked = true
+            print("Index not nil.")
+        }
+        else{
+            wasLiked = false
+            print("Index was nil.")
+        }
+        
+        print("Index of: " + name + " was found: " + String(wasLiked))
+        return wasLiked
+    }
+    
+    //Mark: Update local save when a post is unliked.
+    private func removeNewLike(){
+        //load current likes
+        var currentSavedLikes = NSKeyedUnarchiver.unarchiveObject(withFile: likedRecipe.ArchiveURL.path) as? [likedRecipe]
+        
+        //remove the like from it
+        let removeLike = likedRecipe(name: name, desc: descript, image: picture)!
+        if let index = currentSavedLikes?.firstIndex(where: {$0 == removeLike}){
+            currentSavedLikes?.remove(at: index)
+        }
+        
+        print(currentSavedLikes?.count)
+        
+        //save it again
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(currentSavedLikes, toFile: likedRecipe.ArchiveURL.path)
+    }
+    
+    // Mark: - Backend action when a post is liked.
     private func saveNewLike(){
-        //TODO DIAN: CHECK LIKED AND COLLECTED FOR GUARDS.
-        
-        print("We are saving a liked item.")
-        
-        //load current
+        //load current likes
         var currentSavedLikes = NSKeyedUnarchiver.unarchiveObject(withFile: likedRecipe.ArchiveURL.path) as? [likedRecipe]
         
         //conforming to the vars at the top
@@ -87,15 +126,10 @@ class explorePageDetailViewController: UIViewController {
         //save to file
         if isSuccessfulSave{
             os_log(.error, log: OSLog.default, "New like successfully saved.")
-            //let testSave = NSKeyedUnarchiver.unarchiveObject(withFile: likedRecipe.ArchiveURL.path) as? [likedRecipe]
-            //for recipe? in testSave {
-              //  print(recipe.name)
-            //}
         }
         else{
             os_log(.error, log: OSLog.default, "Failed to save new like...")
         }
-        print("- - -")
     }
     
     /*
