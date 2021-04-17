@@ -38,12 +38,16 @@ class explorePageDetailViewController: UIViewController {
         if liked{
             let initialHeart = UIImage(systemName: "heart.fill")
             Heart.setImage(initialHeart, for: .normal)
-            print("Attempted to set heart.")
+        }
+        else{
+            let initialHeart = UIImage(systemName: "heart")
+            Heart.setImage(initialHeart, for: .normal)
         }
     }
 
     @IBAction func likePost(_ sender: UIButton) {
         var heart: UIImage
+        print("Upon clicking heart button, was the item already liked?: " + String(liked))
         if liked{
             heart = UIImage(systemName: "heart")!
             print("You dislike this post")
@@ -78,30 +82,26 @@ class explorePageDetailViewController: UIViewController {
         var wasLiked : Bool
         let index = (currentSavedLikes?.firstIndex(where: {$0.name == name}))
         
-        print("Index is: " + String(index ?? -100))
-        
         if index != nil{
             wasLiked = true
-            print("Index not nil.")
         }
         else{
             wasLiked = false
-            print("Index was nil.")
         }
         
-        print("Index of: " + name + " was found: " + String(wasLiked))
         return wasLiked
     }
     
     //Mark: Update local save when a post is unliked.
     private func removeNewLike(){
+        print("Attempting to remove like.")
         //load current likes
         var currentSavedLikes = NSKeyedUnarchiver.unarchiveObject(withFile: likedRecipe.ArchiveURL.path) as? [likedRecipe]
         
         //remove the like from it
-        let removeLike = likedRecipe(name: name, desc: descript, image: picture)!
-        if let index = currentSavedLikes?.firstIndex(where: {$0 == removeLike}){
+        if let index = currentSavedLikes?.firstIndex(where: {$0.name == name}){
             currentSavedLikes?.remove(at: index)
+            print("     Correctly detected place in the persisted data.")
         }
         
         print(currentSavedLikes?.count)
