@@ -14,6 +14,7 @@ class likedPageCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Add custom background
         collectionView.backgroundView = UIImageView(image: UIImage(named: "background"))
         let savedLikes = loadLikes()
         

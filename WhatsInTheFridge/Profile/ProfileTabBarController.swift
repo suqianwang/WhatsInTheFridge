@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  ProfileTabBarController.swift
 //  WhatsInTheFridge
 //
 //  Created by Suqian Wang on 4/17/21.
@@ -7,22 +7,11 @@
 
 import UIKit
 
-class HomeTabBarController: UITabBarController {
-    
-    static let exploreTabIndex: Int = 0
-    static let ingredientTabIndex: Int = 1
-    static let mealTabIndex: Int = 2
-    static let profileTabIndex: Int = 3
-
-    @IBOutlet weak var TabBar: UITabBar!
-    
-    var bg_imageView: UIImageView!
+class ProfileTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bg_imageView = Styler.setBackground()
-        view.addSubview(bg_imageView)
-        self.view.sendSubviewToBack(bg_imageView)
+        // Do any additional setup after loading the view.
     }
     
 

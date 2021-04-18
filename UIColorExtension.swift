@@ -1,5 +1,5 @@
 //
-//  UIColor.swift
+//  UIColorExtension.swift
 //  WhatsInTheFridge
 //
 //  Created by Suqian Wang on 4/17/21.

@@ -10,53 +10,55 @@ import ResearchKit
 
 class ViewController: UIViewController {
 
-    private let imageView: UIImageView = {
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
-        imageView.image = UIImage(named: "logo")
-        return imageView
+    // Create an imageView for logo
+    private let logo_imageView: UIImageView = {
+        let logo_imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+        logo_imageView.image = UIImage(named: "logo")
+        return logo_imageView
     }()
     
     var bg_imageView: UIImageView!
     
-    private func background_config() -> UIImageView {
-        bg_imageView = UIImageView(frame: view.bounds)
-        bg_imageView = UIImageView(image: UIImage(named: "background"))
-        bg_imageView.contentMode =  UIView.ContentMode.scaleAspectFill
-        bg_imageView.clipsToBounds = true
-        bg_imageView.center = view.center
-        return bg_imageView
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        bg_imageView = background_config()
+        
+        // Set background to custom
+        bg_imageView = Styler.setBackground()
         view.addSubview(bg_imageView)
         self.view.sendSubviewToBack(bg_imageView)
-        view.addSubview(imageView)
+        
+        // Add logo
+        view.addSubview(logo_imageView)
         
     }
 
+    // After all subviews are layed out, wait 1s to start animation
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        imageView.center = view.center
+        logo_imageView.center = view.center
         
         DispatchQueue.main.asyncAfter(deadline: .now()+1, execute: {
             self.animate()
         })
     }
     
+    // Define animation for the logo
     private func animate() {
+        // Logo magnifying for 1.5s
         UIView.animate(withDuration: 1.5, animations: {
             let size = self.view.frame.size.width * 3
             let diffX = self.view.frame.size.width - size
             let diffY = self.view.frame.size.height - size
-            self.imageView.frame = CGRect(x: diffX/2, y: diffY/2, width: size, height: size)
+            self.logo_imageView.frame = CGRect(x: diffX/2, y: diffY/2, width: size, height: size)
         })
         
+        // Logo fade out to transparent for 2s
         UIView.animate(withDuration: 2, animations: {
-            self.imageView.alpha = 0
+            self.logo_imageView.alpha = 0
         }, completion: {done in
             if done {
+                
+                // After animation is done, segue to Home Tab Bar Controller
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let homeTabBarControllor = storyboard.instantiateViewController(identifier: "HomeTabBarController")
                 homeTabBarControllor.modalTransitionStyle = .crossDissolve
@@ -64,8 +66,6 @@ class ViewController: UIViewController {
                 self.present(homeTabBarControllor, animated: true)
             }
         })
-        
     }
-
 }
 

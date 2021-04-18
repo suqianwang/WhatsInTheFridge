@@ -17,6 +17,7 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Add custom background
         collectionView.backgroundView = UIImageView(image: UIImage(named: "background"))
         navigationItem.title = "Recipes For You"
     }

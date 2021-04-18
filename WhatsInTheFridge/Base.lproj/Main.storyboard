@@ -286,6 +286,30 @@
             </objects>
             <point key="canvasLocation" x="4919" y="-1023"/>
         </scene>
+        <!--Test Button-->
+        <scene sceneID="2lX-o6-Xwn">
+            <objects>
+                <viewController storyboardIdentifier="TestButton" id="0yR-gP-k7s" customClass="TestButton" customModule="WhatsInTheFridge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NNb-im-Gfo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="tD0-hW-kCr">
+                                <rect key="frame" x="20" y="396" width="374" height="104"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.96078431369999995" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="This is for testing logic"/>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="UTg-8u-qj8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aS1-J8-Tbh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5802.898550724638" y="-1023.2142857142857"/>
+        </scene>
         <!--Explore Page Collection View Controller-->
         <scene sceneID="6la-wL-yxC">
             <objects>
@@ -449,33 +473,6 @@
             </objects>
             <point key="canvasLocation" x="4003" y="-1757"/>
         </scene>
-        <!--Profile View Controller-->
-        <scene sceneID="ufY-Ze-K3c">
-            <objects>
-                <viewController id="NPP-5G-OxK" customClass="ProfileViewController" customModule="WhatsInTheFridge" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="eRe-GF-zKR">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FvU-Ys-63d">
-                                <rect key="frame" x="0.0" y="88" width="414" height="49"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <items>
-                                    <tabBarItem systemItem="favorites" id="8hy-Td-XL9"/>
-                                    <tabBarItem systemItem="bookmarks" id="utx-MM-Xxg"/>
-                                </items>
-                            </tabBar>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="b6I-DU-AsI"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="uIM-jr-MS0"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2Mh-8R-BtS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3111.594202898551" y="714.50892857142856"/>
-        </scene>
         <!--Collected Page Collection View Controller-->
         <scene sceneID="upy-1J-aoa">
             <objects>
@@ -559,7 +556,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HtT-I2-NNs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5110" y="419"/>
+            <point key="canvasLocation" x="5561" y="317"/>
         </scene>
         <!--Liked Page Collection View Controller-->
         <scene sceneID="bVc-Db-a6i">
@@ -644,34 +641,39 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cqw-y2-rnR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5062" y="1130"/>
+            <point key="canvasLocation" x="5561" y="1029"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Collects-->
         <scene sceneID="Ow3-E1-aDs">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="A8c-j8-DEc" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Collects" image="archivebox.circle.fill" catalog="system" id="F2y-03-b5u"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="PPF-F5-OsN"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="0wB-1D-Dpg">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ybc-dt-RaY" kind="relationship" relationship="rootViewController" id="Y4k-PP-XQN"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TcD-48-wSI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4201" y="419"/>
+            <point key="canvasLocation" x="4654" y="317"/>
         </scene>
         <!--Collect Detail View Controller-->
         <scene sceneID="ApO-X4-N2W">
             <objects>
                 <viewController id="t8z-aQ-n2K" customClass="collectDetailViewController" customModule="WhatsInTheFridge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uu4-24-XaN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="uSf-wr-0gV">
-                                <rect key="frame" x="20" y="20" width="374" height="703"/>
+                                <rect key="frame" x="20" y="108" width="374" height="620"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vaJ-JH-7bG">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="215"/>
@@ -689,7 +691,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooC-7j-KVr">
-                                        <rect key="frame" x="0.0" y="283" width="374" height="420"/>
+                                        <rect key="frame" x="0.0" y="283" width="374" height="337"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="mV8-kI-Kzk"/>
                                         </constraints>
@@ -700,7 +702,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="center" spacing="62" translatesAutoresizingMaskIntoConstraints="NO" id="6bq-Iy-3SE" userLabel="saving button">
-                                <rect key="frame" x="32" y="743" width="350" height="47"/>
+                                <rect key="frame" x="32" y="748" width="350" height="47"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Like it" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Msa-Ii-L7R">
                                         <rect key="frame" x="0.0" y="0.0" width="45" height="47"/>
@@ -763,18 +765,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bEn-aZ-rdl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6030" y="419"/>
+            <point key="canvasLocation" x="6483" y="317"/>
         </scene>
         <!--Liked Detail View Controller-->
         <scene sceneID="gnt-XX-PdC">
             <objects>
                 <viewController id="9gj-W0-70R" customClass="likedDetailViewController" customModule="WhatsInTheFridge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tpg-yi-Og7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="76v-Pv-98t">
-                                <rect key="frame" x="20" y="20" width="374" height="703"/>
+                                <rect key="frame" x="20" y="108" width="374" height="645"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X69-YE-fRG">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="215"/>
@@ -792,7 +794,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XkS-gL-jg4">
-                                        <rect key="frame" x="0.0" y="283" width="374" height="420"/>
+                                        <rect key="frame" x="0.0" y="283" width="374" height="362"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <color key="textColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
@@ -801,16 +803,16 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="center" spacing="62" translatesAutoresizingMaskIntoConstraints="NO" id="SXp-yu-kQO" userLabel="saving button">
-                                <rect key="frame" x="32" y="743" width="350" height="47"/>
+                                <rect key="frame" x="32" y="773" width="350" height="22"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Like it" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qim-q4-5Ld">
-                                        <rect key="frame" x="0.0" y="0.0" width="45" height="47"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="45" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8lK-Qf-t3x">
-                                        <rect key="frame" x="107" y="0.0" width="29.5" height="47"/>
+                                        <rect key="frame" x="107" y="0.0" width="29.5" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="39"/>
                                         <color key="tintColor" systemColor="labelColor"/>
                                         <state key="normal" image="heart" catalog="system"/>
@@ -819,13 +821,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collect it" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="woS-aE-qko">
-                                        <rect key="frame" x="198.5" y="0.0" width="67.5" height="47"/>
+                                        <rect key="frame" x="198.5" y="0.0" width="67.5" height="22"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3T3-91-YPW">
-                                        <rect key="frame" x="328" y="0.0" width="22" height="47"/>
+                                        <rect key="frame" x="328" y="0.0" width="22" height="22"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" image="star" catalog="system"/>
                                         <connections>
@@ -856,29 +858,125 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S5G-ar-kMM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6030" y="1130"/>
+            <point key="canvasLocation" x="6483" y="1029"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Likes-->
         <scene sceneID="WbV-qR-vMG">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lyX-Df-JeY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Likes" image="heart.circle.fill" catalog="system" id="tii-aJ-YBP"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Wly-ul-kED"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="hcT-Gc-bV0">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Qn2-vu-vCE" kind="relationship" relationship="rootViewController" id="0fx-CY-ave"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Wb-Ec-jge" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4201" y="1130"/>
+            <point key="canvasLocation" x="4654" y="1029"/>
         </scene>
-        <!--Profile-->
+        <!--Profile Tab Bar Controller-->
+        <scene sceneID="axV-NV-xZR">
+            <objects>
+                <tabBarController id="mbk-wi-FIx" customClass="ProfileTabBarController" customModule="WhatsInTheFridge" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="qqV-sg-GHF"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="fcy-Rp-o2x">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="A8c-j8-DEc" kind="relationship" relationship="viewControllers" id="QdS-OO-zU8"/>
+                        <segue destination="lyX-Df-JeY" kind="relationship" relationship="viewControllers" id="PGk-R3-Vz2"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zkR-4d-qaR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3083" y="673"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="2uF-wz-BvL">
+            <objects>
+                <viewController id="6un-ra-fvH" customClass="ProfileViewController" customModule="WhatsInTheFridge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nw3-Ea-jg2">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" id="iix-B3-TWC">
+                                <rect key="frame" x="0.0" y="196" width="414" height="617"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <viewLayoutGuide key="contentLayoutGuide" id="lbF-Zm-B25"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="5rs-cm-JrL"/>
+                            </scrollView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="upC-hL-e5X" customClass="ButtonBarView" customModule="XLPagerTabStrip">
+                                <rect key="frame" x="0.0" y="88" width="414" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Wfr-aM-RNd">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="BtQ-7M-Ex2">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ExY-1D-egp">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0kk-Z2-XIx"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="N0m-Hq-REN"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wfi-l4-mgb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3082.608695652174" y="1324.5535714285713"/>
+        </scene>
+        <!--Child View Controller-->
+        <scene sceneID="d3t-3u-WWw">
+            <objects>
+                <viewController storyboardIdentifier="ChildViewController" id="Uki-Hm-D6I" customClass="ChildViewController" customModule="WhatsInTheFridge" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="afH-nJ-ukS">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUf-To-0E5">
+                                <rect key="frame" x="186" y="373" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="W0a-TV-8tj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <connections>
+                        <outlet property="label" destination="MUf-To-0E5" id="KVA-VV-qXq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nQy-tm-4Lt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3796" y="1325"/>
+        </scene>
+        <!--Collection-->
         <scene sceneID="O3h-cG-n8T">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="C3l-7L-opf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Profile" image="person.circle" catalog="system" id="QDB-aB-eYe"/>
+                    <tabBarItem key="tabBarItem" title="Collection" image="archivebox" catalog="system" id="QDB-aB-eYe"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xLF-El-c6J">
@@ -887,12 +985,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="NPP-5G-OxK" kind="relationship" relationship="rootViewController" id="aVw-lR-HhD"/>
+                        <segue destination="6un-ra-fvH" kind="relationship" relationship="rootViewController" id="2oJ-Bz-aQO"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ODg-EN-cAD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2204" y="715"/>
+            <point key="canvasLocation" x="2203" y="673"/>
         </scene>
         <!--Explore-->
         <scene sceneID="O3S-Hz-Otd">
@@ -916,9 +1014,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="archivebox" catalog="system" width="128" height="106"/>
+        <image name="archivebox.circle.fill" catalog="system" width="128" height="121"/>
         <image name="book" catalog="system" width="128" height="102"/>
         <image name="heart" catalog="system" width="128" height="109"/>
-        <image name="person.circle" catalog="system" width="128" height="121"/>
+        <image name="heart.circle.fill" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="wand.and.stars" catalog="system" width="128" height="113"/>

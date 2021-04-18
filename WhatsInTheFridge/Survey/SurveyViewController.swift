@@ -12,22 +12,51 @@ class SurveyViewController: UIViewController, ORKTaskViewControllerDelegate {
     
     let survey = SurveyData()
     var surveyResponses:[SurveyResponse] = []
+    var giveSurvey:Bool = false
     
+    // handles view for the first time it is opened
     override func viewDidLoad() {
         super.viewDidLoad()
+        routeView()
+    }
+    
+    // handles view for every time the view is opened
+    override func viewWillAppear(_ animated: Bool) {
+        if self.isViewLoaded{
+            routeView()
+        }
+        
+    }
+    
+    /* method to route view to recipe view if data exists
+     or to survey if none exists */
+    func routeView(){
+        if loadSurveyResponses()?.count == 0 || giveSurvey {
+            presentSurvey()
+        }else{
+            goToRecipeTableViewController()
+        }
+    }
+    
+    // MARK: - present survey
+     func presentSurvey(){
         let taskViewController = ORKTaskViewController(task: survey.SurveyTask, taskRun: nil)
         taskViewController.delegate = self
         taskViewController.modalPresentationStyle = .fullScreen
         present(taskViewController, animated: true, completion: nil)
     }
     
+    func setGiveSurvey(give:Bool){
+        giveSurvey = give
+    }
+    
     // MARK: - handle survey responses
     // method to handle when the survey has been completed
     func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {
-//        taskViewController.dismiss(animated: true, completion: nil)
         
         switch(reason){
         case .completed:
+            giveSurvey = false
             os_log(.info, log: OSLog.default, "survey finished with reason 'completed'")
             // get results
             let taskResult = taskViewController.result.results! as! [ORKStepResult]
@@ -36,18 +65,17 @@ class SurveyViewController: UIViewController, ORKTaskViewControllerDelegate {
             surveyResponses = translateResults(processedResults: processedResults)
             // save results
             saveSurveyResponses()
-            // load test
-            // TODO: remove after done testing
-//            let loadedResponses:[SurveyResponse] = loadSurveyResponses()!
-//            os_log(.info, log:OSLog.default, "loaded survey responses \(loadedResponses)")
+            taskViewController.dismiss(animated: true, completion: nil)
+            goToRecipeTableViewController()
             break
         case .discarded:
+            giveSurvey = loadSurveyResponses()?.count == 0
             os_log(.debug, log: OSLog.default, "survey finished with reason 'discarded'")
-//            let storyboard = UIStoryboard(name:"Main", bundle:nil)
-//            let exploreViewController = storyboard.instantiateViewController(identifier: "exploreViewController")
-//            exploreViewController.modalTransitionStyle = .crossDissolve
-//            exploreViewController.modalPresentationStyle = .fullScreen
-//            self.present(exploreViewController, animated: true)
+            // go to explore vc
+            taskViewController.dismiss(animated: true, completion: nil)
+            if giveSurvey{
+                goToExplorePageCollectionViewController()
+            }
             break
         case .failed:
             os_log(.debug, log: OSLog.default, "survey finished with reason 'failed'")
@@ -59,8 +87,6 @@ class SurveyViewController: UIViewController, ORKTaskViewControllerDelegate {
             os_log(.debug, log: OSLog.default, "survey finished for unknown reason...dismissing")
             break
         }
-        
-        taskViewController.dismiss(animated: true, completion: nil)
         
     }
     
@@ -132,4 +158,23 @@ class SurveyViewController: UIViewController, ORKTaskViewControllerDelegate {
         }
     }
 
+    // TODO: Add Button to RecipeTableView, then do the logic
+    func goToRecipeTableViewController(){
+//        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "recipeTableViewController") as? RecipeTableViewController {
+//            if let navigator = navigationController {
+//                navigator.pushViewController(viewController, animated: false)
+//            }
+//        }
+        
+        //This is for testing purpose, delete afterwards
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TestButton") as? TestButton {
+            if let navigator = navigationController {
+                navigator.pushViewController(viewController, animated: false)
+            }
+        }
+    }
+    
+    func goToExplorePageCollectionViewController(){
+        tabBarController?.selectedIndex = HomeTabBarController.exploreTabIndex
+    }
 }

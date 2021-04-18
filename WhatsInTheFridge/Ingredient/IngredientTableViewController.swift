@@ -55,20 +55,19 @@ class IngredientTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // add custom background
         tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
         //use class original edit button
         self.navigationItem.leftBarButtonItem = self.editButtonItem
         
-        //if there is data from the loaded data, load it here.
-        if let savedIngredients = loadIngredients(){
-            print("There are saved ingredients: attempting to load them.")
-            ingredients += savedIngredients
-        }
-        
-        //otherwise use the default.
-        else{
-            print("There are no saved ingredients: you should see the defaults.")
+        //if there is saved ingredient, load it, otherwise, load default.
+        let savedIngredients = loadIngredients()
+        if savedIngredients?.count == 0{
             loadSampleIngredients()
+        }
+        else{
+            print("loading saved ingredients....")
+            ingredients += savedIngredients!
         }
         
         tableView.tableFooterView = UIView()
