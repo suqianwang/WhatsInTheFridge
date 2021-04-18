@@ -58,7 +58,7 @@ class ViewController: UIViewController {
         }, completion: {done in
             if done {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let homeTabBarControllor = storyboard.instantiateViewController(identifier: "HomtTabBarController")
+                let homeTabBarControllor = storyboard.instantiateViewController(identifier: "HomeTabBarController")
                 homeTabBarControllor.modalTransitionStyle = .crossDissolve
                 homeTabBarControllor.modalPresentationStyle = .fullScreen
                 self.present(homeTabBarControllor, animated: true)

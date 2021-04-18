@@ -28,6 +28,8 @@
 		8677E560261CB8260047DBD4 /* exploreItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E55A261CB8260047DBD4 /* exploreItemCollectionViewCell.swift */; };
 		86BB26EB262A9D0B0015A577 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB26EA262A9D0B0015A577 /* HomeTabBarController.swift */; };
 		86BB26F4262AC8170015A577 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB26F3262AC8170015A577 /* ProfileViewController.swift */; };
+		86BB26FB262B9D960015A577 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB26FA262B9D950015A577 /* UIColorExtension.swift */; };
+		86BB2701262BBC300015A577 /* SurveyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB26FD262BBC300015A577 /* SurveyResponse.swift */; };
 		86EC607C260BCB4E00A11618 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC607B260BCB4E00A11618 /* InitialViewController.swift */; };
 		86EC607F260BCB8C00A11618 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC607E260BCB8C00A11618 /* LoginViewController.swift */; };
 		86EC6082260BCBCE00A11618 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC6081260BCBCE00A11618 /* SignupViewController.swift */; };
@@ -97,6 +99,8 @@
 		8677E55A261CB8260047DBD4 /* exploreItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = exploreItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		86BB26EA262A9D0B0015A577 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		86BB26F3262AC8170015A577 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		86BB26FA262B9D950015A577 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = WhatsInTheFridge/UIColorExtension.swift; sourceTree = SOURCE_ROOT; };
+		86BB26FD262BBC300015A577 /* SurveyResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyResponse.swift; sourceTree = "<group>"; };
 		86EC607B260BCB4E00A11618 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
 		86EC607E260BCB8C00A11618 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		86EC6081260BCBCE00A11618 /* SignupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				8677E536261BE80C0047DBD4 /* SurveyViewController.swift */,
+				86BB26FD262BBC300015A577 /* SurveyResponse.swift */,
 				8677E531261BDAF60047DBD4 /* SurveyTask.swift */,
 			);
 			path = Survey;
@@ -233,6 +238,7 @@
 				8677E53A261BEE760047DBD4 /* Survey */,
 				8677E53E261BEEF80047DBD4 /* Ingredient */,
 				86F6D14C2606F83500C74FA5 /* AppDelegate.swift */,
+				86BB26FA262B9D950015A577 /* UIColorExtension.swift */,
 				86F6D14E2606F83500C74FA5 /* SceneDelegate.swift */,
 				86F6D1502606F83500C74FA5 /* ViewController.swift */,
 				86F6D1522606F83500C74FA5 /* Main.storyboard */,
@@ -349,6 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				709FE41F2624C78500945FC8 /* IngredientTableViewCell.swift in Sources */,
+				86BB2701262BBC300015A577 /* SurveyResponse.swift in Sources */,
 				8677E55C261CB8260047DBD4 /* likedCollectionViewCell.swift in Sources */,
 				8677E55D261CB8260047DBD4 /* explorePageDetailViewController.swift in Sources */,
 				86EC60A5261B9A3000A11618 /* IngredientTableViewController.swift in Sources */,
@@ -367,6 +374,7 @@
 				8677E55F261CB8260047DBD4 /* likedPageCollectionViewController.swift in Sources */,
 				86EC60A8261BB16100A11618 /* AddIngredientViewController.swift in Sources */,
 				86EC607F260BCB8C00A11618 /* LoginViewController.swift in Sources */,
+				86BB26FB262B9D960015A577 /* UIColorExtension.swift in Sources */,
 				8677E554261CB8060047DBD4 /* collectedPageCollectionViewController.swift in Sources */,
 				86BB26EB262A9D0B0015A577 /* HomeTabBarController.swift in Sources */,
 				8677E553261CB8060047DBD4 /* collectDetailViewController.swift in Sources */,

@@ -9,6 +9,9 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+
+
+    
     var bg_imageView: UIImageView!
     
     private func background_config() -> UIImageView {
@@ -25,7 +28,8 @@ class ProfileViewController: UIViewController {
         bg_imageView = background_config()
         view.addSubview(bg_imageView)
         self.view.sendSubviewToBack(bg_imageView)
-        
+//        likes.layer.cornerRadius = 10
+//        collects.layer.cornerRadius = 10
         
     }
     

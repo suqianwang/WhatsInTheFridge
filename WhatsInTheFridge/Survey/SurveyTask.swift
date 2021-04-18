@@ -8,60 +8,119 @@
 import UIKit
 import ResearchKit
 
-private func createTextChoiceLIst(listString:[String]) -> [ORKTextChoice]{
-    var textChoices: [ORKTextChoice] = [ORKTextChoice]()
-    let count = 0...listString.count-1
-    for number in count {
-        textChoices.append(ORKTextChoice(text: listString[number], value: number as NSNumber))
+struct SurveyStepData{
+    private var surveyChoices:[String]?
+    private var surveyQuestion:String?
+    private var surveyIdentifier:String?
+    
+    init(choices:[String],question:String,id:String){
+        self.surveyChoices = choices
+        self.surveyQuestion = question
+        self.surveyIdentifier = id
     }
-    return textChoices
+    
+    public func getChoices() -> [String]{
+        return surveyChoices!
+    }
+    
+    public func getQuestion() -> String{
+        return surveyQuestion!
+    }
+    
+    public func getIdentifier() -> String{
+        return surveyIdentifier!
+    }
 }
+class SurveyData{
+    
+    // instruction data
+    let instructionStepTitle:String = "Plan the meal"
+    let instructionStepText:String = "Your satisfaction is important to us, let us get some preferences from you so we can provide you with better suggestion :)"
+    
+    // meal data
+     let mealTypeList:[String] = ["main course", "side dish", "desert", "appetizer", "salad", "bread", "breakfast", "soup", "beverage", "sauce", "marinade", "fingerfood", "snack", "drink"]
+    let mealTypeTitle:String = "What type of meal are you planning?"
+    
+    // cuisine data
+    let cuisineTypeList:[String] = ["African", "American", "British", "Cajun", "Caribbean", "Chinese", "Eastern European", "European", "French", "German", "Greek", "Indian", "Irish", "Italian", "Japanese", "Jewish", "Korean", "Latin American", "Mediterranean", "Mexican", "Middle Eastern", "Nordic", "Southern", "Spanish", "Thai", "Vietnamese"]
+    let cuisineTypeTitle:String = "What cuisine do you want to have for this meal?"
+    
+    // diet preference data
+    let dietPreferenceList:[String] = ["Gluten Free", "Ketogenic", "Vegetarian", "Lacto-Vegetarian", "Ovo-Vegetarian", "Vegan", "Pescetarian", "Paleo", "Primal", "Whole30"]
+    let dietPreferenceTitle:String = "Diet preference?"
+    
+    // diet restriction data
+    let dietRestrictionList:[String] = ["Dairy", "Egg", "Gluten", "Grain", "Peanut", "Seafood", "Sesame", "Shellfish", "Soy", "Sulfite", "Tree Nut", "Wheat"]
+    let dietRestrictionTitle:String = "Any diet restriction we should be aware of?"
+    
+    // summary data
+    let summaryTitle:String = "Thank you!"
+    let summaryText:String = "Click next to see your recipes~"
+    
+    // identifiers
+    let instructionStepIdentifier:String = "IntroStep"
+    let mealTypeIdentifier:String = "type"
+    let cuisineTypeIdentifier:String = "cuisine"
+    let dietPreferenceIdentifier:String = "diet"
+    let dietRestrictionIdentifier:String = "intolerance"
+    let summaryStepIdentifier:String = "SummaryStep"
+    let taskIdentifier:String = "SurveyTask"
+    
+    var stepDataList:[SurveyStepData]{return [SurveyStepData(choices: mealTypeList,question: mealTypeTitle,id: mealTypeIdentifier),
+                                             SurveyStepData(choices: cuisineTypeList,question: cuisineTypeTitle,id: cuisineTypeIdentifier),
+                                             SurveyStepData(choices: dietPreferenceList,question: dietPreferenceTitle,id: dietPreferenceIdentifier),
+                                             SurveyStepData(choices: dietRestrictionList,question: dietRestrictionTitle,id: dietRestrictionIdentifier)]}
+    
+    func getStepDataListDict()->[String:SurveyStepData]{
+        var result:[String:SurveyStepData] = [:]
+        for stepData in stepDataList{
+            result[stepData.getIdentifier()] = stepData
+        }
+        return result
+    }
 
-public var SurveyTask: ORKOrderedTask {
-    var steps = [ORKStep]()
+    // method to take a list of choices and returns ORKTextChoice
+    private func createTextChoiceLIst(listString:[String]) -> [ORKTextChoice]{
+        var textChoices: [ORKTextChoice] = [ORKTextChoice]()
+        let count = 0...listString.count-1
+        for number in count {
+            textChoices.append(ORKTextChoice(text: listString[number], value: number as NSNumber))
+        }
+        return textChoices
+    }
     
-    let instructionStep = ORKInstructionStep(identifier: "IntroStep")
-    instructionStep.title = "Plan the meal"
-    instructionStep.text = "Your satisfaction is important to us, let us get some preferences from you so we can provide you with better suggestion :)"
-    steps += [instructionStep]
-    
-    // create meal type choices
-    let mealTypes: [String] =  ["main course", "side dish", "desert", "appetizer", "salad", "bread", "breakfast", "soup", "beverage", "sauce", "marinade", "fingerfood", "snack", "drink"]
-    let mealTypesQuestionStepTitle = "What type of meal are you planning?"
-    let mealTypesTextChoices: [ORKTextChoice] = createTextChoiceLIst(listString: mealTypes)
-    let mealTypeAnswerFormat1: ORKTextChoiceAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .multipleChoice, textChoices: mealTypesTextChoices)
-    let mealQuestionStep1 = ORKQuestionStep(identifier: "TextChoiceQuestionStep1", title: mealTypesQuestionStepTitle, answer: mealTypeAnswerFormat1)
-    steps += [mealQuestionStep1]
-    
-    // create cuisine type choices
-    let cuisineTypes: [String] = ["African", "American", "British", "Cajun", "Caribbean", "Chinese", "Eastern European", "European", "French", "German", "Greek", "Indian", "Irish", "Italian", "Japanese", "Jewish", "Korean", "Latin American", "Mediterranean", "Mexican", "Middle Eastern", "Nordic", "Southern", "Spanish", "Thai", "Vietnamese"]
-    let cuisineTypesQuestionStepTitle = "What cuisine do you want to have for this meal?"
-    let cuisineTypesTextChoices: [ORKTextChoice] = createTextChoiceLIst(listString: cuisineTypes)
-    let mealTypeAnswerFormat2: ORKTextChoiceAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .multipleChoice, textChoices: cuisineTypesTextChoices)
-    let mealQuestionStep2 = ORKQuestionStep(identifier: "TextChoiceQuestionStep2", title: cuisineTypesQuestionStepTitle, answer: mealTypeAnswerFormat2)
-    steps += [mealQuestionStep2]
-    
-    // create diet preferences choices
-    let dietPreferences:[String] = ["Gluten Free", "Ketogenic", "Vegetarian", "Lacto-Vegetarian", "Ovo-Vegetarian", "Vegan", "Pescetarian", "Paleo", "Primal", "Whole30"]
-    let dietPreferencesQuestionStepTitle = "Diet preference?"
-    let dietPreferencesTextChoices: [ORKTextChoice] = createTextChoiceLIst(listString: dietPreferences)
-    let mealTypeAnswerFormat3: ORKTextChoiceAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .multipleChoice, textChoices: dietPreferencesTextChoices)
-    let mealQuestionStep3 = ORKQuestionStep(identifier: "TextChoiceQuestionStep3", title: dietPreferencesQuestionStepTitle, answer: mealTypeAnswerFormat3)
-    steps += [mealQuestionStep3]
-    
-    // create diet restriction choices
-    let dietRestrictions:[String] = ["Dairy", "Egg", "Gluten", "Grain", "Peanut", "Seafood", "Sesame", "Shellfish", "Soy", "Sulfite", "Tree Nut", "Wheat"]
-    let dietRestrictionsQuestionStepTitle = "Any diet restriction we should be aware of?"
-    let dietRestrictionsTextChoices: [ORKTextChoice] = createTextChoiceLIst(listString: dietRestrictions)
-    let mealTypeAnswerFormat4: ORKTextChoiceAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .multipleChoice, textChoices: dietRestrictionsTextChoices)
+    // MARK: create ordered tasks for survey
+    private func createORKOrderedTask() -> ORKOrderedTask{
+        var steps = [ORKStep]()
+        // set up instructions
+        let instructionStep = ORKInstructionStep(identifier: instructionStepIdentifier)
+        instructionStep.title = instructionStepTitle
+        instructionStep.text = instructionStepText
+        steps += [instructionStep]
+        
+        // set up steps
+        for stepData in stepDataList{
+            // create meal type choices
+            let choices = stepData.getChoices()
+            let question = stepData.getQuestion()
+            let textChoices: [ORKTextChoice] = createTextChoiceLIst(listString: choices)
+            let answerFormat: ORKTextChoiceAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .multipleChoice, textChoices: textChoices)
+            let questionStep = ORKQuestionStep(identifier: stepData.getIdentifier(), title: question, answer: answerFormat)
+            steps += [questionStep]
+        }
+        
+        // set up summary
+        let summaryStep = ORKCompletionStep(identifier: summaryStepIdentifier)
+        summaryStep.title = summaryTitle
+        summaryStep.text = summaryText
+        steps += [summaryStep]
+        
+        return ORKOrderedTask(identifier: taskIdentifier, steps: steps)
+    }
 
-    let mealQuestionStep4 = ORKQuestionStep(identifier: "TextChoiceQuestionStep4", title:  dietRestrictionsQuestionStepTitle, answer: mealTypeAnswerFormat4)
-    steps += [mealQuestionStep4]
-    
-    let summaryStep = ORKCompletionStep(identifier: "SummaryStep")
-    summaryStep.title = "Thank you!"
-    summaryStep.text = "Click next to see your recipes~"
-    steps += [summaryStep]
-    
-    return ORKOrderedTask(identifier: "SurveyTask", steps: steps)
+    // public task attribute
+    public var SurveyTask: ORKOrderedTask{return createORKOrderedTask()}
+        
 }
+    
+
