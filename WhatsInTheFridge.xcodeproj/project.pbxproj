@@ -103,11 +103,11 @@
 		8677E55A261CB8260047DBD4 /* exploreItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = exploreItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		86BB26EA262A9D0B0015A577 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		86BB26F3262AC8170015A577 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		86BB26FA262B9D950015A577 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = SOURCE_ROOT; };
+		86BB26FA262B9D950015A577 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = WhatsInTheFridge/Helper/UIColorExtension.swift; sourceTree = SOURCE_ROOT; };
 		86BB26FD262BBC300015A577 /* SurveyResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyResponse.swift; sourceTree = "<group>"; };
 		86CC96CC262C8E4B00B5AF64 /* TestButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestButton.swift; sourceTree = "<group>"; };
 		86DC70B3262BFFE900AB2F9C /* ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
-		86DC70B7262C147E00AB2F9C /* Styler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styler.swift; sourceTree = "<group>"; };
+		86DC70B7262C147E00AB2F9C /* Styler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Styler.swift; path = WhatsInTheFridge/Helper/Styler.swift; sourceTree = "<group>"; };
 		86EC60A4261B9A2F00A11618 /* IngredientTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewController.swift; sourceTree = "<group>"; };
 		86EC60A7261BB16100A11618 /* AddIngredientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIngredientViewController.swift; sourceTree = "<group>"; };
 		86F6D1492606F83500C74FA5 /* WhatsInTheFridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsInTheFridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,7 +216,8 @@
 				3106C67E261960E2009A7139 /* RecipeTableViewCell.swift */,
 				3106C68126196153009A7139 /* RecipeDetailViewController.swift */,
 			);
-			path = "Recipe from API";
+			name = "Recipe from API";
+			path = APIRecipe;
 			sourceTree = "<group>";
 		};
 		86DC70B9262C19A000AB2F9C /* Helper */ = {
