@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: default
+Resources:
+  witfrecom:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: lambda_function.lambda_handler
+      Runtime: python3.7
+      CodeUri: .
+      Description: default
+      MemorySize: 2048
+      Timeout: 60
+      Role: 'arn:aws:iam::714213135128:role/lambda_witf_recommender'
+      Events:
+        Api1:
+          Type: Api
+          Properties:
+            Path: /witf_recom
+            Method: GET
+        Api2:
+          Type: Api
+          Properties:
+            Path: /witf_recom
+            Method: GET
+      VpcConfig:
+        SecurityGroupIds:
+          - sg-12c01331
+        SubnetIds:
+          - subnet-039d5c5c
+          - subnet-5ce67211
