@@ -14,8 +14,8 @@ class Ingredient : NSObject, NSCoding {
     var name: String
     
     //Mark: Archiving paths to data storage
-    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("ingredients")
+    static let documentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ingredientArchiveURL = documentsDirectory.appendingPathComponent("ingredients")
     
     //Mark: Types?
     struct PropertyKey {

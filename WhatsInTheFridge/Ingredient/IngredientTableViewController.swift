@@ -9,8 +9,45 @@ import UIKit
 import os.log
 
 class IngredientTableViewController: UITableViewController {
-
+    
     @IBAction func cancel(segue:UIStoryboardSegue) {
+    }
+    
+    @IBAction func done(segue:UIStoryboardSegue) {
+        let ingredientVC = segue.source as! AddIngredientViewController
+        print("Coming in from the segue?")
+        newIngredient = ingredientVC.ingredient
+        ingredients.append(newIngredient!)
+        saveIngredients()
+        tableView.reloadData()
+    }
+    
+    // Save Ingredients to Datalast again whenever a new one is added or an existing one updated.
+    @IBAction func unwindToIngredients(sender: UIStoryboardSegue){
+        let sourceViewController = sender.source as? AddIngredientViewController
+        
+        if sourceViewController != nil {
+            let ingredient = sourceViewController?.ingredient
+            print("Coming from segue.")
+            
+            //update an existing ingredient?
+            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+                ingredients[selectedIndexPath.row] = ingredient!
+                    tableView.reloadRows(at: [selectedIndexPath], with: .none)
+            }
+            
+            //add a new ingredient
+            else{
+                print("Adding a new ingredient: table view detected this.")
+                let newIndexPath = IndexPath(row: ingredients.count, section:0)
+                
+                ingredients.append(ingredient!)
+                
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+            
+            saveIngredients()
+        }
     }
     
     var ingredients = [Ingredient]()
@@ -34,20 +71,12 @@ class IngredientTableViewController: UITableViewController {
             loadSampleIngredients()
         }
         
+        tableView.tableFooterView = UIView()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
     }
-
-    @IBAction func done(segue:UIStoryboardSegue) {
-        let ingredientVC = segue.source as! AddIngredientViewController
-        print("Coming in from the segue?")
-        newIngredient = ingredientVC.ingredient
-        ingredients.append(newIngredient!)
-        saveIngredients()
-        tableView.reloadData()
-    }
     
-    // Mark: - Default data for no data stores.
+    // MARK: - Default data for no data stores.
     private func loadSampleIngredients(){
         guard let ingred1 = Ingredient(name: "salt") else {
             fatalError("Unable to load default ingredient 1.")
@@ -64,24 +93,30 @@ class IngredientTableViewController: UITableViewController {
         ingredients += [ingred1, ingred2, ingred3]
     }
     
-    // Mark: - Table View Data Source
-    private func loadIngredients() -> [Ingredient]?{
-        return NSKeyedUnarchiver.unarchiveObject(withFile: Ingredient.ArchiveURL.path) as? [Ingredient]
+    // MARK: - loads ingredients from archive
+    func loadIngredients() -> [Ingredient]?{
+        do {
+            let data = try Data(contentsOf: Ingredient.ingredientArchiveURL)
+            return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Ingredient]
+        }catch{
+            os_log(.error, log: OSLog.default, "failed to load ingredients")
+        }
+        return []
     }
     
-    // Mark: - Table View Save Data
+    // MARK: - saves ingredients into archive
     private func saveIngredients(){
-        print("We are saving ingredients.")
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(ingredients, toFile: Ingredient.ArchiveURL.path)
-        print(isSuccessfulSave)
-        if isSuccessfulSave{
-            os_log(.error, log: OSLog.default, "Ingredients successfully saved.")
-        }
-        else{
-            os_log(.error, log: OSLog.default, "Failed to saved ingredients...")
+        print("saving ingredients...")
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: ingredients, requiringSecureCoding: false)
+            try data.write(to: Ingredient.ingredientArchiveURL)
+        }catch{
+            os_log(.error, log: OSLog.default, "failed to saved ingredients")
         }
     }
 
+    
+    // MARK: Table View Display Configuration and Editing
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -136,34 +171,6 @@ class IngredientTableViewController: UITableViewController {
         // Return false if you do not want the item to be re-orderable.
         return true
     }
-    
-    // Mark : Save Ingredients to Datalast again whenever a new one is added or an existing one updated.
-    @IBAction func unwindToIngredients(sender: UIStoryboardSegue){
-        let sourceViewController = sender.source as? AddIngredientViewController
-        
-        if sourceViewController != nil {
-            let ingredient = sourceViewController?.ingredient
-            print("Coming from segue.")
-            
-            //update an existing ingredient?
-            if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                ingredients[selectedIndexPath.row] = ingredient!
-                    tableView.reloadRows(at: [selectedIndexPath], with: .none)
-            }
-            
-            //add a new ingredient
-            else{
-                print("Adding a new ingredient: table view detected this.")
-                let newIndexPath = IndexPath(row: ingredients.count, section:0)
-                
-                ingredients.append(ingredient!)
-                
-                tableView.insertRows(at: [newIndexPath], with: .automatic)
-            }
-            
-            saveIngredients()
-        }
-    }
 
     /*
     // MARK: - Navigation
@@ -174,6 +181,5 @@ class IngredientTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
 
 }

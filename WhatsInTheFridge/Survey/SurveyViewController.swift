@@ -13,19 +13,15 @@ class SurveyViewController: UIViewController, ORKTaskViewControllerDelegate {
     let survey = SurveyData()
     var surveyResponses:[SurveyResponse] = []
     
-    @IBAction func surveyTapped(sender : AnyObject) {
+    override func viewDidLoad() {
+        super.viewDidLoad()
         let taskViewController = ORKTaskViewController(task: survey.SurveyTask, taskRun: nil)
         taskViewController.delegate = self
+        taskViewController.modalPresentationStyle = .fullScreen
         present(taskViewController, animated: true, completion: nil)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
-    }
-    
-    // MARK: handle survey responses
+    // MARK: - handle survey responses
     // method to handle when the survey has been completed
     func taskViewController(_ taskViewController: ORKTaskViewController, didFinishWith reason: ORKTaskViewControllerFinishReason, error: Error?) {
 //        taskViewController.dismiss(animated: true, completion: nil)
@@ -47,11 +43,11 @@ class SurveyViewController: UIViewController, ORKTaskViewControllerDelegate {
             break
         case .discarded:
             os_log(.debug, log: OSLog.default, "survey finished with reason 'discarded'")
-            let storyboard = UIStoryboard(name:"Main", bundle:nil)
-            let homeViewController = storyboard.instantiateViewController(identifier: "HomeTabBarController")
-            homeViewController.modalTransitionStyle = .crossDissolve
-            homeViewController.modalPresentationStyle = .fullScreen
-            self.present(homeViewController, animated: true)
+//            let storyboard = UIStoryboard(name:"Main", bundle:nil)
+//            let exploreViewController = storyboard.instantiateViewController(identifier: "exploreViewController")
+//            exploreViewController.modalTransitionStyle = .crossDissolve
+//            exploreViewController.modalPresentationStyle = .fullScreen
+//            self.present(exploreViewController, animated: true)
             break
         case .failed:
             os_log(.debug, log: OSLog.default, "survey finished with reason 'failed'")
@@ -72,17 +68,13 @@ class SurveyViewController: UIViewController, ORKTaskViewControllerDelegate {
     func processResults(stepResults:[ORKStepResult])->[String:[Int]]{
         var questionChoices = [String:[Int]]()
         for stepResult in stepResults{
-            do{
-                var questionResults:[ORKChoiceQuestionResult]?
-                questionResults = try stepResult.results! as? [ORKChoiceQuestionResult]
-                if questionResults!.capacity > 0{
-                    let questionResult = questionResults?.first
-                    let identifier = questionResult?.identifier
-                    let choices = questionResult?.choiceAnswers
-                    questionChoices[identifier!] = choices as! [Int]
-                }
-            } catch {
-                os_log(.error, log: OSLog.default, "failed to process results")
+            var questionResults:[ORKChoiceQuestionResult]?
+            questionResults = stepResult.results! as? [ORKChoiceQuestionResult]
+            if questionResults!.capacity > 0{
+                let questionResult = questionResults?.first
+                let identifier = questionResult?.identifier
+                let choices = questionResult?.choiceAnswers
+                questionChoices[identifier!] = (choices as! [Int])
             }
         }
         return questionChoices
@@ -139,6 +131,5 @@ class SurveyViewController: UIViewController, ORKTaskViewControllerDelegate {
             os_log(.error, log: OSLog.default, "failed to save responses")
         }
     }
-    
 
 }
