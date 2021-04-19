@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XNE-7A-hl9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rz9-ls-KPv">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -780,6 +780,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="zwx-m9-qyI"/>
                     <connections>
+                        <outlet property="Heart" destination="45l-j5-RDF" id="caD-kC-mJp"/>
                         <outlet property="recipeDescription" destination="Wqw-b2-fS6" id="8Ze-cV-bWP"/>
                         <outlet property="recipeName" destination="Kda-gW-VE3" id="VG1-zr-ttQ"/>
                         <outlet property="recipePicture" destination="ac3-CG-LYG" id="vR4-jA-64U"/>
