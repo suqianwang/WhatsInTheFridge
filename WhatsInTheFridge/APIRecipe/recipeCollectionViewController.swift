@@ -6,6 +6,7 @@
 //  Modified by Suqian Wang on 4/19/21.
 
 import UIKit
+import os.log
 
 private let reuseIdentifier = "recipeCell"
 
@@ -224,7 +225,7 @@ class recipeCollectionViewController: UICollectionViewController {
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
-        let ingredients: [String] = ["onion", "tomato"]
+        let ingredients: [String] = getIngredientNames()!
         let intolerances: [String] = ["peanut", "shellfish"]
         getAllData(ingredients: ingredients, intolerances: intolerances)
     }
@@ -293,6 +294,27 @@ class recipeCollectionViewController: UICollectionViewController {
         
         dataTask.resume()
 
+    }
+    
+    //Getting ingredients from persisted data.
+    private func loadIngredients()->[Ingredient]?{
+        do {
+            let data = try Data(contentsOf: Ingredient.ingredientArchiveURL)
+            return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Ingredient]
+        }catch{
+            os_log(.error, log: OSLog.default, "failed to load ingredients")
+        }
+        return []
+    }
+    
+    private func getIngredientNames()-> [String]? {
+        let savedIngredients = loadIngredients()!
+        var names = [String]()
+        for ingredient in savedIngredients{
+            names.append(ingredient.name)
+        }
+        print(names)
+        return names
     }
     
     func fillRecipeDetailData() {
