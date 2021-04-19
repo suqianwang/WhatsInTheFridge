@@ -89,9 +89,9 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     }
     
     var recipeRecs: RecipeRecs?
-    
-    
-    
+    var recipeToImage: [String: String] = [:]
+    var recipeToIndex: [String: Int] = [:]
+    var recipesWithImages: [String] = []
     //dummy data for now
     let postTitle =  ["Tomato Egg", "Egg Tomato", "Potato beef", "Beff Potato"]
     let postImage = #imageLiteral(resourceName: "egg_tomato.jpeg")
@@ -168,8 +168,10 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     func getImages()    {
         print("getting images")
         let recipeNames: [String] = self.recipeRecs!.rcpNames
-        
+        var counter: Int = 0
         for recipe in recipeNames   {
+            self.recipeToIndex[recipe] = counter
+            counter = counter + 1
             let headers = [
                 "x-rapidapi-key": "6f1810ca34msh227332a299bf704p13f30bjsn1ba98259af85",
                 "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
@@ -209,6 +211,22 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
                 do{
                     let recipeData: RecipeSearch = try JSONDecoder().decode(RecipeSearch.self, from: jsonData)
                     print("got image")
+                    if (recipeData.recipes != nil) {
+                        self.recipeToImage[recipe] = recipeData.recipes![0]?.image
+                        self.recipesWithImages.append(recipe)
+                        DispatchQueue.main.async {
+                            self.collectionView.reloadData()
+                        }
+                    }
+//                    else if (recipeData.articles != nil)    {
+//                        self.recipeToImage[recipe] = recipeData.articles![0]?.image
+//                        self.recipesWithImages.append(recipe)
+//                        
+//                        DispatchQueue.main.async {
+//                            self.collectionView.reloadData()
+//                        }
+//                    }
+                    print(self.recipeToImage)
                 } catch {
                     print("JSONDecoder error: \(error)")
                 }
@@ -242,17 +260,36 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return postTitle.count
+//        return postTitle.count
+        return recipeToImage.count
+        
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell = UICollectionViewCell()
         let index = indexPath.row
-        let title = postTitle[index]
-        if let content = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? exploreItemCollectionViewCell{
-            content.configure(title, postImage)
-            cell = content
+//        let title = postTitle[index]
+        let title = recipesWithImages[index]
+        
+        let imageUrl = URL(string: recipeToImage[title]!)!
+        let data = try? Data(contentsOf: imageUrl)
+    
+        if let imageData = data {
+            let image = UIImage(data: imageData)!
+            
+            if let content = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? exploreItemCollectionViewCell{
+                content.configure(title, image)
+                cell = content
+            }
         }
+        else    {
+            if let content = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? exploreItemCollectionViewCell{
+                content.configure(title, postImage)
+                cell = content
+            }
+        }
+        
+        
         return cell
     }
 
