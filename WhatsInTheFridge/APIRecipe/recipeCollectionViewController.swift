@@ -339,7 +339,6 @@ class recipeCollectionViewController: UICollectionViewController {
         return []
     }
     
->>>>>>> a4d257a203da4d895ed58e9c0f08447f07b02cf0
     func fillRecipeDetailData() {
         for recipe in recipes   {
             let id = recipe.id
