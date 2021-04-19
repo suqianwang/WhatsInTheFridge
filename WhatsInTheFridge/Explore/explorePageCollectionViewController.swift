@@ -6,7 +6,80 @@
 //
 
 import UIKit
+import Foundation
 class explorePageCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    
+    
+    // MARK: - RecipeSearch
+    struct RecipeSearch: Codable {
+        let recipes, groceryProducts, articles, menuItems: [Article]
+
+        enum CodingKeys: String, CodingKey {
+            case recipes = "Recipes"
+            case groceryProducts = "Grocery Products"
+            case articles = "Articles"
+            case menuItems = "Menu Items"
+        }
+    }
+
+    // MARK: - Article
+    struct Article: Codable {
+        let name: String
+        let image: String
+        let link: String
+        let type: TypeEnum
+        let relevance: Double
+        let kvtable: String
+        let dataPoints: [DataPoint]
+    }
+
+    // MARK: - DataPoint
+    struct DataPoint: Codable {
+        let key: Key
+        let value: String
+        let show: Bool
+    }
+
+    enum Key: String, Codable {
+        case calories = "Calories"
+        case carbs = "Carbs"
+        case cost = "Cost"
+        case date = "Date"
+        case fat = "Fat"
+        case protein = "Protein"
+    }
+
+    enum TypeEnum: String, Codable {
+        case html = "HTML"
+    }
+    
+    
+    
+    
+    struct RecipeRecs: Codable {
+        let statusCode: Int
+        let body: String
+        let recomIDS: [Int]
+        let rcpNames: [String]
+        let rcpIdxs, minutes: [Int]
+        let tags, nutritions: [String]
+        let nSteps: [Int]
+        let steps, descriptions, ingredients: [String]
+        let nIngredients: [Int]
+
+        enum CodingKeys: String, CodingKey {
+            case statusCode, body
+            case recomIDS = "recom_ids"
+            case rcpNames = "rcp_names"
+            case rcpIdxs = "rcp_idxs"
+            case minutes, tags, nutritions
+            case nSteps = "n_steps"
+            case steps, descriptions, ingredients
+            case nIngredients = "n_ingredients"
+        }
+    }
+    
+    var recipeRecs: RecipeRecs?
     
     
     
@@ -21,6 +94,74 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         print("loading viewDidLoad")
         collectionView.backgroundView = UIImageView(image: UIImage(named: "background"))
         navigationItem.title = "Recipes For You"
+        getAllData()
+    }
+    
+    
+    func getAllData()   {
+        
+        
+        print("Trying to get all data")
+        let parameters: [String: Any] = [
+            "liked_recoms": [],
+            "user_id": 222,
+            "recom_amount": 15
+        ]
+        let jsonData = try? JSONSerialization.data(withJSONObject: parameters)
+
+        
+        let url = URL(string: "https://4t2d1vr498.execute-api.us-east-1.amazonaws.com/default/recom_v2")
+        guard let requestUrl = url else { fatalError() }
+        // Create URL Request
+        var request = URLRequest(url: requestUrl)
+        // Specify HTTP Method to use
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+        request.allHTTPHeaderFields = [
+            "X-API-Key": "gXj2IxaxTc1YededFaHXgab6xFHbO2I76RNEmwzW"
+        ]
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+            guard error == nil else {
+                print ("Error: \(error!)")
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Error - ", message: "\(error!)", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
+                return
+            }
+            
+            guard let jsonData = data else {
+                print("No data")
+                return
+            }
+            
+            do{
+                self.recipeRecs = try JSONDecoder().decode(RecipeRecs.self, from: jsonData)
+                print("finished loading data")
+                print(self.recipeRecs!)
+                self.getImages()
+                //because we HAVE to refresh after we load the data to make sure the data is populated.
+                //this is a separate task so we gotta use dispatch queue to tell it to go to the main thread
+//                DispatchQueue.main.async {
+//                    self.collectionView.reloadData()
+//                }
+            } catch {
+                print("JSONDecoder error: \(error)")
+            }
+        })
+        
+        dataTask.resume()
+        
+    }
+    
+    func getImages()    {
+        let recipeNames: [String] = self.recipeRecs!.rcpNames
+        
+        for recipe in recipeNames   {
+            
+        }
     }
 
 
@@ -54,7 +195,6 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         var cell = UICollectionViewCell()
         let index = indexPath.row
         let title = postTitle[index]
-        print("here2")
         if let content = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? exploreItemCollectionViewCell{
             content.configure(title, postImage)
             cell = content
