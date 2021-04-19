@@ -83,7 +83,8 @@ class explorePageDetailViewController: UIViewController {
     
     //Mark: Check if the current item was already saved.
     private func recipeAlreadyLiked(name: String, description: String) -> Bool {
-        var currentSavedLikes = NSKeyedUnarchiver.unarchiveObject(withFile: likedRecipe.ArchiveURL.path) as? [likedRecipe]
+        let currentSavedLikes = loadLikes()
+        
         var wasLiked : Bool
         let index = (currentSavedLikes?.firstIndex(where: {$0.name == name}))
         
@@ -97,11 +98,32 @@ class explorePageDetailViewController: UIViewController {
         return wasLiked
     }
     
+    private func loadLikes()->[likedRecipe]?{
+        do {
+            let data = try Data(contentsOf: likedRecipe.ArchiveURL)
+            return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [likedRecipe]
+        }catch{
+            os_log(.error, log: OSLog.default, "failed to load past likes")
+        }
+        return []
+    }
+    
+    private func saveLikes(likes: [likedRecipe])->Bool{
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: likes, requiringSecureCoding: false)
+            try data.write(to: likedRecipe.ArchiveURL)
+        }catch{
+            os_log(.error, log: OSLog.default, "failed to saved likes")
+            return false
+        }
+        return true
+    }
+    
     //Mark: Update local save when a post is unliked.
     private func removeNewLike(){
         print("Attempting to remove like.")
         //load current likes
-        var currentSavedLikes = NSKeyedUnarchiver.unarchiveObject(withFile: likedRecipe.ArchiveURL.path) as? [likedRecipe]
+        var currentSavedLikes = loadLikes()
         
         //remove the like from it
         if let index = currentSavedLikes?.firstIndex(where: {$0.name == name}){
@@ -112,13 +134,20 @@ class explorePageDetailViewController: UIViewController {
         print(currentSavedLikes?.count)
         
         //save it again
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(currentSavedLikes, toFile: likedRecipe.ArchiveURL.path)
+        let isSuccessfulSave = saveLikes(likes: currentSavedLikes!)
+        
+        if isSuccessfulSave{
+            os_log(.error, log: OSLog.default, "New like successfully saved.")
+        }
+        else{
+            os_log(.error, log: OSLog.default, "Failed to save new like...")
+        }
     }
     
     // Mark: - Backend action when a post is liked.
     private func saveNewLike(){
         //load current likes
-        var currentSavedLikes = NSKeyedUnarchiver.unarchiveObject(withFile: likedRecipe.ArchiveURL.path) as? [likedRecipe]
+        var currentSavedLikes = loadLikes()
         
         //conforming to the vars at the top
         let newLike = likedRecipe(name: name, desc: descript, image: picture)!
@@ -131,7 +160,7 @@ class explorePageDetailViewController: UIViewController {
             currentSavedLikes?.append(newLike)
         }
         
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(currentSavedLikes, toFile: likedRecipe.ArchiveURL.path)
+        let isSuccessfulSave = saveLikes(likes: currentSavedLikes!)
         
         //save to file
         if isSuccessfulSave{

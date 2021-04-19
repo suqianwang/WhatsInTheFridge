@@ -307,6 +307,39 @@ class recipeCollectionViewController: UICollectionViewController {
 
     }
     
+    //Getting ingredients from persisted data.
+    private func loadIngredients()->[Ingredient]?{
+        do {
+            let data = try Data(contentsOf: Ingredient.ingredientArchiveURL)
+            return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Ingredient]
+        }catch{
+            os_log(.error, log: OSLog.default, "failed to load ingredients")
+        }
+        return []
+    }
+    
+    private func getIngredientNames()-> [String]? {
+        let savedIngredients = loadIngredients()!
+        var names = [String]()
+        for ingredient in savedIngredients{
+            names.append(ingredient.name)
+        }
+        print(names)
+        return names
+    }
+    
+    //Getting survey results from persisted data.
+    private func loadSurvey()->[SurveyResponse]?{
+        do {
+            let data = try Data(contentsOf: SurveyResponse.surveyResponseArchiveURL)
+            return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [SurveyResponse]
+        }catch{
+            os_log(.error, log: OSLog.default, "failed to load survey responses")
+        }
+        return []
+    }
+    
+>>>>>>> a4d257a203da4d895ed58e9c0f08447f07b02cf0
     func fillRecipeDetailData() {
         for recipe in recipes   {
             let id = recipe.id
