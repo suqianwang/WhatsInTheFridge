@@ -17,6 +17,7 @@ class explorePageDetailViewController: UIViewController {
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var recipeDescription: UITextView!
     @IBOutlet weak var Heart: UIButton!
+    @IBOutlet weak var Collect: UIButton!
     
     var picture:UIImage!
     var name:String!
@@ -39,6 +40,7 @@ class explorePageDetailViewController: UIViewController {
         recipeDescription.text = descript
         
         liked = recipeAlreadyLiked(name: name, description: description)
+        collected = recipeAlreadyCollected(name: name, description: description)
         
         if liked{
             let initialHeart = UIImage(systemName: "heart.fill")
@@ -47,6 +49,15 @@ class explorePageDetailViewController: UIViewController {
         else{
             let initialHeart = UIImage(systemName: "heart")
             Heart.setImage(initialHeart, for: .normal)
+        }
+        
+        if collected{
+            let initialCollect = UIImage(systemName: "star.fill")
+            Collect.setImage(initialCollect, for: .normal)
+        }
+        else{
+            let initialCollect = UIImage(systemName: "star")
+            Collect.setImage(initialCollect, for: .normal)
         }
     }
 
@@ -71,17 +82,107 @@ class explorePageDetailViewController: UIViewController {
         if collected{
             heart = UIImage(systemName: "star")!
             print("You discollect this post")
-            //[coredata] deleting
+            removeNewCollect()
         } else{
             heart = UIImage(systemName: "star.fill")!
             print("You collect this post")
-            //[coredata] saving
+            saveNewCollect()
         }
         sender.setImage(heart, for: .normal)
         collected = !collected
     }
     
-    //Mark: Check if the current item was already saved.
+    //Mark: Check if the current item was already "collected".
+    private func recipeAlreadyCollected(name: String, description: String) -> Bool {
+        let currentCollected = loadCollected()!
+        
+        var wasCollected : Bool
+        let index = (currentCollected.firstIndex(where: {$0.name == name}))
+        
+        if index != nil{
+            wasCollected = true
+        }
+        else{
+            wasCollected = false
+        }
+        return wasCollected
+    }
+    
+    //Mark: Grabbing the past collected items from persisted data.
+    private func loadCollected()->[savedRecipe]?{
+        do {
+            let data = try Data(contentsOf: savedRecipe.ArchiveURL)
+            return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [savedRecipe]
+        }catch{
+            os_log(.error, log: OSLog.default, "failed to load past collected")
+        }
+        return []
+    }
+    
+    private func saveCollected(collects: [savedRecipe])->Bool{
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: collects, requiringSecureCoding: false)
+            try data.write(to: savedRecipe.ArchiveURL)
+        }catch{
+            os_log(.error, log: OSLog.default, "failed to save collects")
+            return false
+        }
+        return true
+    }
+    
+    //Save new collect.
+    private func saveNewCollect(){
+        //load current likes
+        var currentSavedCollected = loadCollected()
+        
+        //conforming to the vars at the top
+        let newCollect = savedRecipe(name: name, desc: descript, image: picture)!
+        
+        if currentSavedCollected?.count == nil {
+            currentSavedCollected = [newCollect]
+        }
+        else{
+            //add on the recipe we're looking at here
+            currentSavedCollected?.append(newCollect)
+        }
+        
+        let isSuccessfulSave = saveCollected(collects: currentSavedCollected!)
+        
+        //save to file
+        if isSuccessfulSave{
+            os_log(.error, log: OSLog.default, "New collect successfully saved.")
+        }
+        else{
+            os_log(.error, log: OSLog.default, "Failed to save new collect...")
+        }
+    }
+    
+    //Remove recipe from collection.
+    private func removeNewCollect(){
+        //load current likes
+        var currentSavedCollected = loadCollected()
+        
+        //remove the like from it
+        if let index = currentSavedCollected?.firstIndex(where: {$0.name == name}){
+            currentSavedCollected?.remove(at: index)
+        }
+        
+        print(currentSavedCollected?.count)
+        
+        //save it again
+        let isSuccessfulSave = saveCollected(collects: currentSavedCollected!)
+        
+        if isSuccessfulSave{
+            os_log(.error, log: OSLog.default, "New collect successfully saved.")
+        }
+        else{
+            os_log(.error, log: OSLog.default, "Failed to save new collect...")
+        }
+    }
+    
+    
+    
+    //Mark: Check if the current item was already liked.
     private func recipeAlreadyLiked(name: String, description: String) -> Bool {
         let currentSavedLikes = loadLikes()
         
