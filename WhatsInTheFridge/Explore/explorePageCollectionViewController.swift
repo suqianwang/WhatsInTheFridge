@@ -35,6 +35,8 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         }
     }
     
+    var recipeRecs: RecipeRecs?
+    
     
     
     //dummy data for now
@@ -48,6 +50,65 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         print("loading viewDidLoad")
         collectionView.backgroundView = UIImageView(image: UIImage(named: "background"))
         navigationItem.title = "Recipes For You"
+        getAllData()
+    }
+    
+    
+    func getAllData()   {
+        
+        
+        print("Trying to get all data")
+        let parameters: [String: Any] = [
+            "liked_recoms": [],
+            "user_id": 222,
+            "recom_amount": 15
+        ]
+        let jsonData = try? JSONSerialization.data(withJSONObject: parameters)
+
+        
+        let url = URL(string: "https://4t2d1vr498.execute-api.us-east-1.amazonaws.com/default/recom_v2")
+        guard let requestUrl = url else { fatalError() }
+        // Create URL Request
+        var request = URLRequest(url: requestUrl)
+        // Specify HTTP Method to use
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+        request.allHTTPHeaderFields = [
+            "X-API-Key": "gXj2IxaxTc1YededFaHXgab6xFHbO2I76RNEmwzW"
+        ]
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+            guard error == nil else {
+                print ("Error: \(error!)")
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Error - ", message: "\(error!)", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
+                return
+            }
+            
+            guard let jsonData = data else {
+                print("No data")
+                return
+            }
+            
+            do{
+                self.recipeRecs = try JSONDecoder().decode(RecipeRecs.self, from: jsonData)
+                print("finished loading data")
+                print(self.recipeRecs!)
+                //because we HAVE to refresh after we load the data to make sure the data is populated.
+                //this is a separate task so we gotta use dispatch queue to tell it to go to the main thread
+//                DispatchQueue.main.async {
+//                    self.collectionView.reloadData()
+//                }
+            } catch {
+                print("JSONDecoder error: \(error)")
+            }
+        })
+        
+        dataTask.resume()
+        
     }
 
 
@@ -81,7 +142,6 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         var cell = UICollectionViewCell()
         let index = indexPath.row
         let title = postTitle[index]
-        print("here2")
         if let content = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? exploreItemCollectionViewCell{
             content.configure(title, postImage)
             cell = content
