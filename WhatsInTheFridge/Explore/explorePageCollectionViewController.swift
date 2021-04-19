@@ -12,7 +12,7 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     
     // MARK: - RecipeSearch
     struct RecipeSearch: Codable {
-        let recipes, groceryProducts, articles, menuItems: [Article]
+        let recipes, groceryProducts, articles, menuItems: [Article?]?
 
         enum CodingKeys: String, CodingKey {
             case recipes = "Recipes"
@@ -29,15 +29,15 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         let link: String
         let type: TypeEnum
         let relevance: Double
-        let kvtable: String
-        let dataPoints: [DataPoint]
+        let kvtable: String?
+        let dataPoints: [DataPoint?]?
     }
 
     // MARK: - DataPoint
     struct DataPoint: Codable {
-        let key: Key
-        let value: String
-        let show: Bool
+        let key: Key?
+        let value: String?
+        let show: Bool?
     }
 
     enum Key: String, Codable {
@@ -47,7 +47,16 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         case date = "Date"
         case fat = "Fat"
         case protein = "Protein"
+        case unknown = "unknown"
+        
+        init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                self = Key(rawValue: string) ?? .unknown
+            }
     }
+    
+  
 
     enum TypeEnum: String, Codable {
         case html = "HTML"
@@ -59,13 +68,13 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     struct RecipeRecs: Codable {
         let statusCode: Int
         let body: String
-        let recomIDS: [Int]
+        let recomIDS: [Int?]?
         let rcpNames: [String]
-        let rcpIdxs, minutes: [Int]
-        let tags, nutritions: [String]
-        let nSteps: [Int]
-        let steps, descriptions, ingredients: [String]
-        let nIngredients: [Int]
+        let rcpIdxs, minutes: [Int?]?
+        let tags, nutritions: [String?]?
+        let nSteps: [Int]?
+        let steps, descriptions, ingredients: [String?]?
+        let nIngredients: [Int]?
 
         enum CodingKeys: String, CodingKey {
             case statusCode, body
@@ -157,10 +166,55 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     }
     
     func getImages()    {
+        print("getting images")
         let recipeNames: [String] = self.recipeRecs!.rcpNames
         
         for recipe in recipeNames   {
+            let headers = [
+                "x-rapidapi-key": "6f1810ca34msh227332a299bf704p13f30bjsn1ba98259af85",
+                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+            ]
+            print(recipe)
+            let recipeCleaned: String = recipe.removeExtraSpaces()
+            let queryItems:[URLQueryItem] = [
+                URLQueryItem(name: "query", value: recipeCleaned)]
             
+            var urlComps = URLComponents(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/site/search")!
+            urlComps.queryItems = queryItems
+            var result = urlComps.string
+            print(result)
+            let request = NSMutableURLRequest(url: NSURL(string: result!)! as URL,
+                                                    cachePolicy: .useProtocolCachePolicy,
+                                                timeoutInterval: 60)
+            request.httpMethod = "GET"
+            request.allHTTPHeaderFields = headers
+
+            let session = URLSession.shared
+            let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+                guard error == nil else {
+                    print ("Error: \(error!)")
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Error - ", message: "\(error!)", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                    }
+                    return
+                }
+
+                guard let jsonData = data else {
+                    print("No data")
+                    return
+                }
+
+                do{
+                    let recipeData: RecipeSearch = try JSONDecoder().decode(RecipeSearch.self, from: jsonData)
+                    print("got image")
+                } catch {
+                    print("JSONDecoder error: \(error)")
+                }
+            })
+
+            dataTask.resume()
         }
     }
 
@@ -247,3 +301,13 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     
 
 }
+
+extension String {
+
+    func removeExtraSpaces() -> String {
+        return self.replacingOccurrences(of: "[\\s\n]+", with: " ", options: .regularExpression, range: nil)
+    }
+
+}
+
+
