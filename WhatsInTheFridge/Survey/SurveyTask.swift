@@ -41,8 +41,9 @@ class SurveyData{
      let mealTypeList:[String] = ["main course", "side dish", "desert", "appetizer", "salad", "bread", "breakfast", "soup", "beverage", "sauce", "marinade", "fingerfood", "snack", "drink"]
     let mealTypeTitle:String = "What type of meal are you planning?"
     
-    // cuisine data
-    let cuisineTypeList:[String] = ["African", "American", "British", "Cajun", "Caribbean", "Chinese", "Eastern European", "European", "French", "German", "Greek", "Indian", "Irish", "Italian", "Japanese", "Jewish", "Korean", "Latin American", "Mediterranean", "Mexican", "Middle Eastern", "Nordic", "Southern", "Spanish", "Thai", "Vietnamese"]
+    // cuisine data - full data set
+//    let cuisineTypeList:[String] = ["African", "American", "British", "Cajun", "Caribbean", "Chinese", "Eastern European", "European", "French", "German", "Greek", "Indian", "Irish", "Italian", "Japanese", "Jewish", "Korean", "Latin American", "Mediterranean", "Mexican", "Middle Eastern", "Nordic", "Southern", "Spanish", "Thai", "Vietnamese"]
+    let cuisineTypeList:[String] = ["American", "British", "Cajun", "Chinese", "European", "Indian", "Italian", "Japanese", "Korean", "Latin American", "Mediterranean", "Mexican", "Southern", "Thai", "Vietnamese"]
     let cuisineTypeTitle:String = "What cuisine do you want to have for this meal?"
     
     // diet preference data

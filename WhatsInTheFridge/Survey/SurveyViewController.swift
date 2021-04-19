@@ -116,7 +116,10 @@ class SurveyViewController: UIViewController, ORKTaskViewControllerDelegate {
             if data != nil{
                 let answers:[Int] = processedResult.value
                 if answers.isEmpty{
-                    if data?.getIdentifier() == survey.mealTypeIdentifier || data?.getIdentifier() == survey.cuisineTypeIdentifier{
+                    if data?.getIdentifier() == survey.mealTypeIdentifier{
+                        let defaultAnswer:String = (dataDict[identifier]?.getChoices().first)!
+                        surveyResponses.append(SurveyResponse(key: identifier,value: defaultAnswer)!)
+                    }else if data?.getIdentifier() == survey.cuisineTypeIdentifier{
                         let defaultAnswer:[String] = (dataDict[identifier]?.getChoices())!
                         surveyResponses.append(SurveyResponse(key: identifier,value: defaultAnswer)!)
                     }else{

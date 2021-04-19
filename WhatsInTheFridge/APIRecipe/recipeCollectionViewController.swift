@@ -224,28 +224,39 @@ class recipeCollectionViewController: UICollectionViewController {
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
-        // Do any additional setup after loading the view.
-        let ingredients: [String] = getIngredientNames()!
-        let intolerances: [String] = ["peanut", "shellfish"]
-        getAllData(ingredients: ingredients, intolerances: intolerances)
+        getAllData()
+    }
+    
+    private func getIngredientNames()-> String? {
+        let savedIngredients = IngredientTableViewController().loadIngredients()!
+        var names = [String]()
+        for ingredient in savedIngredients{
+            names.append(ingredient.name)
+        }
+        print(names)
+        return names.joined(separator: ",")
     }
 
-    func getAllData(ingredients: [String], intolerances: [String])   {
+    func getAllData()   {
         print("Trying to get all data")
         let headers = [
             "x-rapidapi-key": "6f1810ca34msh227332a299bf704p13f30bjsn1ba98259af85",
             "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
         ]
         
-        let ingredientsString = ingredients.joined(separator:",")
-        let intolerancesString = intolerances.joined(separator:",")
-        print(ingredientsString)
+        let surveyResponses:[SurveyResponse] = SurveyViewController().loadSurveyResponses()!
+        let ingredients:String = getIngredientNames()!
         
-        let queryItems = [URLQueryItem(name: "limitLicense", value: "false"), URLQueryItem(name: "offset", value: "0"),
-                          URLQueryItem(name: "number", value: "10"),URLQueryItem(name: "query", value: ""),
-                          URLQueryItem(name: "cuisine", value: "american"), URLQueryItem(name: "intolerances", value: intolerancesString),
-                          URLQueryItem(name: "type", value: "main course"),
-                          URLQueryItem(name: "includeIngredients", value: ingredientsString)]
+        var queryItems:[URLQueryItem] = [
+            URLQueryItem(name: "limitLicense", value: "false"), URLQueryItem(name: "offset", value: "0"),
+            URLQueryItem(name: "number", value: "10"),URLQueryItem(name: "query", value: ""),
+            URLQueryItem(name: "includeIngredients", value: ingredients)]
+        
+        for surveyResponse in surveyResponses{
+            let queryItem:URLQueryItem = URLQueryItem(name: surveyResponse.key!, value: surveyResponse.value!)
+            queryItems.append(queryItem)
+        }
+        
         var urlComps = URLComponents(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/searchComplex")!
         urlComps.queryItems = queryItems
         
@@ -294,27 +305,6 @@ class recipeCollectionViewController: UICollectionViewController {
         
         dataTask.resume()
 
-    }
-    
-    //Getting ingredients from persisted data.
-    private func loadIngredients()->[Ingredient]?{
-        do {
-            let data = try Data(contentsOf: Ingredient.ingredientArchiveURL)
-            return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Ingredient]
-        }catch{
-            os_log(.error, log: OSLog.default, "failed to load ingredients")
-        }
-        return []
-    }
-    
-    private func getIngredientNames()-> [String]? {
-        let savedIngredients = loadIngredients()!
-        var names = [String]()
-        for ingredient in savedIngredients{
-            names.append(ingredient.name)
-        }
-        print(names)
-        return names
     }
     
     func fillRecipeDetailData() {
