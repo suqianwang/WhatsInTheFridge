@@ -23,7 +23,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         // Set background to custom
-        bg_imageView = Styler.setBackground()
+        bg_imageView = Styler.setBackground(bg: "background")
         view.addSubview(bg_imageView)
         self.view.sendSubviewToBack(bg_imageView)
         
@@ -57,13 +57,13 @@ class ViewController: UIViewController {
             self.logo_imageView.alpha = 0
         }, completion: {done in
             if done {
-                
+                let vcIdentifier = SignupViewController.loadProfile() != nil ? "HomeTabBarController":"Signup"
                 // After animation is done, segue to Home Tab Bar Controller
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let homeTabBarControllor = storyboard.instantiateViewController(identifier: "HomeTabBarController")
-                homeTabBarControllor.modalTransitionStyle = .crossDissolve
-                homeTabBarControllor.modalPresentationStyle = .fullScreen
-                self.present(homeTabBarControllor, animated: true)
+                let vc = storyboard.instantiateViewController(identifier: vcIdentifier)
+                vc.modalTransitionStyle = .crossDissolve
+                vc.modalPresentationStyle = .fullScreen
+                self.present(vc, animated: true)
             }
         })
     }

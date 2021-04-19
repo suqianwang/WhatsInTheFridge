@@ -20,7 +20,7 @@ class HomeTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        bg_imageView = Styler.setBackground()
+        bg_imageView = Styler.setBackground(bg: "background")
         view.addSubview(bg_imageView)
         self.view.sendSubviewToBack(bg_imageView)
     }

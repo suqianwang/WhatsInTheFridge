@@ -183,7 +183,7 @@ class RecipeTableViewController: UITableViewController {
     
     // Button Customization
     func button_config(){
-        button.frame.size.width = 200
+        button.frame.size.width = 150
         button.frame.size.height = 50
         button.frame = CGRect(
             x: self.view.frame.size.width/2 - button.frame.size.width/2,
@@ -191,8 +191,7 @@ class RecipeTableViewController: UITableViewController {
             width: button.frame.size.width,
             height: button.frame.size.height)
         button.layer.cornerRadius = 10
-        button.backgroundColor = .brown
-        button.tintColor = UIColor.init(rgb: 0xFFF59D)
+        button.backgroundColor = .link
         button.setTitle("New Survey", for: .normal)
         button.setTitle("Let's go!", for: .highlighted)
     }
@@ -202,6 +201,10 @@ class RecipeTableViewController: UITableViewController {
             vc.setGiveSurvey(give: true)
             navigationController?.pushViewController(vc, animated: false)
         }
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        button.frame.origin.y = self.view.frame.size.height*0.82 + scrollView.contentOffset.y
     }
     
     var all:allData?
@@ -228,10 +231,6 @@ class RecipeTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        button.frame.origin.y = 650 + scrollView.contentOffset.y
     }
     
     // MARK: - Table view data source

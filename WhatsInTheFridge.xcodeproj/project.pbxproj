@@ -15,6 +15,8 @@
 		70A335C3262736A9009AAEA9 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A335C2262736A9009AAEA9 /* Recipe.swift */; };
 		70A335C926273DB8009AAEA9 /* likedRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A335C826273DB8009AAEA9 /* likedRecipe.swift */; };
 		70A335CB26273DF1009AAEA9 /* savedRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A335CA26273DF1009AAEA9 /* savedRecipe.swift */; };
+		86113A3F262D45CC0025EAC5 /* ProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86113A3D262D45CC0025EAC5 /* ProfileData.swift */; };
+		86113A40262D45CC0025EAC5 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86113A3E262D45CC0025EAC5 /* SignupViewController.swift */; };
 		8677E532261BDAF60047DBD4 /* SurveyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E531261BDAF60047DBD4 /* SurveyTask.swift */; };
 		8677E537261BE80C0047DBD4 /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E536261BE80C0047DBD4 /* SurveyViewController.swift */; };
 		8677E552261CB8060047DBD4 /* collectedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E54F261CB8060047DBD4 /* collectedCollectionViewCell.swift */; };
@@ -83,6 +85,8 @@
 		70A335C2262736A9009AAEA9 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		70A335C826273DB8009AAEA9 /* likedRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = likedRecipe.swift; sourceTree = "<group>"; };
 		70A335CA26273DF1009AAEA9 /* savedRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = savedRecipe.swift; sourceTree = "<group>"; };
+		86113A3D262D45CC0025EAC5 /* ProfileData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileData.swift; sourceTree = "<group>"; };
+		86113A3E262D45CC0025EAC5 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		8677E531261BDAF60047DBD4 /* SurveyTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyTask.swift; sourceTree = "<group>"; };
 		8677E536261BE80C0047DBD4 /* SurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		8677E54F261CB8060047DBD4 /* collectedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectedCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -130,6 +134,17 @@
 				70A335CA26273DF1009AAEA9 /* savedRecipe.swift */,
 			);
 			path = RecipeClasses;
+			sourceTree = "<group>";
+		};
+		86113A3C262D45B70025EAC5 /* Initial */ = {
+			isa = PBXGroup;
+			children = (
+				86F6D1502606F83500C74FA5 /* ViewController.swift */,
+				86113A3D262D45CC0025EAC5 /* ProfileData.swift */,
+				86113A3E262D45CC0025EAC5 /* SignupViewController.swift */,
+				86BB26EA262A9D0B0015A577 /* HomeTabBarController.swift */,
+			);
+			path = Initial;
 			sourceTree = "<group>";
 		};
 		8677E53A261BEE760047DBD4 /* Survey */ = {
@@ -226,9 +241,8 @@
 				8677E53E261BEEF80047DBD4 /* Ingredient */,
 				86F6D14C2606F83500C74FA5 /* AppDelegate.swift */,
 				86F6D14E2606F83500C74FA5 /* SceneDelegate.swift */,
-				86F6D1502606F83500C74FA5 /* ViewController.swift */,
+				86113A3C262D45B70025EAC5 /* Initial */,
 				86F6D1522606F83500C74FA5 /* Main.storyboard */,
-				86BB26EA262A9D0B0015A577 /* HomeTabBarController.swift */,
 				86F6D1552606F83600C74FA5 /* Assets.xcassets */,
 				86F6D1572606F83600C74FA5 /* LaunchScreen.storyboard */,
 				86F6D15A2606F83600C74FA5 /* Info.plist */,
@@ -351,6 +365,8 @@
 				86F6D1512606F83500C74FA5 /* ViewController.swift in Sources */,
 				8677E55E261CB8260047DBD4 /* likedDetailViewController.swift in Sources */,
 				86F6D14D2606F83500C74FA5 /* AppDelegate.swift in Sources */,
+				86113A40262D45CC0025EAC5 /* SignupViewController.swift in Sources */,
+				86113A3F262D45CC0025EAC5 /* ProfileData.swift in Sources */,
 				8677E552261CB8060047DBD4 /* collectedCollectionViewCell.swift in Sources */,
 				70A335CB26273DF1009AAEA9 /* savedRecipe.swift in Sources */,
 				3106C67F261960E2009A7139 /* RecipeTableViewCell.swift in Sources */,

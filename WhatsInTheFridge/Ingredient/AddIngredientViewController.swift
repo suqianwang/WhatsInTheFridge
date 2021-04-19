@@ -18,7 +18,7 @@ class AddIngredientViewController: UIViewController {
         super.viewDidLoad()
         
         // add background
-        bg_imageView = Styler.setBackground()
+        bg_imageView = Styler.setBackground(bg: "background")
         view.addSubview(bg_imageView)
         self.view.sendSubviewToBack(bg_imageView)
     }

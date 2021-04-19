@@ -29,7 +29,7 @@ class collectDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Add custom background
-        bg_imageView = Styler.setBackground()
+        bg_imageView = Styler.setBackground(bg: "background")
         view.addSubview(bg_imageView)
         self.view.sendSubviewToBack(bg_imageView)
         // Do any additional setup after loading the view.
