@@ -6,7 +6,34 @@
 //
 
 import UIKit
+import Foundation
 class explorePageCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    
+    
+    
+    
+    struct RecipeRecs: Codable {
+        let statusCode: Int
+        let body: String
+        let recomIDS: [Int]
+        let rcpNames: [String]
+        let rcpIdxs, minutes: [Int]
+        let tags, nutritions: [String]
+        let nSteps: [Int]
+        let steps, descriptions, ingredients: [String]
+        let nIngredients: [Int]
+
+        enum CodingKeys: String, CodingKey {
+            case statusCode, body
+            case recomIDS = "recom_ids"
+            case rcpNames = "rcp_names"
+            case rcpIdxs = "rcp_idxs"
+            case minutes, tags, nutritions
+            case nSteps = "n_steps"
+            case steps, descriptions, ingredients
+            case nIngredients = "n_ingredients"
+        }
+    }
     
     
     
