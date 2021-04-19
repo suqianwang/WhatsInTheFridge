@@ -6,24 +6,48 @@
 //
 
 import UIKit
+import os.log
 
 private let reuseIdentifier = "collectedCell"
 
 class collectedPageCollectionViewController: UICollectionViewController {
-
-    //dummy data for now
-    let postTitle =  ["Tomato Egg", "Egg Tomato"]
-    let postImage = #imageLiteral(resourceName: "egg_tomato.jpeg")
-    let postDescript = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. "
-    
+    var collectedRecipes = [savedRecipe]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.backgroundView = UIImageView(image: UIImage(named: "background"))
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+        let savedCollects = loadCollected()
+        
+        if savedCollects?.count == 0{
+            print("There are no saved collected recipes: you should see the defaults.")
+            loadDefaults()
+        }
+        
+        //otherwise use the default.
+        else{
+            print("There are saved collected recipes: attempting to load them.")
+            collectedRecipes += savedCollects!
+        }
+        
 
         navigationItem.title = "Your Collected Recipes"
+    }
+    
+    private func loadDefaults() {
+        let defaultImage = #imageLiteral(resourceName: "egg_tomato.jpeg")
+        let defaultDescript = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. "
+        
+        guard let recipe1 = savedRecipe(name: "Tomato Egg", desc: defaultDescript, image: defaultImage) else {
+            fatalError("Unable to load default recipe 1.")
+        }
+        
+        guard let recipe2 = savedRecipe(name: "Egg Tomato", desc: defaultDescript, image: defaultImage) else {
+            fatalError("Unable to load default recipe 2.")
+        }
+        
+        collectedRecipes += [recipe1, recipe2]
     }
 
 
@@ -36,10 +60,10 @@ class collectedPageCollectionViewController: UICollectionViewController {
         if segue.identifier == "showCollected"{
             let detail = segue.destination as! collectDetailViewController
             if let indexPath = self.collectionView?.indexPath(for: sender as! UICollectionViewCell){
-                
-                detail.name = postTitle[indexPath.row]
-                detail.picture = postImage
-                detail.descript = postDescript
+                let selectedRecipe = collectedRecipes[indexPath.row]
+                detail.name = selectedRecipe.name
+                detail.picture = selectedRecipe.image
+                detail.descript = selectedRecipe.description
             }
         }
     }
@@ -53,19 +77,30 @@ class collectedPageCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return postTitle.count
+        return collectedRecipes.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell = UICollectionViewCell()
-        let index = indexPath.row
-        let title = postTitle[index]
+        _ = indexPath.row
+        let title = collectedRecipes[indexPath.row].name
+        let image = collectedRecipes[indexPath.row].image
         if let content = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? collectedCollectionViewCell{
-            content.configure(title, postImage)
+            content.configure(title, image)
             cell = content
         }
         
         return cell
+    }
+    
+    private func loadCollected()->[savedRecipe]?{
+        do {
+            let data = try Data(contentsOf: savedRecipe.ArchiveURL)
+            return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [savedRecipe]
+        }catch{
+            os_log(.error, log: OSLog.default, "failed to load past collected")
+        }
+        return []
     }
 
     // MARK: UICollectionViewDelegate
