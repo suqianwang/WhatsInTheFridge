@@ -10,6 +10,50 @@ import Foundation
 class explorePageCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     
+    // MARK: - RecipeSearch
+    struct RecipeSearch: Codable {
+        let recipes, groceryProducts, articles, menuItems: [Article]
+
+        enum CodingKeys: String, CodingKey {
+            case recipes = "Recipes"
+            case groceryProducts = "Grocery Products"
+            case articles = "Articles"
+            case menuItems = "Menu Items"
+        }
+    }
+
+    // MARK: - Article
+    struct Article: Codable {
+        let name: String
+        let image: String
+        let link: String
+        let type: TypeEnum
+        let relevance: Double
+        let kvtable: String
+        let dataPoints: [DataPoint]
+    }
+
+    // MARK: - DataPoint
+    struct DataPoint: Codable {
+        let key: Key
+        let value: String
+        let show: Bool
+    }
+
+    enum Key: String, Codable {
+        case calories = "Calories"
+        case carbs = "Carbs"
+        case cost = "Cost"
+        case date = "Date"
+        case fat = "Fat"
+        case protein = "Protein"
+    }
+
+    enum TypeEnum: String, Codable {
+        case html = "HTML"
+    }
+    
+    
     
     
     struct RecipeRecs: Codable {
@@ -97,6 +141,7 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
                 self.recipeRecs = try JSONDecoder().decode(RecipeRecs.self, from: jsonData)
                 print("finished loading data")
                 print(self.recipeRecs!)
+                self.getImages()
                 //because we HAVE to refresh after we load the data to make sure the data is populated.
                 //this is a separate task so we gotta use dispatch queue to tell it to go to the main thread
 //                DispatchQueue.main.async {
@@ -109,6 +154,14 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         
         dataTask.resume()
         
+    }
+    
+    func getImages()    {
+        let recipeNames: [String] = self.recipeRecs!.rcpNames
+        
+        for recipe in recipeNames   {
+            
+        }
     }
 
 
