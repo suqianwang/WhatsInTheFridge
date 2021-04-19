@@ -89,7 +89,7 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     }
     
     var recipeRecs: RecipeRecs?
-    var recipeToImage: [String: String] = [:]
+    var recipeToImage: [String: UIImage] = [:]
     var recipeToIndex: [String: Int] = [:]
     var recipesWithImages: [String] = []
     //dummy data for now
@@ -183,7 +183,7 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
             
             var urlComps = URLComponents(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/site/search")!
             urlComps.queryItems = queryItems
-            var result = urlComps.string
+            let result = urlComps.string
             print(result)
             let request = NSMutableURLRequest(url: NSURL(string: result!)! as URL,
                                                     cachePolicy: .useProtocolCachePolicy,
@@ -212,7 +212,14 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
                     let recipeData: RecipeSearch = try JSONDecoder().decode(RecipeSearch.self, from: jsonData)
                     print("got image")
                     if (recipeData.recipes != nil) {
-                        self.recipeToImage[recipe] = recipeData.recipes![0]?.image
+                        let imageUrl = URL(string: recipeData.recipes![0]!.image)!
+                        let data = try? Data(contentsOf: imageUrl)
+                        if let imageData = data {
+                            let image = UIImage(data: imageData)!
+                            self.recipeToImage[recipe] = image
+                        }
+                        
+                        
                         self.recipesWithImages.append(recipe)
                         DispatchQueue.main.async {
                             self.collectionView.reloadData()
@@ -271,17 +278,14 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
 //        let title = postTitle[index]
         let title = recipesWithImages[index]
         
-        let imageUrl = URL(string: recipeToImage[title]!)!
-        let data = try? Data(contentsOf: imageUrl)
-    
-        if let imageData = data {
-            let image = UIImage(data: imageData)!
-            
+        let image = self.recipeToImage[title]
+        if (image != nil)   {
             if let content = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? exploreItemCollectionViewCell{
-                content.configure(title, image)
+                content.configure(title, image!)
                 cell = content
             }
         }
+        
         else    {
             if let content = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? exploreItemCollectionViewCell{
                 content.configure(title, postImage)
