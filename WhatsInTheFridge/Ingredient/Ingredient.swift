@@ -2,7 +2,7 @@
 //  Ingredient.swift
 //  WhatsInTheFridge
 //
-//  Created by D on 4/13/21.
+//  Created by Dian Niu on 4/13/21.
 //
 
 import UIKit

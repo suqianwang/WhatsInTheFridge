@@ -2,7 +2,7 @@
 //  IngredientTableViewCell.swift
 //  WhatsInTheFridge
 //
-//  Created by D on 4/12/21.
+//  Created by Dian Niu on 4/12/21.
 //
 
 import UIKit

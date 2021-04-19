@@ -8,7 +8,7 @@
 import UIKit
 import OSLog
 
-class SignupViewController: UIViewController {
+class SignupViewController: UIViewController, UITextFieldDelegate {
 
     var profile:ProfileData?
     
@@ -29,11 +29,22 @@ class SignupViewController: UIViewController {
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: true)
         }else{
-            // TODO: pop up alert for user
             os_log(.info, "profile data not saved into archive")
         }
         
 
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let text = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        if !text.isEmpty{
+            button?.isUserInteractionEnabled = true
+            button?.alpha = 1.0
+        } else {
+            button?.isUserInteractionEnabled = false
+            button?.alpha = 0.5
+        }
+        return true
     }
     
     let placeHolderText:String = "enter name here"
@@ -46,6 +57,9 @@ class SignupViewController: UIViewController {
         view.addSubview(bg)
         self.view.sendSubviewToBack(bg)
         name.placeholder = placeHolderText
+        name?.delegate = self
+        button?.isUserInteractionEnabled = false
+        button?.alpha = 0.5
         button.layer.cornerRadius = 10
         
     }

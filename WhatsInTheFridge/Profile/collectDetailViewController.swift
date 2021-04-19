@@ -3,7 +3,6 @@
 //  WhatsInTheFridge
 //
 //  Created by Qintian Wu on 4/5/21.
-//
 
 import UIKit
 
