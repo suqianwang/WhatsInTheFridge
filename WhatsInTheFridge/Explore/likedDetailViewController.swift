@@ -4,6 +4,8 @@
 //
 //  Created by Qintian Wu on 4/5/21.
 //  Updated by D on 4/15/21
+//
+// To do: default load for a detail view heart image should be liked (filled).
 
 import UIKit
 import os.log
@@ -12,7 +14,6 @@ class likedDetailViewController: UIViewController {
     
     @IBOutlet weak var recipePicture: UIImageView!
     @IBOutlet weak var recipeName: UILabel!
-    
     @IBOutlet weak var recipeDescription: UITextView!
     
     var picture:UIImage!
@@ -32,11 +33,11 @@ class likedDetailViewController: UIViewController {
         view.addSubview(bg_imageView)
         self.view.sendSubviewToBack(bg_imageView)
         
-        // Do any additional setup after loading the view.
-        recipeName.text = name
         recipePicture.image = picture
         recipeDescription.text = descript
         
+        
+        //We already know this item was liked. Should only have the ability to remove recipes here. 
     }
     
     @IBAction func like(_ sender: UIButton) {
@@ -48,7 +49,7 @@ class likedDetailViewController: UIViewController {
         } else{
             heart = UIImage(systemName: "heart.fill")!
             print("You like this post")
-            saveLikedPost()
+            //saveLikedPost()
         }
         sender.setImage(heart, for: .normal)
         liked = !liked
@@ -70,14 +71,22 @@ class likedDetailViewController: UIViewController {
     }
     
     //Mark : - Functions to update and load from persistent data.
+    //NOTE: THIS IS THE SECTION OF THE APP TO SEE PREVIOUS SAVED RECIPES.
     private func saveLikedPost(){
         //load current likes
         var currentLikes = NSKeyedUnarchiver.unarchiveObject(withFile: likedRecipe.ArchiveURL.path) as? [likedRecipe]
+        
         //cast the current recipe to something
         var newLikedRecipe = likedRecipe(name: name, desc: descript, image: picture)
-        //addit to the currentLikes
-        currentLikes!.append(newLikedRecipe!)
         
+        //add the current thing to the array we're saving
+        if currentLikes?.count != nil{
+            currentLikes!.append(newLikedRecipe!)
+        }
+        else {
+            currentLikes = [newLikedRecipe!]
+        }
+
         //save and check.
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(currentLikes, toFile: likedRecipe.ArchiveURL.path)
         
