@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3106C67C26196085009A7139 /* RecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106C67B26196085009A7139 /* RecipeTableViewController.swift */; };
-		3106C67F261960E2009A7139 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106C67E261960E2009A7139 /* RecipeTableViewCell.swift */; };
-		3106C68226196153009A7139 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106C68126196153009A7139 /* RecipeDetailViewController.swift */; };
 		70963C272625F1EE00E56653 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70963C262625F1EE00E56653 /* Ingredient.swift */; };
 		709FE41F2624C78500945FC8 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709FE41E2624C78500945FC8 /* IngredientTableViewCell.swift */; };
 		70A335C3262736A9009AAEA9 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A335C2262736A9009AAEA9 /* Recipe.swift */; };
@@ -17,6 +14,9 @@
 		70A335CB26273DF1009AAEA9 /* savedRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A335CA26273DF1009AAEA9 /* savedRecipe.swift */; };
 		86113A3F262D45CC0025EAC5 /* ProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86113A3D262D45CC0025EAC5 /* ProfileData.swift */; };
 		86113A40262D45CC0025EAC5 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86113A3E262D45CC0025EAC5 /* SignupViewController.swift */; };
+		862272F3262DD73B0073B1B5 /* recipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862272EE262DD73A0073B1B5 /* recipeDetailViewController.swift */; };
+		862272F4262DD73B0073B1B5 /* recipeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862272F1262DD73A0073B1B5 /* recipeCollectionViewController.swift */; };
+		862272F5262DD73B0073B1B5 /* recipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862272F2262DD73A0073B1B5 /* recipeCollectionViewCell.swift */; };
 		8677E532261BDAF60047DBD4 /* SurveyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E531261BDAF60047DBD4 /* SurveyTask.swift */; };
 		8677E537261BE80C0047DBD4 /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E536261BE80C0047DBD4 /* SurveyViewController.swift */; };
 		8677E552261CB8060047DBD4 /* collectedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E54F261CB8060047DBD4 /* collectedCollectionViewCell.swift */; };
@@ -76,9 +76,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		3106C67B26196085009A7139 /* RecipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewController.swift; sourceTree = "<group>"; };
-		3106C67E261960E2009A7139 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
-		3106C68126196153009A7139 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 		7088FD8526249DF8009FD3F2 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = ResearchKit/ResearchKit.xcodeproj; sourceTree = "<group>"; };
 		70963C262625F1EE00E56653 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		709FE41E2624C78500945FC8 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
@@ -87,6 +84,9 @@
 		70A335CA26273DF1009AAEA9 /* savedRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = savedRecipe.swift; sourceTree = "<group>"; };
 		86113A3D262D45CC0025EAC5 /* ProfileData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileData.swift; sourceTree = "<group>"; };
 		86113A3E262D45CC0025EAC5 /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
+		862272EE262DD73A0073B1B5 /* recipeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = recipeDetailViewController.swift; sourceTree = "<group>"; };
+		862272F1262DD73A0073B1B5 /* recipeCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = recipeCollectionViewController.swift; sourceTree = "<group>"; };
+		862272F2262DD73A0073B1B5 /* recipeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = recipeCollectionViewCell.swift; sourceTree = "<group>"; };
 		8677E531261BDAF60047DBD4 /* SurveyTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyTask.swift; sourceTree = "<group>"; };
 		8677E536261BE80C0047DBD4 /* SurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		8677E54F261CB8060047DBD4 /* collectedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectedCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -194,9 +194,9 @@
 		8677E582261CC8300047DBD4 /* APIRecipe */ = {
 			isa = PBXGroup;
 			children = (
-				3106C67B26196085009A7139 /* RecipeTableViewController.swift */,
-				3106C67E261960E2009A7139 /* RecipeTableViewCell.swift */,
-				3106C68126196153009A7139 /* RecipeDetailViewController.swift */,
+				862272F2262DD73A0073B1B5 /* recipeCollectionViewCell.swift */,
+				862272F1262DD73A0073B1B5 /* recipeCollectionViewController.swift */,
+				862272EE262DD73A0073B1B5 /* recipeDetailViewController.swift */,
 			);
 			path = APIRecipe;
 			sourceTree = "<group>";
@@ -354,6 +354,7 @@
 			files = (
 				709FE41F2624C78500945FC8 /* IngredientTableViewCell.swift in Sources */,
 				86BB2701262BBC300015A577 /* SurveyResponse.swift in Sources */,
+				862272F4262DD73B0073B1B5 /* recipeCollectionViewController.swift in Sources */,
 				8677E55C261CB8260047DBD4 /* likedCollectionViewCell.swift in Sources */,
 				8677E55D261CB8260047DBD4 /* explorePageDetailViewController.swift in Sources */,
 				86EC60A5261B9A3000A11618 /* IngredientTableViewController.swift in Sources */,
@@ -368,9 +369,9 @@
 				86113A3F262D45CC0025EAC5 /* ProfileData.swift in Sources */,
 				8677E552261CB8060047DBD4 /* collectedCollectionViewCell.swift in Sources */,
 				70A335CB26273DF1009AAEA9 /* savedRecipe.swift in Sources */,
-				3106C67F261960E2009A7139 /* RecipeTableViewCell.swift in Sources */,
 				86F6D14F2606F83500C74FA5 /* SceneDelegate.swift in Sources */,
 				8677E55F261CB8260047DBD4 /* likedPageCollectionViewController.swift in Sources */,
+				862272F5262DD73B0073B1B5 /* recipeCollectionViewCell.swift in Sources */,
 				86EC60A8261BB16100A11618 /* AddIngredientViewController.swift in Sources */,
 				86BB26FB262B9D960015A577 /* UIColorExtension.swift in Sources */,
 				8677E554261CB8060047DBD4 /* collectedPageCollectionViewController.swift in Sources */,
@@ -378,9 +379,8 @@
 				8677E553261CB8060047DBD4 /* collectDetailViewController.swift in Sources */,
 				70A335C3262736A9009AAEA9 /* Recipe.swift in Sources */,
 				70A335C926273DB8009AAEA9 /* likedRecipe.swift in Sources */,
+				862272F3262DD73B0073B1B5 /* recipeDetailViewController.swift in Sources */,
 				70963C272625F1EE00E56653 /* Ingredient.swift in Sources */,
-				3106C68226196153009A7139 /* RecipeDetailViewController.swift in Sources */,
-				3106C67C26196085009A7139 /* RecipeTableViewController.swift in Sources */,
 				8677E55B261CB8260047DBD4 /* explorePageCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

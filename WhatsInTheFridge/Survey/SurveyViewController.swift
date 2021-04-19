@@ -160,7 +160,7 @@ class SurveyViewController: UIViewController, ORKTaskViewControllerDelegate {
 
     // TODO: Add Button to RecipeTableView, then do the logic
     func goToRecipeTableViewController(){
-        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "recipeTableViewController") as? RecipeTableViewController {
+        if let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "recipeCollectionViewController") as? recipeCollectionViewController {
             if let navigator = navigationController {
                 navigator.pushViewController(viewController, animated: false)
             }

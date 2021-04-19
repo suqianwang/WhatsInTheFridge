@@ -1,16 +1,15 @@
 //
-//  RecipeTableViewController.swift
+//  recipeCollectionViewController.swift
 //  WhatsInTheFridge
 //
-//  Created by Billy Luqiu on 4/3/21.
+//  Created by Qintian Wu on 4/18/21.
 //
 
 import UIKit
-import Foundation
 
-class RecipeTableViewController: UITableViewController {
+private let reuseIdentifier = "recipeCell"
 
-    
+class recipeCollectionViewController: UICollectionViewController {
     struct allData: Codable {
         let results: [recipe]
         let baseURI: String
@@ -178,18 +177,25 @@ class RecipeTableViewController: UITableViewController {
         }
     }
 
+    
+    var all:allData?
+    
+    var recipes:[recipe] = []
+    
+    var recipeDetailList:[recipeDetail] = []
+    
     // Create a button for new survey
     let button = UIButton()
     
-    // Button Customization
+    // MARK: - Button Customization
     func button_config(){
-        button.frame.size.width = 150
-        button.frame.size.height = 50
+        let buttonWidth:CGFloat = 150
+        let buttonHeight:CGFloat = 50
         button.frame = CGRect(
-            x: self.view.frame.size.width/2 - button.frame.size.width/2,
-            y: self.view.frame.size.height*0.1,
-            width: button.frame.size.width,
-            height: button.frame.size.height)
+            x: self.view.frame.width/2 - buttonWidth/2,
+            y: self.view.frame.height*0.83,
+            width: buttonWidth,
+            height: buttonHeight)
         button.layer.cornerRadius = 10
         button.backgroundColor = .link
         button.setTitle("New Survey", for: .normal)
@@ -203,49 +209,26 @@ class RecipeTableViewController: UITableViewController {
         }
     }
     
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        button.frame.origin.y = self.view.frame.size.height*0.82 + scrollView.contentOffset.y
-    }
-    
-    var all:allData?
-    
-    var recipes:[recipe] = []
-    
-    var recipeDetailList:[recipeDetail] = []
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
+
+        collectionView.backgroundView = UIImageView(image: UIImage(named: "background"))
+        navigationItem.title = "Recipes For You"
         
         button_config()
         self.view.addSubview(button)
         button.addTarget(self, action: #selector(button_action(_:)), for: .touchUpInside)
+
         
-        self.tableView.rowHeight = 150
+        // Register cell classes
+        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+
+        // Do any additional setup after loading the view.
         let ingredients: [String] = ["onion", "tomato"]
         let intolerances: [String] = ["peanut", "shellfish"]
         getAllData(ingredients: ingredients, intolerances: intolerances)
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-    }
-    
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return recipes.count
-    }
-
-    
     func getAllData(ingredients: [String], intolerances: [String])   {
         print("Trying to get all data")
         let headers = [
@@ -301,7 +284,7 @@ class RecipeTableViewController: UITableViewController {
                 //because we HAVE to refresh after we load the data to make sure the data is populated.
                 //this is a separate task so we gotta use dispatch queue to tell it to go to the main thread
                 DispatchQueue.main.async {
-                    self.tableView.reloadData()
+                    self.collectionView.reloadData()
                 }
             } catch {
                 print("JSONDecoder error: \(error)")
@@ -357,96 +340,101 @@ class RecipeTableViewController: UITableViewController {
             dataTask.resume()
         }
     }
-    
-    
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "recipeListing", for: indexPath)
-            as! RecipeTableViewCell
-        // Configure the cell...
-        let recipeID = recipes[indexPath.row].id
-        let recipeTitle = recipes[indexPath.row].title
-        let imageUrl = URL(string: recipes[indexPath.row].image)!
+
+
+
+    // MARK: UICollectionViewDataSource
+
+    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+
+
+    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of items
+        return recipes.count
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        // Configure the cell
+        var cell = UICollectionViewCell()
+        let index = indexPath.row
+        
+        //let recipeID = recipes[indexPath.row].id
+        let recipeTitle = recipes[index].title
+        let imageUrl = URL(string: recipes[index].image)!
         let data = try? Data(contentsOf: imageUrl)
-        if let imageData = data {
-            cell.recipeImage.image = UIImage(data: imageData)
+        
+        if let content = collectionView.dequeueReusableCell(withReuseIdentifier: "recipeAPI", for: indexPath) as? recipeCollectionViewCell{
+            if let imageData = data {
+                content.recipeImage.image = UIImage(data: imageData)!
+            }
+//            content.configure()
+            content.recipeName.text = recipeTitle
+            //content.configure(recipeTitle, image)
+            cell = content
         }
-        
-        cell.recipeName.text = recipeTitle
-        cell.recipeID.text = String(recipeID)
-        
-        cell.backgroundColor = .clear
+    
         
         return cell
+    
     }
-
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
+    
     
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
+        // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
-        
-        let destVC = segue.destination as! RecipeDetailViewController
-        let selectRow = (tableView.indexPathForSelectedRow?.row)!
-        
-        destVC.recipeStep = recipeDetailList[selectRow].instructions
-        destVC.wwSmartPoints = "Weight Watcher Points" + String(recipeDetailList[selectRow].weightWatcherSmartPoints)
-        
-        
-        
-    }
-    
-
-}
-extension UIImageView {
-    func load(url: URL) {
-        DispatchQueue.global().async { [weak self] in
-            if let data = try? Data(contentsOf: url) {
-                if let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.image = image
-                    }
+        if segue.identifier == "toRecipeDetail"{
+            let detail = segue.destination as! recipeDetailViewController
+            if let indexPath = self.collectionView?.indexPath(for: sender as! UICollectionViewCell){
+                
+                detail.name = recipes[indexPath.row].title
+                let imageUrl = URL(string: recipes[indexPath.row].image)!
+                let data = try? Data(contentsOf: imageUrl)
+                if let imageData = data {
+                    detail.picture = UIImage(data: imageData)!
                 }
+                detail.descript = recipeDetailList[indexPath.row].instructions
             }
         }
     }
+    
+    
+
+    // MARK: UICollectionViewDelegate
+
+    /*
+    // Uncomment this method to specify if the specified item should be highlighted during tracking
+    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    */
+
+    /*
+    // Uncomment this method to specify if the specified item should be selected
+    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    */
+
+    /*
+    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
+    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+        return false
+    }
+
+    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+    
+    }
+    */
+
 }
