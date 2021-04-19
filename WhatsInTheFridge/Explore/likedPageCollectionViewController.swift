@@ -40,7 +40,7 @@ class likedPageCollectionViewController: UICollectionViewController {
     // Mark: Function for resetting past likes. Call under viewDidLoad to remove all past likes.
     // DON'T USE IN PRODUCTION.
     private func removeSavedLikes(){
-        var currentLikes = [likedRecipe]()
+        let currentLikes = [likedRecipe]()
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(currentLikes, toFile: likedRecipe.ArchiveURL.path)
         
         print("The save for liked post was successful: " + String(isSuccessfulSave))
@@ -71,7 +71,13 @@ class likedPageCollectionViewController: UICollectionViewController {
     
     // local saved data load through path defined in likerecipe.
     private func loadLikes()->[likedRecipe]?{
-        return NSKeyedUnarchiver.unarchiveObject(withFile: likedRecipe.ArchiveURL.path) as? [likedRecipe]
+        do {
+            let data = try Data(contentsOf: likedRecipe.ArchiveURL)
+            return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [likedRecipe]
+        }catch{
+            os_log(.error, log: OSLog.default, "failed to load ingredients")
+        }
+        return []
     }
 
     // MARK: - Navigation
