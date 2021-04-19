@@ -18,6 +18,7 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         // Add custom background
+        print("loading viewDidLoad")
         collectionView.backgroundView = UIImageView(image: UIImage(named: "background"))
         navigationItem.title = "Recipes For You"
     }
@@ -53,6 +54,7 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         var cell = UICollectionViewCell()
         let index = indexPath.row
         let title = postTitle[index]
+        print("here2")
         if let content = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? exploreItemCollectionViewCell{
             content.configure(title, postImage)
             cell = content
