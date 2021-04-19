@@ -32,8 +32,8 @@ class collectDetailViewController: UIViewController {
         recipeName.text = name
         recipePicture.image = picture
         recipeDescription.text = descript
-        //set up initial button status here
         
+        //set up initial button status here -> detect whether or not recipe was already liked. 
     }
     
     @IBAction func like(_ sender: UIButton) {
