@@ -34,8 +34,8 @@ struct SurveyStepData{
 class SurveyData{
     
     // instruction data
-    let instructionStepTitle:String = "Plan the meal"
-    let instructionStepText:String = "Your satisfaction is important to us, let us get some preferences from you so we can provide you with better suggestion :)"
+    let instructionStepTitle:String = "Plan your next meal"
+    let instructionStepText:String = "Hello there :)\n\nYour satisfaction is important to us, and we want to provide you with the best recipe suggestions\n\nYou are about to go through a short survey that would let us get some insights of your dietary preferences and restrictions\n\nNow, let's get started :-)"
     
     // meal data
      let mealTypeList:[String] = ["main course", "side dish", "desert", "appetizer", "salad", "bread", "breakfast", "soup", "beverage", "sauce", "marinade", "fingerfood", "snack", "drink"]
@@ -55,7 +55,7 @@ class SurveyData{
     
     // summary data
     let summaryTitle:String = "Thank you!"
-    let summaryText:String = "Click next to see your recipes~"
+    let summaryText:String = "Click DONE to see your recipes~ Bon apetit!"
     
     // identifiers
     let instructionStepIdentifier:String = "IntroStep"

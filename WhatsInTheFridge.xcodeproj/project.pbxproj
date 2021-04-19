@@ -3,20 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		3106C67C26196085009A7139 /* RecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106C67B26196085009A7139 /* RecipeTableViewController.swift */; };
 		3106C67F261960E2009A7139 /* RecipeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106C67E261960E2009A7139 /* RecipeTableViewCell.swift */; };
 		3106C68226196153009A7139 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3106C68126196153009A7139 /* RecipeDetailViewController.swift */; };
-		6833F5982E82E6502432035E /* Pods_WhatsInTheFridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7313EADC5B27CC7E7BF3E6B /* Pods_WhatsInTheFridge.framework */; };
 		70963C272625F1EE00E56653 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70963C262625F1EE00E56653 /* Ingredient.swift */; };
 		709FE41F2624C78500945FC8 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709FE41E2624C78500945FC8 /* IngredientTableViewCell.swift */; };
 		70A335C3262736A9009AAEA9 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A335C2262736A9009AAEA9 /* Recipe.swift */; };
 		70A335C926273DB8009AAEA9 /* likedRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A335C826273DB8009AAEA9 /* likedRecipe.swift */; };
 		70A335CB26273DF1009AAEA9 /* savedRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A335CA26273DF1009AAEA9 /* savedRecipe.swift */; };
-		86681589262BD2200021EB19 /* ProfileTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86681588262BD2200021EB19 /* ProfileTabBarController.swift */; };
 		8677E532261BDAF60047DBD4 /* SurveyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E531261BDAF60047DBD4 /* SurveyTask.swift */; };
 		8677E537261BE80C0047DBD4 /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E536261BE80C0047DBD4 /* SurveyViewController.swift */; };
 		8677E552261CB8060047DBD4 /* collectedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E54F261CB8060047DBD4 /* collectedCollectionViewCell.swift */; };
@@ -29,11 +27,8 @@
 		8677E55F261CB8260047DBD4 /* likedPageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E559261CB8260047DBD4 /* likedPageCollectionViewController.swift */; };
 		8677E560261CB8260047DBD4 /* exploreItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E55A261CB8260047DBD4 /* exploreItemCollectionViewCell.swift */; };
 		86BB26EB262A9D0B0015A577 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB26EA262A9D0B0015A577 /* HomeTabBarController.swift */; };
-		86BB26F4262AC8170015A577 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB26F3262AC8170015A577 /* ProfileViewController.swift */; };
 		86BB26FB262B9D960015A577 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB26FA262B9D950015A577 /* UIColorExtension.swift */; };
 		86BB2701262BBC300015A577 /* SurveyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB26FD262BBC300015A577 /* SurveyResponse.swift */; };
-		86CC96CD262C8E4B00B5AF64 /* TestButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC96CC262C8E4B00B5AF64 /* TestButton.swift */; };
-		86DC70B4262BFFE900AB2F9C /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DC70B3262BFFE900AB2F9C /* ChildViewController.swift */; };
 		86DC70B8262C147E00AB2F9C /* Styler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DC70B7262C147E00AB2F9C /* Styler.swift */; };
 		86EC60A5261B9A3000A11618 /* IngredientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC60A4261B9A2F00A11618 /* IngredientTableViewController.swift */; };
 		86EC60A8261BB16100A11618 /* AddIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC60A7261BB16100A11618 /* AddIngredientViewController.swift */; };
@@ -82,14 +77,12 @@
 		3106C67B26196085009A7139 /* RecipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewController.swift; sourceTree = "<group>"; };
 		3106C67E261960E2009A7139 /* RecipeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeTableViewCell.swift; sourceTree = "<group>"; };
 		3106C68126196153009A7139 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
-		53119EEB5B824C76DD2795A5 /* Pods-WhatsInTheFridge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsInTheFridge.release.xcconfig"; path = "Target Support Files/Pods-WhatsInTheFridge/Pods-WhatsInTheFridge.release.xcconfig"; sourceTree = "<group>"; };
 		7088FD8526249DF8009FD3F2 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = ResearchKit/ResearchKit.xcodeproj; sourceTree = "<group>"; };
 		70963C262625F1EE00E56653 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		709FE41E2624C78500945FC8 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
 		70A335C2262736A9009AAEA9 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		70A335C826273DB8009AAEA9 /* likedRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = likedRecipe.swift; sourceTree = "<group>"; };
 		70A335CA26273DF1009AAEA9 /* savedRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = savedRecipe.swift; sourceTree = "<group>"; };
-		86681588262BD2200021EB19 /* ProfileTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTabBarController.swift; sourceTree = "<group>"; };
 		8677E531261BDAF60047DBD4 /* SurveyTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyTask.swift; sourceTree = "<group>"; };
 		8677E536261BE80C0047DBD4 /* SurveyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		8677E54F261CB8060047DBD4 /* collectedCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = collectedCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -102,11 +95,8 @@
 		8677E559261CB8260047DBD4 /* likedPageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = likedPageCollectionViewController.swift; sourceTree = "<group>"; };
 		8677E55A261CB8260047DBD4 /* exploreItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = exploreItemCollectionViewCell.swift; sourceTree = "<group>"; };
 		86BB26EA262A9D0B0015A577 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
-		86BB26F3262AC8170015A577 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		86BB26FA262B9D950015A577 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = WhatsInTheFridge/Helper/UIColorExtension.swift; sourceTree = SOURCE_ROOT; };
 		86BB26FD262BBC300015A577 /* SurveyResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyResponse.swift; sourceTree = "<group>"; };
-		86CC96CC262C8E4B00B5AF64 /* TestButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestButton.swift; sourceTree = "<group>"; };
-		86DC70B3262BFFE900AB2F9C /* ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
 		86DC70B7262C147E00AB2F9C /* Styler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Styler.swift; path = WhatsInTheFridge/Helper/Styler.swift; sourceTree = "<group>"; };
 		86EC60A4261B9A2F00A11618 /* IngredientTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewController.swift; sourceTree = "<group>"; };
 		86EC60A7261BB16100A11618 /* AddIngredientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIngredientViewController.swift; sourceTree = "<group>"; };
@@ -118,8 +108,6 @@
 		86F6D1552606F83600C74FA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86F6D1582606F83600C74FA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86F6D15A2606F83600C74FA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A7313EADC5B27CC7E7BF3E6B /* Pods_WhatsInTheFridge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhatsInTheFridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FB02ED20CE8428BA21422F71 /* Pods-WhatsInTheFridge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsInTheFridge.debug.xcconfig"; path = "Target Support Files/Pods-WhatsInTheFridge/Pods-WhatsInTheFridge.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,22 +116,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				86FEB7FD2629FCD600582026 /* ResearchKit.framework in Frameworks */,
-				6833F5982E82E6502432035E /* Pods_WhatsInTheFridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		56397CBCB21AD4360738E6E3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				FB02ED20CE8428BA21422F71 /* Pods-WhatsInTheFridge.debug.xcconfig */,
-				53119EEB5B824C76DD2795A5 /* Pods-WhatsInTheFridge.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		70A335CC26273E14009AAEA9 /* RecipeClasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,14 +130,6 @@
 				70A335CA26273DF1009AAEA9 /* savedRecipe.swift */,
 			);
 			path = RecipeClasses;
-			sourceTree = "<group>";
-		};
-		8677E52B261BD8D40047DBD4 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A7313EADC5B27CC7E7BF3E6B /* Pods_WhatsInTheFridge.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		8677E53A261BEE760047DBD4 /* Survey */ = {
@@ -199,12 +169,9 @@
 		8677E54E261CB7C00047DBD4 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				86681588262BD2200021EB19 /* ProfileTabBarController.swift */,
 				8677E550261CB8060047DBD4 /* collectDetailViewController.swift */,
 				8677E54F261CB8060047DBD4 /* collectedCollectionViewCell.swift */,
 				8677E551261CB8060047DBD4 /* collectedPageCollectionViewController.swift */,
-				86BB26F3262AC8170015A577 /* ProfileViewController.swift */,
-				86DC70B3262BFFE900AB2F9C /* ChildViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -236,8 +203,6 @@
 				7088FD8526249DF8009FD3F2 /* ResearchKit.xcodeproj */,
 				86F6D14B2606F83500C74FA5 /* WhatsInTheFridge */,
 				86F6D14A2606F83500C74FA5 /* Products */,
-				8677E52B261BD8D40047DBD4 /* Frameworks */,
-				56397CBCB21AD4360738E6E3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -262,7 +227,6 @@
 				86F6D14C2606F83500C74FA5 /* AppDelegate.swift */,
 				86F6D14E2606F83500C74FA5 /* SceneDelegate.swift */,
 				86F6D1502606F83500C74FA5 /* ViewController.swift */,
-				86CC96CC262C8E4B00B5AF64 /* TestButton.swift */,
 				86F6D1522606F83500C74FA5 /* Main.storyboard */,
 				86BB26EA262A9D0B0015A577 /* HomeTabBarController.swift */,
 				86F6D1552606F83600C74FA5 /* Assets.xcassets */,
@@ -288,12 +252,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 86F6D15D2606F83600C74FA5 /* Build configuration list for PBXNativeTarget "WhatsInTheFridge" */;
 			buildPhases = (
-				A402FA9235D6FA4414B50F85 /* [CP] Check Pods Manifest.lock */,
 				86F6D1452606F83500C74FA5 /* Sources */,
 				86F6D1462606F83500C74FA5 /* Frameworks */,
 				86F6D1472606F83500C74FA5 /* Resources */,
 				8677E52E261BD8D40047DBD4 /* Embed Frameworks */,
-				CB8C79DB5025EFE1E8A3073F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -372,48 +334,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		A402FA9235D6FA4414B50F85 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WhatsInTheFridge-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CB8C79DB5025EFE1E8A3073F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WhatsInTheFridge/Pods-WhatsInTheFridge-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WhatsInTheFridge/Pods-WhatsInTheFridge-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhatsInTheFridge/Pods-WhatsInTheFridge-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		86F6D1452606F83500C74FA5 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -431,11 +351,8 @@
 				86F6D1512606F83500C74FA5 /* ViewController.swift in Sources */,
 				8677E55E261CB8260047DBD4 /* likedDetailViewController.swift in Sources */,
 				86F6D14D2606F83500C74FA5 /* AppDelegate.swift in Sources */,
-				86DC70B4262BFFE900AB2F9C /* ChildViewController.swift in Sources */,
 				8677E552261CB8060047DBD4 /* collectedCollectionViewCell.swift in Sources */,
 				70A335CB26273DF1009AAEA9 /* savedRecipe.swift in Sources */,
-				86BB26F4262AC8170015A577 /* ProfileViewController.swift in Sources */,
-				86CC96CD262C8E4B00B5AF64 /* TestButton.swift in Sources */,
 				3106C67F261960E2009A7139 /* RecipeTableViewCell.swift in Sources */,
 				86F6D14F2606F83500C74FA5 /* SceneDelegate.swift in Sources */,
 				8677E55F261CB8260047DBD4 /* likedPageCollectionViewController.swift in Sources */,
@@ -449,7 +366,6 @@
 				70963C272625F1EE00E56653 /* Ingredient.swift in Sources */,
 				3106C68226196153009A7139 /* RecipeDetailViewController.swift in Sources */,
 				3106C67C26196085009A7139 /* RecipeTableViewController.swift in Sources */,
-				86681589262BD2200021EB19 /* ProfileTabBarController.swift in Sources */,
 				8677E55B261CB8260047DBD4 /* explorePageCollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -594,7 +510,6 @@
 		};
 		86F6D15E2606F83600C74FA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB02ED20CE8428BA21422F71 /* Pods-WhatsInTheFridge.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -613,7 +528,6 @@
 		};
 		86F6D15F2606F83600C74FA5 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 53119EEB5B824C76DD2795A5 /* Pods-WhatsInTheFridge.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

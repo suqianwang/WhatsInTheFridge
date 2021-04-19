@@ -17,9 +17,15 @@ class RecipeDetailViewController: UIViewController {
     
     var wwSmartPoints: String!
     
+    var bg_imageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        bg_imageView = Styler.setBackground()
+        view.addSubview(bg_imageView)
+        self.view.sendSubviewToBack(bg_imageView)
+        
         recipeSteps.text = recipeStep
         weightWatcherSmartPoints.text = wwSmartPoints
 

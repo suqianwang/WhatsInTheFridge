@@ -178,6 +178,31 @@ class RecipeTableViewController: UITableViewController {
         }
     }
 
+    // Create a button for new survey
+    let button = UIButton()
+    
+    // Button Customization
+    func button_config(){
+        button.frame.size.width = 200
+        button.frame.size.height = 50
+        button.frame = CGRect(
+            x: self.view.frame.size.width/2 - button.frame.size.width/2,
+            y: self.view.frame.size.height*0.1,
+            width: button.frame.size.width,
+            height: button.frame.size.height)
+        button.layer.cornerRadius = 10
+        button.backgroundColor = .brown
+        button.tintColor = UIColor.init(rgb: 0xFFF59D)
+        button.setTitle("New Survey", for: .normal)
+        button.setTitle("Let's go!", for: .highlighted)
+    }
+    
+    @IBAction func button_action(_ sender: Any) {
+        if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "surveyViewController") as? SurveyViewController{
+            vc.setGiveSurvey(give: true)
+            navigationController?.pushViewController(vc, animated: false)
+        }
+    }
     
     var all:allData?
     
@@ -187,6 +212,12 @@ class RecipeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.backgroundView = UIImageView(image: UIImage(named: "background"))
+        
+        button_config()
+        self.view.addSubview(button)
+        button.addTarget(self, action: #selector(button_action(_:)), for: .touchUpInside)
+        
         self.tableView.rowHeight = 150
         let ingredients: [String] = ["onion", "tomato"]
         let intolerances: [String] = ["peanut", "shellfish"]
@@ -199,6 +230,10 @@ class RecipeTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        button.frame.origin.y = 650 + scrollView.contentOffset.y
+    }
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -342,6 +377,7 @@ class RecipeTableViewController: UITableViewController {
         cell.recipeName.text = recipeTitle
         cell.recipeID.text = String(recipeID)
         
+        cell.backgroundColor = .clear
         
         return cell
     }
