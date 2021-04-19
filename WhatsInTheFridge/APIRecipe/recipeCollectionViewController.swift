@@ -3,6 +3,7 @@
 //  WhatsInTheFridge
 //
 //  Created by Qintian Wu on 4/18/21.
+//  Modified by Suqian Wang on 4/19/21.
 //
 
 import UIKit
@@ -315,6 +316,17 @@ class recipeCollectionViewController: UICollectionViewController {
         }
         print(names)
         return names
+    }
+    
+    //Getting survey results from persisted data.
+    private func loadSurvey()->[SurveyResponse]?{
+        do {
+            let data = try Data(contentsOf: SurveyResponse.surveyResponseArchiveURL)
+            return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [SurveyResponse]
+        }catch{
+            os_log(.error, log: OSLog.default, "failed to load survey responses")
+        }
+        return []
     }
     
     func fillRecipeDetailData() {
