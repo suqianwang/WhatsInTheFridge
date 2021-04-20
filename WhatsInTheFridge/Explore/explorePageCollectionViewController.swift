@@ -249,9 +249,13 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         if segue.identifier == "showDetail"{
             let detail = segue.destination as! explorePageDetailViewController
             if let indexPath = self.collectionView?.indexPath(for: sender as! UICollectionViewCell){
-                detail.name = postTitle[indexPath.row]
-                detail.picture = postImage
-                detail.descript = postDescript
+//                detail.name = postTitle[indexPath.row]
+//                detail.picture = postImage
+//                detail.descript = postDescript
+                let title = recipesWithImages[indexPath.row]
+                detail.name = title
+                detail.picture = self.recipeToImage[title]!
+                detail.descript = self.recipeRecs?.steps![self.recipeToIndex[title]!]
             }
         }
     }
