@@ -578,34 +578,35 @@
                                     <rect key="frame" x="0.0" y="0.0" width="170" height="190"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="aIK-YA-Qee">
-                                            <rect key="frame" x="5" y="5" width="160" height="180"/>
+                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HmJ-hu-WKj">
+                                            <rect key="frame" x="5" y="0.0" width="160" height="190"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="50X-DQ-X3G">
-                                                    <rect key="frame" x="0.0" y="0.0" width="160" height="142"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="120" id="MGM-6J-J4L"/>
-                                                        <constraint firstAttribute="width" constant="180" id="vOC-HI-pPp"/>
-                                                    </constraints>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="130" translatesAutoresizingMaskIntoConstraints="NO" id="yDO-Qa-t9P">
-                                                    <rect key="frame" x="0.0" y="150" width="160" height="30"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="30" id="RmW-gK-jpB"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="GranthaSangamMN-Regular" family="Grantha Sangam MN" pointSize="18"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="aIK-YA-Qee">
+                                                    <rect key="frame" x="-10" y="-11" width="180" height="178"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="50X-DQ-X3G">
+                                                            <rect key="frame" x="0.0" y="0.0" width="180" height="120"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="120" id="MGM-6J-J4L"/>
+                                                                <constraint firstAttribute="width" constant="180" id="vOC-HI-pPp"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="130" translatesAutoresizingMaskIntoConstraints="NO" id="yDO-Qa-t9P">
+                                                            <rect key="frame" x="0.0" y="148" width="180" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="RmW-gK-jpB"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="GranthaSangamMN-Regular" family="Grantha Sangam MN" pointSize="18"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
-                                        </stackView>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        </view>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="aIK-YA-Qee" firstAttribute="top" secondItem="Ebh-xK-A4k" secondAttribute="top" constant="5" id="Ubj-UX-oXN"/>
-                                        <constraint firstItem="aIK-YA-Qee" firstAttribute="leading" secondItem="Ebh-xK-A4k" secondAttribute="leading" constant="5" id="hJq-Jo-hZu"/>
-                                        <constraint firstAttribute="trailing" secondItem="aIK-YA-Qee" secondAttribute="trailing" constant="5" id="mjN-w0-a6z"/>
-                                        <constraint firstAttribute="bottom" secondItem="aIK-YA-Qee" secondAttribute="bottom" constant="5" id="qea-SI-Izl"/>
-                                    </constraints>
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="170" height="190"/>
                                 <connections>
@@ -628,7 +629,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="etL-1Q-tPA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5109" y="376"/>
+            <point key="canvasLocation" x="5107.2463768115949" y="375.66964285714283"/>
         </scene>
         <!--Liked Page Collection View Controller-->
         <scene sceneID="Buc-1c-aZW">
@@ -982,7 +983,7 @@
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.82352941180000006" green="0.70588235290000001" blue="0.54901960780000003" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="tE8-uC-LMk" secondAttribute="bottom" constant="1" id="ElH-lO-Gh6"/>
                                                 <constraint firstItem="tE8-uC-LMk" firstAttribute="top" secondItem="Qcj-zJ-HvR" secondAttribute="top" constant="2" id="iEg-7N-xnl" userLabel="Stack View.top = top"/>
@@ -997,7 +998,7 @@
                                         <constraint firstItem="Qcj-zJ-HvR" firstAttribute="centerX" secondItem="PDB-ib-EUw" secondAttribute="centerX" id="Rw2-oS-PAz"/>
                                     </constraints>
                                 </collectionViewCellContentView>
-                                <color key="backgroundColor" red="0.82352941180000006" green="0.70588235290000001" blue="0.54901960780000003" alpha="0.48985980309999999" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <size key="customSize" width="203" height="220"/>
                                 <connections>
                                     <outlet property="container" destination="Qcj-zJ-HvR" id="oq5-Bu-9lu"/>
