@@ -140,7 +140,6 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     
     func getAllData()   {
         
-        print("Trying to get all data")
         let parameters: [String: Any] = [
             "liked_recoms": [],
             "user_id": 222,
@@ -179,7 +178,6 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
             do{
                 self.recipeRecs = try JSONDecoder().decode(RecipeRecs.self, from: jsonData)
                 print("finished loading data")
-                print(self.recipeRecs!)
                 self.getImages()
                 //because we HAVE to refresh after we load the data to make sure the data is populated.
                 //this is a separate task so we gotta use dispatch queue to tell it to go to the main thread
@@ -206,7 +204,6 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
                 "x-rapidapi-key": "6f1810ca34msh227332a299bf704p13f30bjsn1ba98259af85",
                 "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
             ]
-            print(recipe)
             let recipeCleaned: String = recipe.removeExtraSpaces()
             let queryItems:[URLQueryItem] = [
                 URLQueryItem(name: "query", value: recipeCleaned)]
@@ -214,7 +211,6 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
             var urlComps = URLComponents(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/site/search")!
             urlComps.queryItems = queryItems
             let result = urlComps.string
-            print(result)
             let request = NSMutableURLRequest(url: NSURL(string: result!)! as URL,
                                               cachePolicy: .useProtocolCachePolicy,
                                               timeoutInterval: 60)
@@ -263,7 +259,6 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
                     //                            self.collectionView.reloadData()
                     //                        }
                     //                    }
-                    print(self.recipeToImage)
                 } catch {
                     print("JSONDecoder error: \(error)")
                 }

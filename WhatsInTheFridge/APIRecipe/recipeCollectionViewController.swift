@@ -130,7 +130,7 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
     struct WinePairing: Codable {
         let pairedWines: [String]
         let pairingText: String
-        let productMatches: [ProductMatch]
+        let productMatches: [ProductMatch?]?
     }
 
     // MARK: - ProductMatch
@@ -296,7 +296,6 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
         urlComps.queryItems = queryItems
         
         var result = urlComps.string
-        print(result)
         result = result!.replacingOccurrences(of: ",", with: "%2C")
         
         let request = NSMutableURLRequest(url: NSURL(string: result!)! as URL,
