@@ -128,8 +128,8 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
 
     // MARK: - WinePairing
     struct WinePairing: Codable {
-        let pairedWines: [String]
-        let pairingText: String
+        let pairedWines: [String?]?
+        let pairingText: String?
         let productMatches: [ProductMatch?]?
     }
 
@@ -263,10 +263,10 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
         let skeletonBaseColor = UIColor.brown
         
         // skeleton setup
-        collectionView.isSkeletonable = true
-        collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: skeletonBaseColor), animation: .none, transition: .none)
-        
-        createGetAllDataThread()
+//        collectionView.isSkeletonable = true
+//        collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: skeletonBaseColor), animation: .none, transition: .none)
+//        
+        //createGetAllDataThread()
         
     }
 
