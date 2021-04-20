@@ -12,7 +12,7 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     
     // MARK: - RecipeSearch
     struct RecipeSearch: Codable {
-        let recipes, groceryProducts, articles, menuItems: [Article]
+        let recipes, groceryProducts, articles, menuItems: [Article?]?
 
         enum CodingKeys: String, CodingKey {
             case recipes = "Recipes"
@@ -29,15 +29,15 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         let link: String
         let type: TypeEnum
         let relevance: Double
-        let kvtable: String
-        let dataPoints: [DataPoint]
+        let kvtable: String?
+        let dataPoints: [DataPoint?]?
     }
 
     // MARK: - DataPoint
     struct DataPoint: Codable {
-        let key: Key
-        let value: String
-        let show: Bool
+        let key: Key?
+        let value: String?
+        let show: Bool?
     }
 
     enum Key: String, Codable {
@@ -47,7 +47,16 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         case date = "Date"
         case fat = "Fat"
         case protein = "Protein"
+        case unknown = "unknown"
+        
+        init(from decoder: Decoder) throws {
+                let container = try decoder.singleValueContainer()
+                let string = try container.decode(String.self)
+                self = Key(rawValue: string) ?? .unknown
+            }
     }
+    
+  
 
     enum TypeEnum: String, Codable {
         case html = "HTML"
@@ -59,13 +68,13 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     struct RecipeRecs: Codable {
         let statusCode: Int
         let body: String
-        let recomIDS: [Int]
+        let recomIDS: [Int?]?
         let rcpNames: [String]
-        let rcpIdxs, minutes: [Int]
-        let tags, nutritions: [String]
-        let nSteps: [Int]
-        let steps, descriptions, ingredients: [String]
-        let nIngredients: [Int]
+        let rcpIdxs, minutes: [Int?]?
+        let tags, nutritions: [String?]?
+        let nSteps: [Int]?
+        let steps, descriptions, ingredients: [String?]?
+        let nIngredients: [Int]?
 
         enum CodingKeys: String, CodingKey {
             case statusCode, body
@@ -80,9 +89,9 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     }
     
     var recipeRecs: RecipeRecs?
-    
-    
-    
+    var recipeToImage: [String: UIImage] = [:]
+    var recipeToIndex: [String: Int] = [:]
+    var recipesWithImages: [String] = []
     //dummy data for now
     let postTitle =  ["Tomato Egg", "Egg Tomato", "Potato beef", "Beff Potato"]
     let postImage = #imageLiteral(resourceName: "egg_tomato.jpeg")
@@ -157,10 +166,80 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     }
     
     func getImages()    {
+        print("getting images")
         let recipeNames: [String] = self.recipeRecs!.rcpNames
-        
+        var counter: Int = 0
         for recipe in recipeNames   {
+            self.recipeToIndex[recipe] = counter
+            counter = counter + 1
+            let headers = [
+                "x-rapidapi-key": "6f1810ca34msh227332a299bf704p13f30bjsn1ba98259af85",
+                "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
+            ]
+            print(recipe)
+            let recipeCleaned: String = recipe.removeExtraSpaces()
+            let queryItems:[URLQueryItem] = [
+                URLQueryItem(name: "query", value: recipeCleaned)]
             
+            var urlComps = URLComponents(string: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/food/site/search")!
+            urlComps.queryItems = queryItems
+            let result = urlComps.string
+            print(result)
+            let request = NSMutableURLRequest(url: NSURL(string: result!)! as URL,
+                                                    cachePolicy: .useProtocolCachePolicy,
+                                                timeoutInterval: 60)
+            request.httpMethod = "GET"
+            request.allHTTPHeaderFields = headers
+
+            let session = URLSession.shared
+            let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+                guard error == nil else {
+                    print ("Error: \(error!)")
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Error - ", message: "\(error!)", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                    }
+                    return
+                }
+
+                guard let jsonData = data else {
+                    print("No data")
+                    return
+                }
+
+                do{
+                    let recipeData: RecipeSearch = try JSONDecoder().decode(RecipeSearch.self, from: jsonData)
+                    print("got image")
+                    if (recipeData.recipes != nil) {
+                        let imageUrl = URL(string: recipeData.recipes![0]!.image)!
+                        let data = try? Data(contentsOf: imageUrl)
+                        if let imageData = data {
+                            let image = UIImage(data: imageData)!
+                            self.recipeToImage[recipe] = image
+                        }
+                        
+                        
+                        self.recipesWithImages.append(recipe)
+                        DispatchQueue.main.async {
+                            self.collectionView.reloadData()
+                        }
+                    }
+//                    else if (recipeData.articles != nil)    {
+//                        self.recipeToImage[recipe] = recipeData.articles![0]?.image
+//                        self.recipesWithImages.append(recipe)
+//                        
+//                        DispatchQueue.main.async {
+//                            self.collectionView.reloadData()
+//                        }
+//                    }
+                    print(self.recipeToImage)
+                } catch {
+                    print("JSONDecoder error: \(error)")
+                }
+            })
+
+            dataTask.resume()
         }
     }
 
@@ -170,9 +249,13 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         if segue.identifier == "showDetail"{
             let detail = segue.destination as! explorePageDetailViewController
             if let indexPath = self.collectionView?.indexPath(for: sender as! UICollectionViewCell){
-                detail.name = postTitle[indexPath.row]
-                detail.picture = postImage
-                detail.descript = postDescript
+//                detail.name = postTitle[indexPath.row]
+//                detail.picture = postImage
+//                detail.descript = postDescript
+                let title = recipesWithImages[indexPath.row]
+                detail.name = title
+                detail.picture = self.recipeToImage[title]!
+                detail.descript = self.recipeRecs?.steps![self.recipeToIndex[title]!]
             }
         }
     }
@@ -188,17 +271,33 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return postTitle.count
+//        return postTitle.count
+        return recipeToImage.count
+        
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell = UICollectionViewCell()
         let index = indexPath.row
-        let title = postTitle[index]
-        if let content = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? exploreItemCollectionViewCell{
-            content.configure(title, postImage)
-            cell = content
+//        let title = postTitle[index]
+        let title = recipesWithImages[index]
+        
+        let image = self.recipeToImage[title]
+        if (image != nil)   {
+            if let content = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? exploreItemCollectionViewCell{
+                content.configure(title, image!)
+                cell = content
+            }
         }
+        
+        else    {
+            if let content = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? exploreItemCollectionViewCell{
+                content.configure(title, postImage)
+                cell = content
+            }
+        }
+        
+        
         return cell
     }
 
@@ -247,3 +346,13 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     
 
 }
+
+extension String {
+
+    func removeExtraSpaces() -> String {
+        return self.replacingOccurrences(of: "[\\s\n]+", with: " ", options: .regularExpression, range: nil)
+    }
+
+}
+
+

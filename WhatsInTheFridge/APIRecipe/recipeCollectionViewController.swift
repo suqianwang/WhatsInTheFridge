@@ -26,7 +26,7 @@ class recipeCollectionViewController: UICollectionViewController {
 
     // MARK: - Result
     struct recipe: Codable {
-        let id, usedIngredientCount, missedIngredientCount, likes: Int
+        let id, usedIngredientCount, missedIngredientCount, likes: Int?
         let title: String
         let image: String
         let imageType: String
@@ -250,7 +250,8 @@ class recipeCollectionViewController: UICollectionViewController {
         var queryItems:[URLQueryItem] = [
             URLQueryItem(name: "limitLicense", value: "false"), URLQueryItem(name: "offset", value: "0"),
             URLQueryItem(name: "number", value: "10"),URLQueryItem(name: "query", value: ""),
-            URLQueryItem(name: "includeIngredients", value: ingredients)]
+            URLQueryItem(name: "includeIngredients", value: ingredients),
+            URLQueryItem(name: "instructionsRequired", value: "true")]
         
         for surveyResponse in surveyResponses{
             let queryItem:URLQueryItem = URLQueryItem(name: surveyResponse.key!, value: surveyResponse.value!)
@@ -341,7 +342,7 @@ class recipeCollectionViewController: UICollectionViewController {
     
     func fillRecipeDetailData() {
         for recipe in recipes   {
-            let id = recipe.id
+            let id = recipe.id!
             let headers = [
                 "x-rapidapi-key": "6f1810ca34msh227332a299bf704p13f30bjsn1ba98259af85",
                 "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
