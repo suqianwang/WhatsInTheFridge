@@ -13,8 +13,7 @@ private let reuseIdentifier = "recipeCell"
 
 class recipeCollectionViewController: UICollectionViewController, SkeletonCollectionViewDataSource {
     
-    // MARK: - Structures
-    // MARK: - Data
+    // MARK: - Data Structures
     struct allData: Codable {
         let results: [recipe]
         let baseURI: String
@@ -36,7 +35,6 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
         let imageType: String
     }
 
-
     // MARK: - Ingredient
     struct ingredient: Codable {
         let id: Int
@@ -48,8 +46,7 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
         let extendedName: String?
     }
     
-
-    // MARK: - Welcome
+    // MARK: - RecipeDetail
     struct recipeDetail: Codable {
         let vegetarian, vegan, glutenFree, dairyFree: Bool
         let veryHealthy, cheap, veryPopular, sustainable: Bool
@@ -156,7 +153,6 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
     }
 
     // MARK: - Encode/decode helpers
-
     class JSONNull: Codable, Hashable {
 
         public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
@@ -183,20 +179,22 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
     }
 
     // MARK: - class attributes
-    let transitionInterval = 0.25
     
+    // skeleton view attributes
+    let transitionInterval = 0.25
     let collectionCellReuseIdentifier = "recipeAPI"
     
+    // recipe data attributes
     var all:allData?
-    
     var recipes:[recipe] = []
-    
     var recipeDetailList:[recipeDetail] = []
     
-    // Create a button for new survey
+    // button for new survey
     let button = UIButton()
     
-    // MARK: - Button Customization
+    // MARK: - Button
+    
+    // Button customization
     func button_config(){
         let buttonWidth:CGFloat = 150
         let buttonHeight:CGFloat = 50
@@ -211,6 +209,7 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
         button.setTitle("Let's go!", for: .highlighted)
     }
     
+    // button action
     @IBAction func button_action(_ sender: Any) {
         if let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "surveyViewController") as? SurveyViewController{
             vc.setGiveSurvey(give: true)
@@ -218,36 +217,9 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        collectionView.backgroundView = UIImageView(image: UIImage(named: "background"))
-        navigationItem.title = "Recipes For You"
-        
-        // button setup
-        button_config()
-        self.view.addSubview(button)
-        button.addTarget(self, action: #selector(button_action(_:)), for: .touchUpInside)
-        
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
-        createGetAllDataThread()
-    }
-    
-    
-    // MARK: - SkeletonView Setup
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        // skeleton attributes
-        let skeletonBaseColor = UIColor.brown
-        
-        // skeleton setup
-        collectionView.isSkeletonable = true
-        collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: skeletonBaseColor), animation: .none, transition: .none)
-        
-        createGetAllDataThread()
-        
+    // MARK: - View and Skeleton View Setup
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return collectionCellReuseIdentifier
     }
     
     func createGetAllDataThread(){
@@ -267,19 +239,35 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
         }
     }
     
-    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return collectionCellReuseIdentifier
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Add custom background
+        collectionView.backgroundView = UIImageView(image: UIImage(named: "background"))
+        navigationItem.title = "Recipes For You"
+        
+        // button setup
+        button_config()
+        self.view.addSubview(button)
+        button.addTarget(self, action: #selector(button_action(_:)), for: .touchUpInside)
+        
+        // Register cell classes
+        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        
+        createGetAllDataThread()
     }
     
-    // MARK: - Ingredient collection
-    private func getIngredientNames()-> String? {
-        let savedIngredients = IngredientTableViewController().loadIngredients()!
-        var names = [String]()
-        for ingredient in savedIngredients{
-            names.append(ingredient.name)
-        }
-        print(names)
-        return names.joined(separator: ",")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // skeleton attributes
+        let skeletonBaseColor = UIColor.brown
+        
+        // skeleton setup
+        collectionView.isSkeletonable = true
+        collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: skeletonBaseColor), animation: .none, transition: .none)
+        
+        createGetAllDataThread()
+        
     }
 
     // MARK: - retrieve data from API
@@ -400,8 +388,6 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
         }
     }
 
-
-
     // MARK: UICollectionViewDataSource
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -439,10 +425,7 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
     
     }
     
-    
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
@@ -463,6 +446,20 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
         }
     }
     
+    // MARK: - Helper Functions
+    
+    // Load ingredient into comma seperated format
+    private func getIngredientNames()-> String? {
+        let savedIngredients = IngredientTableViewController().loadIngredients()!
+        var names = [String]()
+        for ingredient in savedIngredients{
+            names.append(ingredient.name)
+        }
+        print(names)
+        return names.joined(separator: ",")
+    }
+    
+    // Data cleaning
     func instruct_cleaning(descript instruct:String)->String{
         
         let cleaning_instruct = removeTags(removeSpace(instruct))
@@ -483,8 +480,6 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
         trimmed = trimmed.split(separator: " ").joined(separator: " ")
         return trimmed
     }
-    
-    
 
     // MARK: UICollectionViewDelegate
 
