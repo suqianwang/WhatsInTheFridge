@@ -32,7 +32,7 @@ class likedPageCollectionViewController: UICollectionViewController, UICollectio
         
         // Set collectionView background and padding
         collectionView.backgroundColor = .clear
-        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 20, bottom: 0, right: 20)
         collectionView.isSkeletonable = true
         collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: UIColor.brown), animation: .none, transition: .none)
         
@@ -103,8 +103,9 @@ class likedPageCollectionViewController: UICollectionViewController, UICollectio
         likedRecipes += [recipe1, recipe2]
     }
     
+    // MARK: - public methods to load
     // local saved data load through path defined in likerecipe.
-    private func loadLikes()->[likedRecipe]?{
+    func loadLikes()->[likedRecipe]?{
         do {
             let data = try Data(contentsOf: likedRecipe.ArchiveURL)
             return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [likedRecipe]
@@ -159,7 +160,7 @@ class likedPageCollectionViewController: UICollectionViewController, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let insetsWidth = collectionView.contentInset.left + collectionView.contentInset.right + 10
+        let insetsWidth = collectionView.contentInset.left + collectionView.contentInset.right + 40
         let cellSize = (collectionView.frame.width - insetsWidth)/2
         return CGSize(width: cellSize, height: cellSize)
     }

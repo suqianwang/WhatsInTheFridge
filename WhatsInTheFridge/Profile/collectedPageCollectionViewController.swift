@@ -7,32 +7,57 @@
 
 import UIKit
 import os.log
+import SkeletonView
 
 private let reuseIdentifier = "collectedCell"
 
-class collectedPageCollectionViewController: UICollectionViewController {
+class collectedPageCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, SkeletonCollectionViewDataSource {
     var collectedRecipes = [savedRecipe]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.backgroundView = UIImageView(image: UIImage(named: "background"))
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        let savedCollects = loadCollected()
         
-        if savedCollects?.count == 0{
-            print("There are no saved collected recipes: you should see the defaults.")
-            loadDefaults()
-        }
+        var bg:UIImageView!
+        bg = Styler.setBackground(bg: "background")
+        view.addSubview(bg)
+        self.view.sendSubviewToBack(bg)
         
-        //otherwise use the default.
-        else{
-            print("There are saved collected recipes: attempting to load them.")
-            collectedRecipes += savedCollects!
-        }
-        
+        // Set collectionView background and padding
+        collectionView.backgroundColor = .clear
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 20, bottom: 0, right: 20)
+        collectionView.isSkeletonable = true
+        collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: UIColor.brown), animation: .none, transition: .none)
 
         navigationItem.title = "Your Collected Recipes"
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        os_log("entering collected page collection")
+        createGetAllDataThread()
+    }
+    
+    func createGetAllDataThread(){
+        // move get data to async thread to show loading animation
+        DispatchQueue.main.async {
+            // load saved liked recipes
+            os_log("retrieving saved 'collected recipes' from archive")
+            // Uncomment the following line to preserve selection between presentations
+            let savedCollects = self.loadCollected()
+            
+            if savedCollects?.count == 0{
+                print("There are no saved collected recipes: you should see the defaults.")
+                self.loadDefaults()
+            }
+            
+            //otherwise use the default.
+            else{
+                print("There are saved collected recipes: attempting to load them.")
+                self.collectedRecipes += savedCollects!
+            }
+            
+            self.collectionView.stopSkeletonAnimation()
+            self.view.hideSkeleton(reloadDataAfter: true, transition: .none)
+        }
     }
     
     private func loadDefaults() {
@@ -89,8 +114,20 @@ class collectedPageCollectionViewController: UICollectionViewController {
             content.configure(title, image)
             cell = content
         }
-        
+        // Customize Cell
+        cell.contentView.backgroundColor = .white
+        cell.contentView.layer.cornerRadius = 20
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let insetsWidth = collectionView.contentInset.left + collectionView.contentInset.right + 40
+        let cellSize = (collectionView.frame.width - insetsWidth)/2
+        return CGSize(width: cellSize, height: cellSize)
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return reuseIdentifier
     }
     
     private func loadCollected()->[savedRecipe]?{
