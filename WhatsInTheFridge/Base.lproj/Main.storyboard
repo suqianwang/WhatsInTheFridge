@@ -264,6 +264,9 @@
                                                         <constraint firstAttribute="height" constant="120" id="UbL-dz-lqy"/>
                                                         <constraint firstAttribute="width" constant="180" id="Ukc-eT-x9u"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="130" translatesAutoresizingMaskIntoConstraints="NO" id="Rrs-be-2vd">
                                                     <rect key="frame" x="0.0" y="150" width="160" height="30"/>
@@ -273,8 +276,14 @@
                                                     <fontDescription key="fontDescription" name="GranthaSangamMN-Regular" family="Grantha Sangam MN" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </stackView>
                                     </subviews>
                                     <constraints>
@@ -283,8 +292,14 @@
                                         <constraint firstItem="EQp-In-Ilk" firstAttribute="top" secondItem="3Z6-Zr-qgI" secondAttribute="top" constant="5" id="x5b-zq-WS9"/>
                                         <constraint firstAttribute="bottom" secondItem="EQp-In-Ilk" secondAttribute="bottom" constant="5" id="xoR-d4-57g"/>
                                     </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="170" height="190"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="Image" destination="E86-dk-KMZ" id="h1i-5f-FoD"/>
                                     <outlet property="Title" destination="Rrs-be-2vd" id="Eui-L3-1m9"/>
@@ -292,6 +307,9 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="dataSource" destination="JkC-kg-bVs" id="9Qo-bk-A2Y"/>
                             <outlet property="delegate" destination="JkC-kg-bVs" id="ISF-2e-ajd"/>
