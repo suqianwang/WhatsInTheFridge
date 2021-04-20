@@ -11,7 +11,7 @@ import SkeletonView
 
 private let reuseIdentifier = "recipeCell"
 
-class recipeCollectionViewController: UICollectionViewController, SkeletonCollectionViewDataSource {
+class recipeCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, SkeletonCollectionViewDataSource {
     
     // MARK: - Data Structures
     struct allData: Codable {
@@ -179,10 +179,12 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
     }
 
     // MARK: - class attributes
+    let postImage = #imageLiteral(resourceName: "egg_tomato.jpeg")
+    var bg: UIImageView!
     
     // skeleton view attributes
     let transitionInterval = 0.25
-    let collectionCellReuseIdentifier = "recipeAPI"
+//    let collectionCellReuseIdentifier = "recipeCell"
     
     // recipe data attributes
     var all:allData?
@@ -218,9 +220,6 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
     }
     
     // MARK: - View and Skeleton View Setup
-    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return collectionCellReuseIdentifier
-    }
     
     func createGetAllDataThread(){
         // move get data to async thread to show loading animation
@@ -243,16 +242,18 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
         super.viewDidLoad()
 
         // Add custom background
-        collectionView.backgroundView = UIImageView(image: UIImage(named: "background"))
+        bg = Styler.setBackground(bg: "background")
+        view.addSubview(bg)
+        self.view.sendSubviewToBack(bg)
+        // Set collectionView background and padding
+        collectionView.backgroundColor = .clear
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+        // Set navigation title
         navigationItem.title = "Recipes For You"
-        
         // button setup
         button_config()
         self.view.addSubview(button)
         button.addTarget(self, action: #selector(button_action(_:)), for: .touchUpInside)
-        
-        // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         createGetAllDataThread()
     }
@@ -262,19 +263,18 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
         // skeleton attributes
         
         // FIXME: uncomment the following if you are doing the demo
-//        let skeletonBaseColor = UIColor.brown
+        let skeletonBaseColor = UIColor.brown
         
         // skeleton setup
-//        collectionView.isSkeletonable = true
-//        collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: skeletonBaseColor), animation: .none, transition: .none)
-//        
-        //createGetAllDataThread()
+        collectionView.isSkeletonable = true
+        collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: skeletonBaseColor), animation: .none, transition: .none)
+        
+        createGetAllDataThread()
         
     }
 
     // MARK: - retrieve data from API
     func getAllData()   {
-        print("Trying to get all data")
         let headers = [
             "x-rapidapi-key": "6f1810ca34msh227332a299bf704p13f30bjsn1ba98259af85",
             "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com"
@@ -329,8 +329,7 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
                 self.all = try JSONDecoder().decode(allData.self, from: jsonData)
                 self.recipes = self.all!.results
                 self.fillRecipeDetailData()
-                //because we HAVE to refresh after we load the data to make sure the data is populated.
-                //this is a separate task so we gotta use dispatch queue to tell it to go to the main thread
+                // use dispatch queue to go to the main thread
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
@@ -373,13 +372,12 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
                 }
                 
                 guard let jsonData = data else {
-                    print("No data")
+                    print("Error: No data")
                     return
                 }
                 
                 do{
                     self.recipeDetailList.append(try JSONDecoder().decode(recipeDetail.self, from: jsonData))
-                    print("here")
                 } catch {
                     print("JSONDecoder error: \(error)")
                 }
@@ -400,11 +398,15 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return recipes.count
     }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "recipeCell"
+    }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         // Configure the cell
-        var cell = UICollectionViewCell()
+        var cell = recipeCollectionViewCell()
         let index = indexPath.row
         
         //let recipeID = recipes[indexPath.row].id
@@ -412,25 +414,33 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
         let imageUrl = URL(string: recipes[index].image)!
         let data = try? Data(contentsOf: imageUrl)
         
-        if let content = collectionView.dequeueReusableCell(withReuseIdentifier: collectionCellReuseIdentifier, for: indexPath) as? recipeCollectionViewCell{
+        if let content = collectionView.dequeueReusableCell(withReuseIdentifier: "recipeCell", for: indexPath) as? recipeCollectionViewCell{
             if let imageData = data {
                 content.recipeImage.image = UIImage(data: imageData)!
             }
-//            content.configure()
             content.recipeName.text = recipeTitle
-            //content.configure(recipeTitle, image)
             cell = content
         }
         
+        // Customize Cell
+        cell.contentView.backgroundColor = .white
+        cell.contentView.layer.cornerRadius = 20
         return cell
-    
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let insetsWidth = self.collectionView.contentInset.right + self.collectionView.contentInset.left + 10
+        let cellSize = (self.collectionView.frame.width - insetsWidth)/2
+        return CGSize(width: cellSize, height: cellSize)
+    }
+    
+    
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
-        if segue.identifier == "toRecipeDetail"{
+        if segue.identifier == "RecipeDetail"{
             let detail = segue.destination as! recipeDetailViewController
             if let indexPath = self.collectionView?.indexPath(for: sender as! UICollectionViewCell){
                 
@@ -456,7 +466,7 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
         for ingredient in savedIngredients{
             names.append(ingredient.name)
         }
-        print(names)
+//        print(names)
         return names.joined(separator: ",")
     }
     

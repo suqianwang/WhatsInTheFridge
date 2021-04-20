@@ -11,5 +11,9 @@ class exploreItemCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var Title: UILabel!
     @IBOutlet weak var Image: UIImageView!
+    
+    override func awakeFromNib() {
+      super.awakeFromNib()
+    }
 
 }

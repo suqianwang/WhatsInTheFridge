@@ -281,9 +281,6 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         if segue.identifier == "showDetail"{
             let detail = segue.destination as! explorePageDetailViewController
             if let indexPath = self.collectionView?.indexPath(for: sender as! UICollectionViewCell){
-                //                detail.name = postTitle[indexPath.row]
-                //                detail.picture = postImage
-                //                detail.descript = postDescript
                 let title = recipesWithImages[indexPath.row]
                 detail.name = title
                 detail.picture = self.recipeToImage[title]!
@@ -302,8 +299,6 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        //        return postTitle.count
         return recipeToImage.count
         
     }
@@ -340,7 +335,6 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         return cell
     }
     
-    //attempt to configure the cell size to accomodate different deviced, not done yet
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let insetsWidth = collectionView.contentInset.left + collectionView.contentInset.right + 10
         let cellSize = (collectionView.frame.width - insetsWidth)/2

@@ -9,15 +9,11 @@ import UIKit
 
 class recipeCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var container: UIView!
-    @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var recipeImage: UIImageView!
+    @IBOutlet weak var recipeName: UILabel!
     
     override func awakeFromNib() {
       super.awakeFromNib()
-        print("inside")
-      container.layer.cornerRadius = 20
-      container.layer.masksToBounds = true
-//        container.
     }
+    
 }
