@@ -9,11 +9,14 @@
 import UIKit
 
 class profileViewController: UIViewController {
+    @IBOutlet weak var name: UILabel!
+    
+    let profile:ProfileData = SignupViewController.loadProfile()!
     var bg: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        name.text = profile.userName
         bg = Styler.setBackground(bg: "background")
         view.addSubview(bg)
         self.view.sendSubviewToBack(bg)
