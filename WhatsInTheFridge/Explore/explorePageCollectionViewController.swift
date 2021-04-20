@@ -129,7 +129,9 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // skeleton attributes
-        let skeletonBaseColor = UIColor.brown
+        
+        // FIXME: Uncomment the following if you are doing the demo
+//        let skeletonBaseColor = UIColor.brown
         
         // skeleton setup
 //        collectionView.isSkeletonable = true

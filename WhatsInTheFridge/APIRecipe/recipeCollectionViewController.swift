@@ -260,7 +260,9 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         // skeleton attributes
-        let skeletonBaseColor = UIColor.brown
+        
+        // FIXME: uncomment the following if you are doing the demo
+//        let skeletonBaseColor = UIColor.brown
         
         // skeleton setup
 //        collectionView.isSkeletonable = true
