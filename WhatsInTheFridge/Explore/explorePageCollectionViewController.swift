@@ -132,10 +132,10 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         let skeletonBaseColor = UIColor.brown
         
         // skeleton setup
-        collectionView.isSkeletonable = true
-        collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: skeletonBaseColor), animation: .none, transition: .none)
-        
-        createGetAllDataThread()
+//        collectionView.isSkeletonable = true
+//        collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: skeletonBaseColor), animation: .none, transition: .none)
+//        
+//        createGetAllDataThread()
     }
     
     func getAllData()   {
