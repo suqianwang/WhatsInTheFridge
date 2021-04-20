@@ -182,9 +182,6 @@
 				8677E55A261CB8260047DBD4 /* exploreItemCollectionViewCell.swift */,
 				8677E555261CB8260047DBD4 /* explorePageCollectionViewController.swift */,
 				8677E557261CB8260047DBD4 /* explorePageDetailViewController.swift */,
-				8677E556261CB8260047DBD4 /* likedCollectionViewCell.swift */,
-				8677E558261CB8260047DBD4 /* likedDetailViewController.swift */,
-				8677E559261CB8260047DBD4 /* likedPageCollectionViewController.swift */,
 			);
 			path = Explore;
 			sourceTree = "<group>";
@@ -192,6 +189,9 @@
 		8677E54E261CB7C00047DBD4 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				8677E556261CB8260047DBD4 /* likedCollectionViewCell.swift */,
+				8677E558261CB8260047DBD4 /* likedDetailViewController.swift */,
+				8677E559261CB8260047DBD4 /* likedPageCollectionViewController.swift */,
 				86E4F425262EA34C001A824D /* profileViewController.swift */,
 				8677E550261CB8060047DBD4 /* collectDetailViewController.swift */,
 				8677E54F261CB8060047DBD4 /* collectedCollectionViewCell.swift */,

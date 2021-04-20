@@ -4,46 +4,80 @@
 //
 //  Created by Qintian Wu on 4/5/21.
 //  Modified by D on 4/14/21.
-//
-//  To do: default load for a detail view should be liked.
+//  Modified by Suqian on 4/20/21.
 //
 
 import UIKit
-import os.log
+import OSLog
+import SkeletonView
 
-class likedPageCollectionViewController: UICollectionViewController {
-    // Mark : - Structure to store all of the recipes to show.
+class likedPageCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, SkeletonCollectionViewDataSource {
+    
+    // MARK: - Attributes
+    // Structure to store all of the recipes to show.
     var likedRecipes = [likedRecipe]() //from the custom class in /RecipeClasses/likedRecipes
     
+    var bg: UIImageView!
+    
+    // MARK: - View Setup
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
         // Add custom background
-        collectionView.backgroundView = UIImageView(image: UIImage(named: "background"))
-        let savedLikes = loadLikes()
-        
-        if savedLikes?.count == 0{
-            print("There are no saved like recipes: you should see the defaults.")
-            loadDefaultLikes()
-        }
-        
-        //otherwise use the default.
-        else{
-            print("There are saved liked recipes: attempting to load them.")
-            likedRecipes += savedLikes!
-        }
-        
+        bg = Styler.setBackground(bg: "background")
+        view.addSubview(bg)
+        self.view.sendSubviewToBack(bg)
         navigationItem.title = "Your liked Recipes"
+        
+        // Set collectionView background and padding
+        collectionView.backgroundColor = .clear
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+        collectionView.isSkeletonable = true
+        collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: UIColor.brown), animation: .none, transition: .none)
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
+        
+        //        createGetAllDataThread()
     }
     
-    // Mark: Function for resetting past likes. Call under viewDidLoad to remove all past likes.
-    // DON'T USE IN PRODUCTION.
+    override func viewDidAppear(_ animated: Bool) {
+        os_log("entering liked page collection")
+        
+        
+        createGetAllDataThread()
+        
+    }
+    
+    func createGetAllDataThread(){
+        // move get data to async thread to show loading animation
+        DispatchQueue.main.async {
+            // load saved liked recipes
+            os_log("retrieving saved 'liked recipes' from archive")
+            let savedLikes = self.loadLikes()
+            if savedLikes?.count == 0{
+                os_log("There are no saved like recipes: you should see the defaults.")
+                self.loadDefaultLikes()
+            }
+            //otherwise use the default.
+            else{
+                os_log("There are saved liked recipes: attempting to load them.")
+                self.likedRecipes += savedLikes!
+            }
+            
+            self.collectionView.stopSkeletonAnimation()
+            self.view.hideSkeleton(reloadDataAfter: true, transition: .none)
+        }
+    }
+    
+    // MARK: Function for resetting past likes. Call under viewDidLoad to remove all past likes.
+    // FIXME: DON'T USE IN PRODUCTION ... what does this do?
     private func removeSavedLikes(){
         let currentLikes = [likedRecipe]()
         let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(currentLikes, toFile: likedRecipe.ArchiveURL.path)
         
-        print("The save for liked post was successful: " + String(isSuccessfulSave))
+        os_log("The save for liked post was successful: \(isSuccessfulSave)")
         if isSuccessfulSave{
             os_log(.error, log: OSLog.default, "Ingredients successfully saved.")
         }
@@ -52,7 +86,7 @@ class likedPageCollectionViewController: UICollectionViewController {
         }
     }
     
-    // Mark : - Default data load & Local saved data load
+    // MARK: - Default data load & Local saved data load
     private func loadDefaultLikes(){
         //using previous dummy data.
         let defaultImage = #imageLiteral(resourceName: "egg_tomato.jpeg")
@@ -79,9 +113,9 @@ class likedPageCollectionViewController: UICollectionViewController {
         }
         return []
     }
-
+    
     // MARK: - Navigation
-
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using [segue destinationViewController].
@@ -96,19 +130,19 @@ class likedPageCollectionViewController: UICollectionViewController {
             }
         }
     }
-    // MARK: UICollectionViewDataSource
-
+    
+    // MARK: UICollectionViewDataSource and customization
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
-
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
         return likedRecipes.count
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         var cell = UICollectionViewCell()
         let index = indexPath.row
@@ -118,9 +152,20 @@ class likedPageCollectionViewController: UICollectionViewController {
             content.configure(title, image)
             cell = content
         }
-
+        // Customize Cell
+        cell.contentView.backgroundColor = .white
+        cell.contentView.layer.cornerRadius = 20
         return cell
     }
-
-
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let insetsWidth = collectionView.contentInset.left + collectionView.contentInset.right + 10
+        let cellSize = (collectionView.frame.width - insetsWidth)/2
+        return CGSize(width: cellSize, height: cellSize)
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "likedCell"
+    }
+    
 }

@@ -134,8 +134,6 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // FIXME: Uncomment the following if you are doing the demo
-        
          // skeleton attributes
         let skeletonBaseColor = UIColor.brown
         
@@ -143,7 +141,7 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         collectionView.isSkeletonable = true
         collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: skeletonBaseColor), animation: .none, transition: .none)
         
-//        createGetAllDataThread()
+        createGetAllDataThread()
     }
     
     func getAllData()   {
@@ -244,7 +242,7 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
                 
                 do{
                     let recipeData: RecipeSearch = try JSONDecoder().decode(RecipeSearch.self, from: jsonData)
-                    print("got image")
+//                    print("got image")
                     if (recipeData.recipes != nil) {
                         let imageUrl = URL(string: recipeData.recipes![0]!.image)!
                         let data = try? Data(contentsOf: imageUrl)

@@ -261,8 +261,6 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        // FIXME: uncomment the following if you are doing the demo
-        
         // skeleton attributes
         let skeletonBaseColor = UIColor.brown
         
@@ -270,7 +268,7 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
         collectionView.isSkeletonable = true
         collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: skeletonBaseColor), animation: .none, transition: .none)
         
-//        createGetAllDataThread()
+        createGetAllDataThread()
         
     }
 
