@@ -133,15 +133,16 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // skeleton attributes
         
         // FIXME: Uncomment the following if you are doing the demo
-//        let skeletonBaseColor = UIColor.brown
+        
+         // skeleton attributes
+        let skeletonBaseColor = UIColor.brown
         
         // skeleton setup
-//        collectionView.isSkeletonable = true
-//        collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: skeletonBaseColor), animation: .none, transition: .none)
-//        
+        collectionView.isSkeletonable = true
+        collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: skeletonBaseColor), animation: .none, transition: .none)
+        
 //        createGetAllDataThread()
     }
     
