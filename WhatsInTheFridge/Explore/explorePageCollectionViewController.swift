@@ -3,7 +3,7 @@
 //  whats-in-the-fridge
 //
 //  Created by Qintian Wu on 3/25/21.
-//
+//  Modified by Suqian Wang on 4/20/21.
 
 import UIKit
 import Foundation
@@ -87,19 +87,19 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     // MARK: - class attributes
     let transitionInterval = 0.25
     
+    var bg: UIImageView!
+    
     var recipeRecs: RecipeRecs?
     var recipeToImage: [String: UIImage] = [:]
     var recipeToIndex: [String: Int] = [:]
     var recipesWithImages: [String] = []
-    //dummy data for now
+    
+    //dummy data for default
     let postTitle =  ["Tomato Egg", "Egg Tomato", "Potato beef", "Beff Potato"]
     let postImage = #imageLiteral(resourceName: "egg_tomato.jpeg")
     let postDescript = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda. "
     
     // MARK: - View and Skeleton View Setup
-    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
-        return "cell"
-    }
     
     func createGetAllDataThread(){
         // move get data to async thread to show loading animation
@@ -120,8 +120,13 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         // Add custom background
-        print("loading viewDidLoad")
-        collectionView.backgroundView = UIImageView(image: UIImage(named: "background"))
+        bg = Styler.setBackground(bg: "background")
+        view.addSubview(bg)
+        self.view.sendSubviewToBack(bg)
+        // Set collectionView background and padding
+        collectionView.backgroundColor = .clear
+        collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+        // Set navigation title
         navigationItem.title = "Recipes For You"
         getAllData()
     }
@@ -303,74 +308,44 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         
     }
     
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return "cell"
+    }
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = UICollectionViewCell()
+        var cell: exploreItemCollectionViewCell = exploreItemCollectionViewCell()
         let index = indexPath.row
-        //        let title = postTitle[index]
         let title = recipesWithImages[index]
-        
         let image = self.recipeToImage[title]
         if (image != nil)   {
             if let content = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? exploreItemCollectionViewCell{
-                content.configure(title, image!)
+                content.Image.image = image!
+                content.Title.text = title
                 cell = content
             }
         }
         
         else    {
             if let content = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? exploreItemCollectionViewCell{
-                content.configure(title, postImage)
+                content.Image.image = image!
+                content.Title.text = title
                 cell = content
             }
         }
         
-        
+        // Customize Cell
+        cell.contentView.backgroundColor = .white
+        cell.contentView.layer.cornerRadius = 20
+//        cell.contentView.alpha = 0.6
         return cell
     }
     
     //attempt to configure the cell size to accomodate different deviced, not done yet
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let screenSize : CGRect = UIScreen.main.bounds
-        
-        var widthCell = 0
-        var heightCell = 0
-        
-        //iPhone x, 6,7,8
-        if screenSize.width == 375 && screenSize.height == 667{
-            widthCell = 172
-            heightCell = 150
-        }
-        
-        //iPhone 6+,6s+, 7+,8+
-        if screenSize.width == 414 && screenSize.width == 736{
-            widthCell = 191
-            heightCell = 160
-        }
-        
-        //iPhone 11 Pro, X, Xs
-        if screenSize.width == 375 && heightCell == 812 {
-            widthCell = 172
-            heightCell = 170
-        }
-        
-        
-        //iPhone 11 Pro Max, Xs Max
-        if screenSize.width == 414 && screenSize.height == 896{
-            widthCell = 191
-            heightCell = 190
-        }
-        
-        //every other iphone
-        if screenSize.width == 320 {
-            widthCell = 144
-            heightCell = 125
-            
-        }
-        
-        return CGSize(width: widthCell, height: heightCell)
+        let insetsWidth = collectionView.contentInset.left + collectionView.contentInset.right + 10
+        let cellSize = (collectionView.frame.width - insetsWidth)/2
+        return CGSize(width: cellSize, height: cellSize)
     }
-    
     
 }
 
