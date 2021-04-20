@@ -57,7 +57,7 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
         let healthScore: Int?
         let creditsText, sourceName: String?
         let pricePerServing: Double?
-        let extendedIngredients: [ExtendedIngredient]?
+        let extendedIngredients: [ExtendedIngredient?]?
         let id: Int
         let title: String
         let readyInMinutes, servings: Int?
@@ -106,13 +106,13 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
 
     // MARK: - ExtendedIngredient
     struct ExtendedIngredient: Codable {
-        let id: Int
-        let aisle, image, consistency, name: String
-        let nameClean, original, originalString, originalName: String
-        let amount: Double
-        let unit: String
-        let meta, metaInformation: [String]
-        let measures: Measures
+        let id: Int?
+        let aisle, image, consistency, name: String?
+        let nameClean, original, originalString, originalName: String?
+        let amount: Double?
+        let unit: String?
+        let meta, metaInformation: [String?]?
+        let measures: Measures?
     }
 
     // MARK: - Measures
