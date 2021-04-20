@@ -7,10 +7,14 @@
 
 import UIKit
 import os.log
+import SkeletonView
 
 private let reuseIdentifier = "recipeCell"
 
-class recipeCollectionViewController: UICollectionViewController {
+class recipeCollectionViewController: UICollectionViewController, SkeletonCollectionViewDataSource {
+    
+    // MARK: - Structures
+    // MARK: - Data
     struct allData: Codable {
         let results: [recipe]
         let baseURI: String
@@ -178,6 +182,10 @@ class recipeCollectionViewController: UICollectionViewController {
         }
     }
 
+    // MARK: - class attributes
+    let transitionInterval = 0.25
+    
+    let collectionCellReuseIdentifier = "recipeAPI"
     
     var all:allData?
     
@@ -216,17 +224,54 @@ class recipeCollectionViewController: UICollectionViewController {
         collectionView.backgroundView = UIImageView(image: UIImage(named: "background"))
         navigationItem.title = "Recipes For You"
         
+        // button setup
         button_config()
         self.view.addSubview(button)
         button.addTarget(self, action: #selector(button_action(_:)), for: .touchUpInside)
-
         
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        getAllData()
+        
+        createGetAllDataThread()
     }
     
+    
+    // MARK: - SkeletonView Setup
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // skeleton attributes
+        let skeletonBaseColor = UIColor.brown
+        
+        // skeleton setup
+        collectionView.isSkeletonable = true
+        collectionView.showAnimatedGradientSkeleton(usingGradient: .init(baseColor: skeletonBaseColor), animation: .none, transition: .none)
+        
+        createGetAllDataThread()
+        
+    }
+    
+    func createGetAllDataThread(){
+        // move get data to async thread to show loading animation
+        DispatchQueue.main.async {
+            self.getAllData()
+            // for loop of 10 seconds
+            for _ in 0..<40{
+                if self.recipes.count > 0{
+                    break
+                }
+                Thread.sleep(forTimeInterval: self.transitionInterval)
+            }
+            self.collectionView.stopSkeletonAnimation()
+            self.view.hideSkeleton(reloadDataAfter: true, transition: .none)
+            
+        }
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        return collectionCellReuseIdentifier
+    }
+    
+    // MARK: - Ingredient collection
     private func getIngredientNames()-> String? {
         let savedIngredients = IngredientTableViewController().loadIngredients()!
         var names = [String]()
@@ -237,6 +282,7 @@ class recipeCollectionViewController: UICollectionViewController {
         return names.joined(separator: ",")
     }
 
+    // MARK: - retrieve data from API
     func getAllData()   {
         print("Trying to get all data")
         let headers = [
@@ -308,38 +354,6 @@ class recipeCollectionViewController: UICollectionViewController {
 
     }
     
-    //Getting ingredients from persisted data.
-    private func loadIngredients()->[Ingredient]?{
-        do {
-            let data = try Data(contentsOf: Ingredient.ingredientArchiveURL)
-            return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [Ingredient]
-        }catch{
-            os_log(.error, log: OSLog.default, "failed to load ingredients")
-        }
-        return []
-    }
-    
-    private func getIngredientNames()-> [String]? {
-        let savedIngredients = loadIngredients()!
-        var names = [String]()
-        for ingredient in savedIngredients{
-            names.append(ingredient.name)
-        }
-        print(names)
-        return names
-    }
-    
-    //Getting survey results from persisted data.
-    private func loadSurvey()->[SurveyResponse]?{
-        do {
-            let data = try Data(contentsOf: SurveyResponse.surveyResponseArchiveURL)
-            return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [SurveyResponse]
-        }catch{
-            os_log(.error, log: OSLog.default, "failed to load survey responses")
-        }
-        return []
-    }
-    
     func fillRecipeDetailData() {
         for recipe in recipes   {
             let id = recipe.id!
@@ -397,7 +411,6 @@ class recipeCollectionViewController: UICollectionViewController {
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
         return recipes.count
     }
 
@@ -412,7 +425,7 @@ class recipeCollectionViewController: UICollectionViewController {
         let imageUrl = URL(string: recipes[index].image)!
         let data = try? Data(contentsOf: imageUrl)
         
-        if let content = collectionView.dequeueReusableCell(withReuseIdentifier: "recipeAPI", for: indexPath) as? recipeCollectionViewCell{
+        if let content = collectionView.dequeueReusableCell(withReuseIdentifier: collectionCellReuseIdentifier, for: indexPath) as? recipeCollectionViewCell{
             if let imageData = data {
                 content.recipeImage.image = UIImage(data: imageData)!
             }
@@ -421,7 +434,6 @@ class recipeCollectionViewController: UICollectionViewController {
             //content.configure(recipeTitle, image)
             cell = content
         }
-    
         
         return cell
     

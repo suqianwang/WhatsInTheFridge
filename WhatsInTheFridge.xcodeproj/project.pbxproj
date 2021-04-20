@@ -12,6 +12,7 @@
 		70A335C3262736A9009AAEA9 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A335C2262736A9009AAEA9 /* Recipe.swift */; };
 		70A335C926273DB8009AAEA9 /* likedRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A335C826273DB8009AAEA9 /* likedRecipe.swift */; };
 		70A335CB26273DF1009AAEA9 /* savedRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A335CA26273DF1009AAEA9 /* savedRecipe.swift */; };
+		7874816275B643946643722B /* Pods_WhatsInTheFridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 548C2CC70216C56996C34974 /* Pods_WhatsInTheFridge.framework */; };
 		86113A3F262D45CC0025EAC5 /* ProfileData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86113A3D262D45CC0025EAC5 /* ProfileData.swift */; };
 		86113A40262D45CC0025EAC5 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86113A3E262D45CC0025EAC5 /* SignupViewController.swift */; };
 		862272F3262DD73B0073B1B5 /* recipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862272EE262DD73A0073B1B5 /* recipeDetailViewController.swift */; };
@@ -76,6 +77,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A4F9279FF420BA2C1BECF3C /* Pods-WhatsInTheFridge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsInTheFridge.debug.xcconfig"; path = "Target Support Files/Pods-WhatsInTheFridge/Pods-WhatsInTheFridge.debug.xcconfig"; sourceTree = "<group>"; };
+		548C2CC70216C56996C34974 /* Pods_WhatsInTheFridge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhatsInTheFridge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7088FD8526249DF8009FD3F2 /* ResearchKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ResearchKit.xcodeproj; path = ResearchKit/ResearchKit.xcodeproj; sourceTree = "<group>"; };
 		70963C262625F1EE00E56653 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		709FE41E2624C78500945FC8 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewCell.swift; sourceTree = "<group>"; };
@@ -112,6 +115,7 @@
 		86F6D1552606F83600C74FA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86F6D1582606F83600C74FA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		86F6D15A2606F83600C74FA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C676DED3AE5876E13A444560 /* Pods-WhatsInTheFridge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhatsInTheFridge.release.xcconfig"; path = "Target Support Files/Pods-WhatsInTheFridge/Pods-WhatsInTheFridge.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,6 +124,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				86FEB7FD2629FCD600582026 /* ResearchKit.framework in Frameworks */,
+				7874816275B643946643722B /* Pods_WhatsInTheFridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,6 +222,8 @@
 				7088FD8526249DF8009FD3F2 /* ResearchKit.xcodeproj */,
 				86F6D14B2606F83500C74FA5 /* WhatsInTheFridge */,
 				86F6D14A2606F83500C74FA5 /* Products */,
+				E6C8140B5885207143D69B03 /* Pods */,
+				EA6431DC3357A6E6DAFA364E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -258,6 +265,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E6C8140B5885207143D69B03 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0A4F9279FF420BA2C1BECF3C /* Pods-WhatsInTheFridge.debug.xcconfig */,
+				C676DED3AE5876E13A444560 /* Pods-WhatsInTheFridge.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		EA6431DC3357A6E6DAFA364E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				548C2CC70216C56996C34974 /* Pods_WhatsInTheFridge.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -265,10 +290,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 86F6D15D2606F83600C74FA5 /* Build configuration list for PBXNativeTarget "WhatsInTheFridge" */;
 			buildPhases = (
+				CBE1E543733C636F4B0A9F3F /* [CP] Check Pods Manifest.lock */,
 				86F6D1452606F83500C74FA5 /* Sources */,
 				86F6D1462606F83500C74FA5 /* Frameworks */,
 				86F6D1472606F83500C74FA5 /* Resources */,
 				8677E52E261BD8D40047DBD4 /* Embed Frameworks */,
+				701DE94A99FC726ECE60C474 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -346,6 +373,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		701DE94A99FC726ECE60C474 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WhatsInTheFridge/Pods-WhatsInTheFridge-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WhatsInTheFridge/Pods-WhatsInTheFridge-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhatsInTheFridge/Pods-WhatsInTheFridge-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CBE1E543733C636F4B0A9F3F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WhatsInTheFridge-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		86F6D1452606F83500C74FA5 /* Sources */ = {
@@ -525,6 +594,7 @@
 		};
 		86F6D15E2606F83600C74FA5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0A4F9279FF420BA2C1BECF3C /* Pods-WhatsInTheFridge.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -543,6 +613,7 @@
 		};
 		86F6D15F2606F83600C74FA5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C676DED3AE5876E13A444560 /* Pods-WhatsInTheFridge.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
