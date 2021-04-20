@@ -456,9 +456,32 @@ class recipeCollectionViewController: UICollectionViewController, SkeletonCollec
                 if let imageData = data {
                     detail.picture = UIImage(data: imageData)!
                 }
-                detail.descript = recipeDetailList[indexPath.row].instructions
+                let default_descript = "Open your fridge and take out the ingredients. Cut them into proper shape and cook them. Put source into the pot and enjoy your meal!"
+                detail.descript =
+                    instruct_cleaning(descript: recipeDetailList[indexPath.row].instructions ?? default_descript)
             }
         }
+    }
+    
+    func instruct_cleaning(descript instruct:String)->String{
+        
+        let cleaning_instruct = removeTags(removeSpace(instruct))
+        return cleaning_instruct
+    }
+    
+    //removing the occurances of html tags such as <p> </p>
+    func removeTags(_ text: String) -> String {
+        return text
+            .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
+    }
+
+    //removing extra space
+    func removeSpace(_ text: String) -> String{
+        //leading and trailing space
+        var trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        //extra space between words
+        trimmed = trimmed.split(separator: " ").joined(separator: " ")
+        return trimmed
     }
     
     

@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F2610FA262E91F800298A7E /* (null) in Sources */ = {isa = PBXBuildFile; };
 		70963C272625F1EE00E56653 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70963C262625F1EE00E56653 /* Ingredient.swift */; };
 		709FE41F2624C78500945FC8 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709FE41E2624C78500945FC8 /* IngredientTableViewCell.swift */; };
 		70A335C3262736A9009AAEA9 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A335C2262736A9009AAEA9 /* Recipe.swift */; };
@@ -33,6 +34,7 @@
 		86BB26FB262B9D960015A577 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB26FA262B9D950015A577 /* UIColorExtension.swift */; };
 		86BB2701262BBC300015A577 /* SurveyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB26FD262BBC300015A577 /* SurveyResponse.swift */; };
 		86DC70B8262C147E00AB2F9C /* Styler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86DC70B7262C147E00AB2F9C /* Styler.swift */; };
+		86E4F428262EA34C001A824D /* profileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E4F425262EA34C001A824D /* profileViewController.swift */; };
 		86EC60A5261B9A3000A11618 /* IngredientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC60A4261B9A2F00A11618 /* IngredientTableViewController.swift */; };
 		86EC60A8261BB16100A11618 /* AddIngredientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86EC60A7261BB16100A11618 /* AddIngredientViewController.swift */; };
 		86F6D14D2606F83500C74FA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F6D14C2606F83500C74FA5 /* AppDelegate.swift */; };
@@ -105,6 +107,7 @@
 		86BB26FA262B9D950015A577 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = WhatsInTheFridge/Helper/UIColorExtension.swift; sourceTree = SOURCE_ROOT; };
 		86BB26FD262BBC300015A577 /* SurveyResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyResponse.swift; sourceTree = "<group>"; };
 		86DC70B7262C147E00AB2F9C /* Styler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Styler.swift; path = WhatsInTheFridge/Helper/Styler.swift; sourceTree = "<group>"; };
+		86E4F425262EA34C001A824D /* profileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = profileViewController.swift; sourceTree = "<group>"; };
 		86EC60A4261B9A2F00A11618 /* IngredientTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientTableViewController.swift; sourceTree = "<group>"; };
 		86EC60A7261BB16100A11618 /* AddIngredientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIngredientViewController.swift; sourceTree = "<group>"; };
 		86F6D1492606F83500C74FA5 /* WhatsInTheFridge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsInTheFridge.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,6 +192,7 @@
 		8677E54E261CB7C00047DBD4 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				86E4F425262EA34C001A824D /* profileViewController.swift */,
 				8677E550261CB8060047DBD4 /* collectDetailViewController.swift */,
 				8677E54F261CB8060047DBD4 /* collectedCollectionViewCell.swift */,
 				8677E551261CB8060047DBD4 /* collectedPageCollectionViewController.swift */,
@@ -271,7 +275,6 @@
 				0A4F9279FF420BA2C1BECF3C /* Pods-WhatsInTheFridge.debug.xcconfig */,
 				C676DED3AE5876E13A444560 /* Pods-WhatsInTheFridge.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -427,9 +430,11 @@
 				8677E55C261CB8260047DBD4 /* likedCollectionViewCell.swift in Sources */,
 				8677E55D261CB8260047DBD4 /* explorePageDetailViewController.swift in Sources */,
 				86EC60A5261B9A3000A11618 /* IngredientTableViewController.swift in Sources */,
+				86E4F428262EA34C001A824D /* profileViewController.swift in Sources */,
 				8677E560261CB8260047DBD4 /* exploreItemCollectionViewCell.swift in Sources */,
 				86DC70B8262C147E00AB2F9C /* Styler.swift in Sources */,
 				8677E537261BE80C0047DBD4 /* SurveyViewController.swift in Sources */,
+				6F2610FA262E91F800298A7E /* (null) in Sources */,
 				8677E532261BDAF60047DBD4 /* SurveyTask.swift in Sources */,
 				86F6D1512606F83500C74FA5 /* ViewController.swift in Sources */,
 				8677E55E261CB8260047DBD4 /* likedDetailViewController.swift in Sources */,

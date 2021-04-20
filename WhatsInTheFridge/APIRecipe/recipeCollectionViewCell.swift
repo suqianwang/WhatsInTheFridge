@@ -16,7 +16,8 @@ class recipeCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
       super.awakeFromNib()
         print("inside")
-//      container.layer.cornerRadius = 6
-//      container.layer.masksToBounds = true
+      container.layer.cornerRadius = 20
+      container.layer.masksToBounds = true
+//        container.
     }
 }

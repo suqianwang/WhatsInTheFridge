@@ -14,7 +14,13 @@ git clone git@gitlab.oit.duke.edu:CS207_Spring2021/ml4-whats-in-the-fridge.git
 git checkout <desired branch>
 git submodule update --init
 ```
-### Submodules
+
+### Note
+* Make sure to install the submodule instructed above
+* Make sure to open the ***WhatsInTheFridge.xcworkspace*** to run the file
+* Make sure to run with the following scheme and simulator ***WhatsInTheFridge > iphone11***
+
+#### Submodules
 * This will add a submodule
 ```git
 git submodule add <submodule url>
@@ -32,9 +38,8 @@ git submodule add <submodule url>
 * Recipes are able to be recommened to user through calls to the recipe API
 * Store state (preferences, likes, and collects) using CoreData
 * Recommend recipes based on user history (likes, collects, preferences)
-* User profile management such as updating username, recipes they liked or collected
-* Filter functionalities for browsing recipes
 
 ## Techonologies
 * UIKit
 * ResearchKit
+* Pods - SkeletonView
