@@ -206,6 +206,8 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         let likeIDSObjArr = getLikesAsObjects()!
         var pastLikes = [Int]()
         
+        removePastLikes() //note: we are doing this because the lambda function interfacing with the ML algorithm only needs most recent like ids every time the load expore page function runs.
+        
         for id in likeIDSObjArr{
             pastLikes.append(id.id!)
         }
@@ -218,9 +220,20 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
             let data = try Data(contentsOf: likedRecipeID.ArchiveURL)
             return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [likedRecipeID]
         }catch{
-            os_log(.error, log: OSLog.default, "failed to load past like ids")
+            os_log(.error, log: OSLog.default, "Failed to load past like ids")
         }
         return []
+    }
+    
+    private func removePastLikes() {
+        let likes = [likedRecipeID]()
+        print("Wiping recipe ids.")
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: likes, requiringSecureCoding: false)
+            try data.write(to: likedRecipeID.ArchiveURL)
+        }catch{
+            os_log(.error, log: OSLog.default, "Failed to wipe past iteration like ids.")
+        }
     }
     
     func getImages()    {
