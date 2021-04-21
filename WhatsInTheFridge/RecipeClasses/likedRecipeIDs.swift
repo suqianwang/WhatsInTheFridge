@@ -13,6 +13,9 @@ class likedRecipeID: NSObject, NSCoding {
     //Mark: Class Properties
     var id: Int?
     
+    static let documentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = documentsDirectory.appendingPathComponent("likedRecipeID")
+    
     //Mark: Types?
     struct PropertyKey {
         static let id = "id"
