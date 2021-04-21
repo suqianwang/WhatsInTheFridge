@@ -235,7 +235,7 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
             }
             self.collectionView.stopSkeletonAnimation()
             self.view.hideSkeleton(reloadDataAfter: true, transition: .none)
-
+        }
     }
     
     override func viewDidLoad() {
