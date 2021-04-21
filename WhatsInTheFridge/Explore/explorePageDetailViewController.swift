@@ -232,8 +232,6 @@ class explorePageDetailViewController: UIViewController {
             print("     Correctly detected place in the persisted data.")
         }
         
-        print(currentSavedLikes?.count)
-        
         //save it again
         let isSuccessfulSave = saveLikes(likes: currentSavedLikes!)
         
