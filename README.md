@@ -3,6 +3,8 @@
 ## Description
 What's In The Fridge is an iOS mobile app that suggests recipes to users based on the ingredient in their fridge and their history preferences.
 
+### Watch our demo here: https://youtu.be/HaneQ0izzNc!
+
 ## Goals
 * Create a functional app with the basic features listed below
 * Pleasing & intuitive user interface
