@@ -452,7 +452,7 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
         if segue.identifier == "RecipeDetail"{
             let detail = segue.destination as! recipeDetailViewController
             if let indexPath = self.collectionView?.indexPath(for: sender as! UICollectionViewCell){
-                
+                detail.id = recipes[indexPath.row].id //For saving liked recipe IDs for using in Explore page.
                 detail.name = recipes[indexPath.row].title
                 let imageUrl = URL(string: recipes[indexPath.row].image)!
                 let data = try? Data(contentsOf: imageUrl)
