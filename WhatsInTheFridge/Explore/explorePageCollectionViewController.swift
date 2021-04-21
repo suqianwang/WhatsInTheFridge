@@ -64,7 +64,7 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     
     struct RecipeRecs: Codable {
         let statusCode: Int
-        let body: String
+        let body: String?
         let recomIDS: [Int?]?
         let rcpNames: [String]
         let rcpIdxs, minutes: [Int?]?
