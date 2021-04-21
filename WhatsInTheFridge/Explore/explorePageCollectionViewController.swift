@@ -8,6 +8,7 @@
 import UIKit
 import Foundation
 import SkeletonView
+import os.log
 
 class explorePageCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, SkeletonCollectionViewDataSource {
     
@@ -128,7 +129,7 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
         // Set navigation title
         navigationItem.title = "Recipes For You"
-        getAllData()
+        //getAllData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -149,7 +150,7 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     func getAllData()   {
         
         let parameters: [String: Any] = [
-            "liked_recoms": [],
+            "liked_recoms": getPastLikes(),
             "user_id": 222,
             "recom_amount": 15
         ]
@@ -199,6 +200,28 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         
         dataTask.resume()
         
+    }
+    
+    //Mark: Data persistence stuff. Getting past liked IDS from memory.
+    private func getPastLikes()->[Int]?{
+        let likeIDSObjArr = getLikesAsObjects()!
+        var pastLikes = [Int]()
+        
+        for id in likeIDSObjArr{
+            pastLikes.append(id.id!)
+        }
+        
+        return pastLikes
+    }
+    
+    private func getLikesAsObjects()->[likedRecipeID]?{
+        do {
+            let data = try Data(contentsOf: likedRecipeID.ArchiveURL)
+            return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [likedRecipeID]
+        }catch{
+            os_log(.error, log: OSLog.default, "failed to load past like ids")
+        }
+        return []
     }
     
     func getImages()    {
@@ -251,6 +274,7 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
                         if let imageData = data {
                             let image = UIImage(data: imageData)!
                             self.recipeToImage[recipe] = image
+                            print(image)
                         }
                         
                         
@@ -286,6 +310,9 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
                 detail.name = title
                 detail.picture = self.recipeToImage[title]!
                 detail.descript = self.recipeRecs?.steps![self.recipeToIndex[title]!]
+                let id = self.recipeRecs?.recomIDS![self.recipeToIndex[title]!]
+                detail.id = id
+                print("ID for what we're saving is: " + String(id!))
             }
         }
     }
