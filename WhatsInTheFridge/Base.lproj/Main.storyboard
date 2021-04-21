@@ -575,28 +575,20 @@
                                     <rect key="frame" x="0.0" y="0.0" width="170" height="190"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HmJ-hu-WKj">
-                                            <rect key="frame" x="5" y="0.0" width="160" height="190"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HmJ-hu-WKj">
+                                            <rect key="frame" x="-5" y="0.0" width="180" height="190"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="aIK-YA-Qee">
-                                                    <rect key="frame" x="-10" y="-11" width="180" height="178"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="39" translatesAutoresizingMaskIntoConstraints="NO" id="aIK-YA-Qee">
+                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="190"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="50X-DQ-X3G">
-                                                            <rect key="frame" x="0.0" y="0.0" width="180" height="120"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="120" id="MGM-6J-J4L"/>
-                                                                <constraint firstAttribute="width" constant="180" id="vOC-HI-pPp"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="0.0" y="0.0" width="180" height="119.5"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="130" translatesAutoresizingMaskIntoConstraints="NO" id="yDO-Qa-t9P">
-                                                            <rect key="frame" x="0.0" y="148" width="180" height="30"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="30" id="RmW-gK-jpB"/>
-                                                            </constraints>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="130" translatesAutoresizingMaskIntoConstraints="NO" id="yDO-Qa-t9P">
+                                                            <rect key="frame" x="0.0" y="158.5" width="180" height="31.5"/>
                                                             <fontDescription key="fontDescription" name="GranthaSangamMN-Regular" family="Grantha Sangam MN" pointSize="18"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -611,11 +603,29 @@
                                                 </stackView>
                                             </subviews>
                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="aIK-YA-Qee" secondAttribute="trailing" id="90v-dB-BC4"/>
+                                                <constraint firstItem="aIK-YA-Qee" firstAttribute="top" secondItem="HmJ-hu-WKj" secondAttribute="top" id="WeX-af-2YG"/>
+                                                <constraint firstAttribute="bottom" secondItem="aIK-YA-Qee" secondAttribute="bottom" id="oJM-9m-i0C"/>
+                                                <constraint firstItem="aIK-YA-Qee" firstAttribute="leading" secondItem="HmJ-hu-WKj" secondAttribute="leading" id="qcs-Hs-Fgv"/>
+                                            </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="HmJ-hu-WKj" firstAttribute="top" secondItem="Ebh-xK-A4k" secondAttribute="top" id="16D-1O-BgZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="yDO-Qa-t9P" secondAttribute="trailing" constant="-5" id="5ah-XV-Lse"/>
+                                        <constraint firstItem="HmJ-hu-WKj" firstAttribute="centerX" secondItem="Ebh-xK-A4k" secondAttribute="centerX" id="Beh-OY-58m"/>
+                                        <constraint firstAttribute="trailing" secondItem="50X-DQ-X3G" secondAttribute="trailing" constant="-5" id="KQg-9w-8RB"/>
+                                        <constraint firstItem="50X-DQ-X3G" firstAttribute="leading" secondItem="Ebh-xK-A4k" secondAttribute="leading" constant="-5" id="dbC-Pm-FAy"/>
+                                        <constraint firstItem="50X-DQ-X3G" firstAttribute="top" secondItem="Ebh-xK-A4k" secondAttribute="top" id="roB-5z-eE1"/>
+                                        <constraint firstItem="yDO-Qa-t9P" firstAttribute="leading" secondItem="Ebh-xK-A4k" secondAttribute="leading" constant="-5" id="uoH-eF-Jpr"/>
+                                        <constraint firstItem="yDO-Qa-t9P" firstAttribute="height" secondItem="Ebh-xK-A4k" secondAttribute="height" multiplier="0.165789" id="wPF-xh-d9N"/>
+                                        <constraint firstItem="HmJ-hu-WKj" firstAttribute="centerY" secondItem="Ebh-xK-A4k" secondAttribute="centerY" id="wrY-mo-fhn"/>
+                                        <constraint firstAttribute="bottom" secondItem="HmJ-hu-WKj" secondAttribute="bottom" id="zmd-8n-JlE"/>
+                                    </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                     </userDefinedRuntimeAttributes>
@@ -627,6 +637,7 @@
                                 <connections>
                                     <outlet property="Image" destination="50X-DQ-X3G" id="tqi-Qn-oy1"/>
                                     <outlet property="Title" destination="yDO-Qa-t9P" id="RqJ-4O-mRI"/>
+                                    <outlet property="backgroundView" destination="Ebh-xK-A4k" id="tXy-xo-8vk"/>
                                     <segue destination="At6-PF-H4H" kind="show" identifier="showCollected" id="gBF-y5-D14"/>
                                 </connections>
                             </collectionViewCell>
@@ -676,6 +687,9 @@
                                                         <constraint firstAttribute="width" constant="180" id="TWI-C0-AsC"/>
                                                         <constraint firstAttribute="height" constant="120" id="jW3-eK-S0W"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="130" translatesAutoresizingMaskIntoConstraints="NO" id="EHo-Ly-uCS">
                                                     <rect key="frame" x="0.0" y="150" width="160" height="30"/>
@@ -686,8 +700,14 @@
                                                     <fontDescription key="fontDescription" name="GranthaSangamMN-Regular" family="Grantha Sangam MN" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </stackView>
                                     </subviews>
                                     <constraints>
@@ -696,8 +716,14 @@
                                         <constraint firstAttribute="bottom" secondItem="bKo-EF-FAb" secondAttribute="bottom" constant="5" id="b9f-Ff-wRL"/>
                                         <constraint firstItem="bKo-EF-FAb" firstAttribute="top" secondItem="4Ez-pI-6n5" secondAttribute="top" constant="5" id="iDX-3G-scg"/>
                                     </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
                                 </collectionViewCellContentView>
                                 <size key="customSize" width="170" height="190"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="Image" destination="0IY-cX-h2L" id="jcO-sE-tnL"/>
                                     <outlet property="Title" destination="EHo-Ly-uCS" id="m1y-po-VyE"/>
@@ -705,6 +731,9 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                         <connections>
                             <outlet property="dataSource" destination="Vy9-7V-qMm" id="0MP-H8-Ldi"/>
                             <outlet property="delegate" destination="Vy9-7V-qMm" id="X8e-0b-Xbf"/>

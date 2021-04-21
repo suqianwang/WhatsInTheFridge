@@ -104,9 +104,7 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     func createGetAllDataThread(){
         // move get data to async thread to show loading animation
         DispatchQueue.main.async {
-            self.getAllData()
-            // for loop of 10 seconds
-            for _ in 0..<60{
+            for _ in 0..<100{
                 if self.recipeToImage.count > 0{
                     break
                 }

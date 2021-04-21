@@ -44,10 +44,7 @@ class likedPageCollectionViewController: UICollectionViewController, UICollectio
     
     override func viewDidAppear(_ animated: Bool) {
         os_log("entering liked page collection")
-        
-        
         createGetAllDataThread()
-        
     }
     
     func createGetAllDataThread(){

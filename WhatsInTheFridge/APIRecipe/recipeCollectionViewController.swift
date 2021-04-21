@@ -226,7 +226,7 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
         DispatchQueue.main.async {
             self.getAllData()
             // for loop of 10 seconds
-            for _ in 0..<40{
+            for _ in 0..<100{
                 if self.recipes.count > 0{
                     break
                 }
