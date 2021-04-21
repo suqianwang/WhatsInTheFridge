@@ -18,7 +18,7 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
         let results: [recipe]
         let baseURI: String
         let offset, number, totalResults, processingTimeMS: Int
-
+        
         enum CodingKeys: String, CodingKey {
             case results
             case baseURI = "baseUri"
@@ -26,7 +26,7 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
             case processingTimeMS = "processingTimeMs"
         }
     }
-
+    
     // MARK: - Result
     struct recipe: Codable {
         let id, usedIngredientCount, missedIngredientCount, likes: Int?
@@ -34,7 +34,7 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
         let image: String
         let imageType: String
     }
-
+    
     // MARK: - Ingredient
     struct ingredient: Codable {
         let id: Int
@@ -69,7 +69,7 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
         let instructions: String?
         let analyzedInstructions: [AnalyzedInstruction]?
         let originalID: JSONNull?
-
+        
         enum CodingKeys: String, CodingKey {
             case vegetarian, vegan, glutenFree, dairyFree, veryHealthy, cheap, veryPopular, sustainable, weightWatcherSmartPoints, gaps, lowFodmap, preparationMinutes, cookingMinutes, aggregateLikes, spoonacularScore, healthScore, creditsText, sourceName, pricePerServing, extendedIngredients, id, title, readyInMinutes, servings
             case sourceURL = "sourceUrl"
@@ -77,13 +77,13 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
             case originalID = "originalId"
         }
     }
-
+    
     // MARK: - AnalyzedInstruction
     struct AnalyzedInstruction: Codable {
         let name: String
         let steps: [Step]
     }
-
+    
     // MARK: - Step
     struct Step: Codable {
         let number: Int
@@ -91,19 +91,19 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
         let ingredients, equipment: [Ent]
         let length: Length?
     }
-
+    
     // MARK: - Ent
     struct Ent: Codable {
         let id: Int
         let name, localizedName, image: String
     }
-
+    
     // MARK: - Length
     struct Length: Codable {
         let number: Int
         let unit: String
     }
-
+    
     // MARK: - ExtendedIngredient
     struct ExtendedIngredient: Codable {
         let id: Int?
@@ -114,25 +114,25 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
         let meta, metaInformation: [String?]?
         let measures: Measures?
     }
-
+    
     // MARK: - Measures
     struct Measures: Codable {
         let us, metric: Metric
     }
-
+    
     // MARK: - Metric
     struct Metric: Codable {
         let amount: Double
         let unitShort, unitLong: String
     }
-
+    
     // MARK: - WinePairing
     struct WinePairing: Codable {
         let pairedWines: [String?]?
         let pairingText: String?
         let productMatches: [ProductMatch?]?
     }
-
+    
     // MARK: - ProductMatch
     struct ProductMatch: Codable {
         let id: Int
@@ -142,7 +142,7 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
         let ratingCount: Int
         let score: Double
         let link: String
-
+        
         enum CodingKeys: String, CodingKey {
             case id, title
             case productMatchDescription = "description"
@@ -151,42 +151,42 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
             case averageRating, ratingCount, score, link
         }
     }
-
+    
     // MARK: - Encode/decode helpers
     class JSONNull: Codable, Hashable {
-
+        
         public static func == (lhs: JSONNull, rhs: JSONNull) -> Bool {
             return true
         }
-
+        
         let hashValue: Int = 0
         
         func hash(into hasher: inout Hasher) {
             hasher.combine(self.hashValue)
         }
-
+        
         public init() {}
-
+        
         public required init(from decoder: Decoder) throws {
             let container = try decoder.singleValueContainer()
             if !container.decodeNil() {
                 throw DecodingError.typeMismatch(JSONNull.self, DecodingError.Context(codingPath: decoder.codingPath, debugDescription: "Wrong type for JSONNull"))
             }
         }
-
+        
         public func encode(to encoder: Encoder) throws {
             var container = encoder.singleValueContainer()
             try container.encodeNil()
         }
     }
-
+    
     // MARK: - class attributes
     let postImage = #imageLiteral(resourceName: "egg_tomato.jpeg")
     var bg: UIImageView!
     
     // skeleton view attributes
     let transitionInterval = 0.25
-//    let collectionCellReuseIdentifier = "recipeCell"
+    //    let collectionCellReuseIdentifier = "recipeCell"
     
     // recipe data attributes
     var all:allData?
@@ -235,12 +235,13 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
             }
             self.collectionView.stopSkeletonAnimation()
             self.view.hideSkeleton(reloadDataAfter: true, transition: .none)
-
+            
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Add custom background
         bg = Styler.setBackground(bg: "background")
         view.addSubview(bg)
@@ -271,7 +272,7 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
         createGetAllDataThread()
         
     }
-
+    
     // MARK: - retrieve data from API
     func getAllData()   {
         let headers = [
@@ -300,13 +301,13 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
         result = result!.replacingOccurrences(of: ",", with: "%2C")
         
         let request = NSMutableURLRequest(url: NSURL(string: result!)! as URL,
-                                                cachePolicy: .useProtocolCachePolicy,
-                                            timeoutInterval: 60)
+                                          cachePolicy: .useProtocolCachePolicy,
+                                          timeoutInterval: 60)
         request.httpMethod = "GET"
         request.allHTTPHeaderFields = headers
         
         
-
+        
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
             guard error == nil else {
@@ -348,7 +349,7 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
         })
         
         dataTask.resume()
-
+        
     }
     
     func fillRecipeDetailData() {
@@ -363,11 +364,11 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
             let urlStr = URL(string: urlRequestString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!)
             
             let request = NSMutableURLRequest(url: urlStr!,
-                                                    cachePolicy: .useProtocolCachePolicy,
-                                                timeoutInterval: 10.0)
+                                              cachePolicy: .useProtocolCachePolicy,
+                                              timeoutInterval: 10.0)
             request.httpMethod = "GET"
             request.allHTTPHeaderFields = headers
-
+            
             let session = URLSession.shared
             let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
                 guard error == nil else {
@@ -391,19 +392,19 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
                     print("JSONDecoder error: \(error)")
                 }
             })
-
+            
             dataTask.resume()
         }
     }
-
+    
     // MARK: UICollectionViewDataSource
-
+    
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
-
-
+    
+    
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return recipes.count
     }
@@ -411,7 +412,7 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
     func collectionSkeletonView(_ skeletonView: UICollectionView, cellIdentifierForItemAt indexPath: IndexPath) -> ReusableCellIdentifier {
         return "recipeCell"
     }
-
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         // Configure the cell
@@ -475,7 +476,7 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
         for ingredient in savedIngredients{
             names.append(ingredient.name)
         }
-//        print(names)
+        //        print(names)
         return names.joined(separator: ",")
     }
     
@@ -491,7 +492,7 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
         return text
             .replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
     }
-
+    
     //removing extra space
     func removeSpace(_ text: String) -> String{
         //leading and trailing space
@@ -500,36 +501,36 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
         trimmed = trimmed.split(separator: " ").joined(separator: " ")
         return trimmed
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
-    }
-    */
-
+    // MARK: UICollectionViewDelegate
+    
+    /*
+     // Uncomment this method to specify if the specified item should be highlighted during tracking
+     override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
+     return true
+     }
+     */
+    
+    /*
+     // Uncomment this method to specify if the specified item should be selected
+     override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
+     return true
+     }
+     */
+    
+    /*
+     // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
+     override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
+     return false
+     }
+     
+     override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+     return false
+     }
+     
+     override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
+     
+     }
+     */
+    
 }

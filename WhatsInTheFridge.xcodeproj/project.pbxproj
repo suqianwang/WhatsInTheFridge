@@ -30,6 +30,8 @@
 		8677E55E261CB8260047DBD4 /* likedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E558261CB8260047DBD4 /* likedDetailViewController.swift */; };
 		8677E55F261CB8260047DBD4 /* likedPageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E559261CB8260047DBD4 /* likedPageCollectionViewController.swift */; };
 		8677E560261CB8260047DBD4 /* exploreItemCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8677E55A261CB8260047DBD4 /* exploreItemCollectionViewCell.swift */; };
+		869A0193262FCD210019B942 /* likedRecipeIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869A018E262FCD210019B942 /* likedRecipeIDs.swift */; };
+		869A0194262FCD210019B942 /* likedRecipeWithID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869A0192262FCD210019B942 /* likedRecipeWithID.swift */; };
 		86BB26EB262A9D0B0015A577 /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB26EA262A9D0B0015A577 /* HomeTabBarController.swift */; };
 		86BB26FB262B9D960015A577 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB26FA262B9D950015A577 /* UIColorExtension.swift */; };
 		86BB2701262BBC300015A577 /* SurveyResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB26FD262BBC300015A577 /* SurveyResponse.swift */; };
@@ -103,6 +105,8 @@
 		8677E558261CB8260047DBD4 /* likedDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = likedDetailViewController.swift; sourceTree = "<group>"; };
 		8677E559261CB8260047DBD4 /* likedPageCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = likedPageCollectionViewController.swift; sourceTree = "<group>"; };
 		8677E55A261CB8260047DBD4 /* exploreItemCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = exploreItemCollectionViewCell.swift; sourceTree = "<group>"; };
+		869A018E262FCD210019B942 /* likedRecipeIDs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = likedRecipeIDs.swift; sourceTree = "<group>"; };
+		869A0192262FCD210019B942 /* likedRecipeWithID.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = likedRecipeWithID.swift; sourceTree = "<group>"; };
 		86BB26EA262A9D0B0015A577 /* HomeTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarController.swift; sourceTree = "<group>"; };
 		86BB26FA262B9D950015A577 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIColorExtension.swift; path = WhatsInTheFridge/Helper/UIColorExtension.swift; sourceTree = SOURCE_ROOT; };
 		86BB26FD262BBC300015A577 /* SurveyResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyResponse.swift; sourceTree = "<group>"; };
@@ -137,6 +141,8 @@
 		70A335CC26273E14009AAEA9 /* RecipeClasses */ = {
 			isa = PBXGroup;
 			children = (
+				869A018E262FCD210019B942 /* likedRecipeIDs.swift */,
+				869A0192262FCD210019B942 /* likedRecipeWithID.swift */,
 				70A335C2262736A9009AAEA9 /* Recipe.swift */,
 				70A335C826273DB8009AAEA9 /* likedRecipe.swift */,
 				70A335CA26273DF1009AAEA9 /* savedRecipe.swift */,
@@ -442,9 +448,11 @@
 				86113A40262D45CC0025EAC5 /* SignupViewController.swift in Sources */,
 				86113A3F262D45CC0025EAC5 /* ProfileData.swift in Sources */,
 				8677E552261CB8060047DBD4 /* collectedCollectionViewCell.swift in Sources */,
+				869A0193262FCD210019B942 /* likedRecipeIDs.swift in Sources */,
 				70A335CB26273DF1009AAEA9 /* savedRecipe.swift in Sources */,
 				86F6D14F2606F83500C74FA5 /* SceneDelegate.swift in Sources */,
 				8677E55F261CB8260047DBD4 /* likedPageCollectionViewController.swift in Sources */,
+				869A0194262FCD210019B942 /* likedRecipeWithID.swift in Sources */,
 				862272F5262DD73B0073B1B5 /* recipeCollectionViewCell.swift in Sources */,
 				86EC60A8261BB16100A11618 /* AddIngredientViewController.swift in Sources */,
 				86BB26FB262B9D960015A577 /* UIColorExtension.swift in Sources */,
