@@ -73,30 +73,31 @@ class likedDetailViewController: UIViewController {
     //Mark : - Functions to update and load from persistent data.
     //NOTE: THIS IS THE SECTION OF THE APP TO SEE PREVIOUS SAVED RECIPES.
     private func saveLikedPost(){
-        //load current likes
-        var currentLikes = NSKeyedUnarchiver.unarchiveObject(withFile: likedRecipe.ArchiveURL.path) as? [likedRecipe]
+        let url = likedRecipe.ArchiveURL
+        do{
+            let data = try Data(contentsOf: url)
+            //load current likes
+            var currentLikes:[likedRecipe] = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as! [likedRecipe]
+            
+            //cast the current recipe to something
+            let newLikedRecipe = likedRecipe(name: name, desc: descript, image: picture)
+            
+            //add the current thing to the array we're saving
+            if currentLikes.count > 0{
+                currentLikes.append(newLikedRecipe!)
+            }
+            else {
+                currentLikes = [newLikedRecipe!]
+            }
+            
+            // save data to archive
+            let updatedLikes = try NSKeyedArchiver.archivedData(withRootObject: currentLikes, requiringSecureCoding: false)
+            try updatedLikes.write(to: url)
+            os_log("The save for liked post was successful")
+        }catch{
+            os_log("could not save liked posts into archive")
+        }
         
-        //cast the current recipe to something
-        var newLikedRecipe = likedRecipe(name: name, desc: descript, image: picture)
-        
-        //add the current thing to the array we're saving
-        if currentLikes?.count != nil{
-            currentLikes!.append(newLikedRecipe!)
-        }
-        else {
-            currentLikes = [newLikedRecipe!]
-        }
-
-        //save and check.
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(currentLikes, toFile: likedRecipe.ArchiveURL.path)
-        
-        print("The save for liked post was successful: " + String(isSuccessfulSave))
-        if isSuccessfulSave{
-            os_log(.error, log: OSLog.default, "Ingredients successfully saved.")
-        }
-        else{
-            os_log(.error, log: OSLog.default, "Failed to saved ingredients...")
-        }
     }
     
 }

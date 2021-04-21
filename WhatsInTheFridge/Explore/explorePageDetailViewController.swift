@@ -167,8 +167,6 @@ class explorePageDetailViewController: UIViewController {
             currentSavedCollected?.remove(at: index)
         }
         
-        print(currentSavedCollected?.count)
-        
         //save it again
         let isSuccessfulSave = saveCollected(collects: currentSavedCollected!)
         
@@ -231,8 +229,6 @@ class explorePageDetailViewController: UIViewController {
             currentSavedLikes?.remove(at: index)
             print("     Correctly detected place in the persisted data.")
         }
-        
-        print(currentSavedLikes?.count)
         
         //save it again
         let isSuccessfulSave = saveLikes(likes: currentSavedLikes!)

@@ -71,16 +71,15 @@ class likedPageCollectionViewController: UICollectionViewController, UICollectio
     // MARK: Function for resetting past likes. Call under viewDidLoad to remove all past likes.
     // FIXME: DON'T USE IN PRODUCTION ... what does this do?
     private func removeSavedLikes(){
-        let currentLikes = [likedRecipe]()
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(currentLikes, toFile: likedRecipe.ArchiveURL.path)
+        let emptyLikes = [likedRecipe]()
+        do{
+            let data = try NSKeyedArchiver.archivedData(withRootObject: emptyLikes, requiringSecureCoding: false)
+            try data.write(to: likedRecipe.ArchiveURL)
+            os_log("liked recipes have been cleaned")
+        }catch{
+            os_log("could not clean liked recipes")
+        }
         
-        os_log("The save for liked post was successful: \(isSuccessfulSave)")
-        if isSuccessfulSave{
-            os_log(.error, log: OSLog.default, "Ingredients successfully saved.")
-        }
-        else{
-            os_log(.error, log: OSLog.default, "Failed to saved ingredients...")
-        }
     }
     
     // MARK: - Default data load & Local saved data load

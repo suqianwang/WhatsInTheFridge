@@ -159,8 +159,10 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
             return true
         }
 
-        public var hashValue: Int {
-            return 0
+        let hashValue: Int = 0
+        
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(self.hashValue)
         }
 
         public init() {}

@@ -106,7 +106,7 @@ class SurveyData{
             let question = stepData.getQuestion()
             let textChoices: [ORKTextChoice] = createTextChoiceLIst(listString: choices)
             let answerFormat: ORKTextChoiceAnswerFormat = ORKAnswerFormat.choiceAnswerFormat(with: .multipleChoice, textChoices: textChoices)
-            let questionStep = ORKQuestionStep(identifier: stepData.getIdentifier(), title: question, answer: answerFormat)
+            let questionStep = ORKQuestionStep(identifier: stepData.getIdentifier(), title: question, question: "", answer: answerFormat)
             steps += [questionStep]
         }
         
