@@ -22,6 +22,7 @@ class explorePageDetailViewController: UIViewController {
     var picture:UIImage!
     var name:String!
     var descript: String!
+    var id: Int!
     
     var liked = false
     var collected = false
@@ -68,10 +69,12 @@ class explorePageDetailViewController: UIViewController {
             heart = UIImage(systemName: "heart")!
             print("You dislike this post")
             removeNewLike()
+            removeNewLikeID()
         } else{
             heart = UIImage(systemName: "heart.fill")!
             print("You like this post")
             saveNewLike()
+            saveNewLikeID()
         }
         sender.setImage(heart, for: .normal)
         liked = !liked
@@ -212,7 +215,7 @@ class explorePageDetailViewController: UIViewController {
             let data = try NSKeyedArchiver.archivedData(withRootObject: likes, requiringSecureCoding: false)
             try data.write(to: likedRecipe.ArchiveURL)
         }catch{
-            os_log(.error, log: OSLog.default, "failed to saved likes")
+            os_log(.error, log: OSLog.default, "failed to save likes")
             return false
         }
         return true
@@ -266,6 +269,69 @@ class explorePageDetailViewController: UIViewController {
         else{
             os_log(.error, log: OSLog.default, "Failed to save new like...")
         }
+    }
+    
+    private func saveNewLikeID(){
+        //load current saved like ids
+        var currentSavedLikeIDS = loadLikeIDS()
+        
+        let newLikeID = likedRecipeID(id: id)
+        
+        if currentSavedLikeIDS?.count == nil {
+            currentSavedLikeIDS = [newLikeID!]
+        }
+        else{
+            currentSavedLikeIDS?.append(newLikeID!)
+        }
+        
+        let isSuccessfulSave = saveLikeIDS(ids: currentSavedLikeIDS!)
+        if isSuccessfulSave{
+            os_log(.error, log: OSLog.default, "New like id successfully saved.")
+        }
+        else{
+            os_log(.error, log: OSLog.default, "Failed to save new like id...")
+        }
+    }
+    
+    private func removeNewLikeID(){
+        //load current likes
+        var currentSavedLikes = loadLikeIDS()
+        
+        //remove the like from it
+        if let index = currentSavedLikes?.firstIndex(where: {$0.id == id}){
+            currentSavedLikes?.remove(at: index)
+        }
+        
+        //save it again
+        let isSuccessfulSave = saveLikeIDS(ids: currentSavedLikes!)
+        
+        if isSuccessfulSave{
+            os_log(.error, log: OSLog.default, "New like successfully saved.")
+        }
+        else{
+            os_log(.error, log: OSLog.default, "Failed to save new like id...")
+        }
+    }
+    
+    private func loadLikeIDS()->[likedRecipeID]?{
+        do {
+            let data = try Data(contentsOf: likedRecipeID.ArchiveURL)
+            return try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [likedRecipeID]
+        }catch{
+            os_log(.error, log: OSLog.default, "failed to load past like ids")
+        }
+        return []
+    }
+    
+    private func saveLikeIDS(ids:[likedRecipeID])->Bool{
+        do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: ids, requiringSecureCoding: false)
+            try data.write(to: likedRecipeID.ArchiveURL)
+        }catch{
+            os_log(.error, log: OSLog.default, "failed to save like ids")
+            return false
+        }
+        return true
     }
     
     /*

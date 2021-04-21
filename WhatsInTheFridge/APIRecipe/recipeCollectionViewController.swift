@@ -222,7 +222,6 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
     }
     
     // MARK: - View and Skeleton View Setup
-    
     func createGetAllDataThread(){
         // move get data to async thread to show loading animation
         DispatchQueue.main.async {
@@ -236,8 +235,7 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
             }
             self.collectionView.stopSkeletonAnimation()
             self.view.hideSkeleton(reloadDataAfter: true, transition: .none)
-            
-        }
+
     }
     
     override func viewDidLoad() {
@@ -323,6 +321,11 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
             
             guard let jsonData = data else {
                 print("No data")
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Error - ", message: "No data was returned from the survey specifications. :(", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
                 return
             }
             
@@ -336,6 +339,11 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
                 }
             } catch {
                 print("JSONDecoder error: \(error)")
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Error - ", message: "\(error)", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true)
+                }
             }
         })
         
