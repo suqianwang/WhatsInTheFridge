@@ -117,13 +117,13 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
     
     // MARK: - Measures
     struct Measures: Codable {
-        let us, metric: Metric
+        let us, metric: Metric?
     }
     
     // MARK: - Metric
     struct Metric: Codable {
-        let amount: Double
-        let unitShort, unitLong: String
+        let amount: Double?
+        let unitShort, unitLong: String?
     }
     
     // MARK: - WinePairing
@@ -135,13 +135,13 @@ class recipeCollectionViewController: UICollectionViewController, UICollectionVi
     
     // MARK: - ProductMatch
     struct ProductMatch: Codable {
-        let id: Int
-        let title, productMatchDescription, price: String
-        let imageURL: String
-        let averageRating: Double
-        let ratingCount: Int
-        let score: Double
-        let link: String
+        let id: Int?
+        let title, productMatchDescription, price: String?
+        let imageURL: String?
+        let averageRating: Double?
+        let ratingCount: Int?
+        let score: Double?
+        let link: String?
         
         enum CodingKeys: String, CodingKey {
             case id, title
