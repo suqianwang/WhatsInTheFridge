@@ -127,13 +127,13 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
         // Set navigation title
         navigationItem.title = "Recipes For You"
-        //getAllData()
+        getAllData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-         // skeleton attributes
+        // skeleton attributes
         let skeletonBaseColor = UIColor.brown
         
         // skeleton setup
@@ -146,7 +146,7 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     func getAllData()   {
         
         let parameters: [String: Any] = [
-            "liked_recoms": getPastLikes(),
+            "liked_recoms": getPastLikes()!,
             "user_id": 222,
             "recom_amount": 15
         ]
@@ -186,9 +186,9 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
                 self.getImages()
                 //because we HAVE to refresh after we load the data to make sure the data is populated.
                 //this is a separate task so we gotta use dispatch queue to tell it to go to the main thread
-                //                DispatchQueue.main.async {
-                //                    self.collectionView.reloadData()
-                //                }
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
             } catch {
                 print("JSONDecoder error: \(error)")
             }
@@ -263,7 +263,7 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
                 
                 do{
                     let recipeData: RecipeSearch = try JSONDecoder().decode(RecipeSearch.self, from: jsonData)
-//                    print("got image")
+                    //                    print("got image")
                     if (recipeData.recipes != nil) {
                         let imageUrl = URL(string: recipeData.recipes![0]!.image)!
                         let data = try? Data(contentsOf: imageUrl)
@@ -355,7 +355,7 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         // Customize Cell
         cell.contentView.backgroundColor = .white
         cell.contentView.layer.cornerRadius = 20
-//        cell.contentView.alpha = 0.6
+        //        cell.contentView.alpha = 0.6
         return cell
     }
     
