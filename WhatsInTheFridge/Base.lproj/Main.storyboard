@@ -1095,8 +1095,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="pU1-mg-BBO"/>
                     <connections>
-                        <outlet property="Collect" destination="V10-fE-p0T" id="hWa-dw-ka9"/>
-                        <outlet property="Heart" destination="4QB-SZ-VuE" id="1Os-Jb-ZLT"/>
+                        <outlet property="Collect" destination="V10-fE-p0T" id="vNJ-bP-WNq"/>
+                        <outlet property="Heart" destination="4QB-SZ-VuE" id="X6a-eW-d82"/>
                         <outlet property="recipeDescription" destination="CY6-HA-JLC" id="wBy-2r-Ifw"/>
                         <outlet property="recipeName" destination="5D7-ad-FAU" id="VaX-bn-a4x"/>
                         <outlet property="recipePicture" destination="8gH-R5-8gg" id="O0Y-yQ-UBT"/>

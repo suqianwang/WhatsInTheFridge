@@ -12,6 +12,8 @@ class recipeDetailViewController: UIViewController {
     @IBOutlet weak var recipePicture: UIImageView!
     @IBOutlet weak var recipeName: UILabel!
     @IBOutlet weak var recipeDescription: UITextView!
+    @IBOutlet weak var Heart: UIButton!
+    @IBOutlet weak var Collect: UIButton!
     
     var picture:UIImage!
     var name:String!
