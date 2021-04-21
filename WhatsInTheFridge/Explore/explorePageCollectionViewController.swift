@@ -26,11 +26,11 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     
     // MARK: - Article
     struct Article: Codable {
-        let name: String
+        let name: String?
         let image: String
-        let link: String
+        let link: String?
         let type: TypeEnum
-        let relevance: Double
+        let relevance: Double?
         let kvtable: String?
         let dataPoints: [DataPoint?]?
     }
@@ -105,6 +105,7 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
     func createGetAllDataThread(){
         // move get data to async thread to show loading animation
         DispatchQueue.main.async {
+            self.getAllData()
             for _ in 0..<100{
                 if self.recipeToImage.count > 0{
                     break
@@ -147,9 +148,11 @@ class explorePageCollectionViewController: UICollectionViewController, UICollect
         
         let parameters: [String: Any] = [
             "liked_recoms": getPastLikes()!,
-            "user_id": 222,
+            "user_id": 101,
             "recom_amount": 15
         ]
+        print("GIVING THESE PARAMETERS TO LAMBDA")
+        print(parameters)
         let jsonData = try? JSONSerialization.data(withJSONObject: parameters)
         
         
