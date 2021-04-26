@@ -13,8 +13,8 @@ role: lambda_witf_recommender
 
 # if access key and secret are left blank, boto will use the credentials
 # defined in the [default] section of ~/.aws/credentials.
-aws_access_key_id: AKIA2MSTLSMMOXMRO4FS
-aws_secret_access_key: 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
+# aws_access_key_id: AKIA2MSTLSMMOXMRO4FS
+# aws_secret_access_key: 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
 
 # dist_directory: dist
 # timeout: 15
