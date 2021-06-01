@@ -21,6 +21,7 @@ git submodule update --init
 * Make sure to install the submodule instructed above
 * Make sure to open the ***WhatsInTheFridge.xcworkspace*** to run the file
 * Make sure to run with the following scheme and simulator ***WhatsInTheFridge > iphone11***
+<img width="222" alt="Screen Shot 2021-04-19 at 6 37 54 PM" src="https://user-images.githubusercontent.com/33110957/120378533-8d158400-c2ec-11eb-8f7a-ccfcd648ab9c.png">
 
 #### Submodules
 * This will add a submodule
